@@ -72,7 +72,7 @@ function RomList(selects) {
 
     clearSelect(select);
     var opt = document.createElement('option');
-    opt.text = I18n.t('site.cart_select');
+    opt.text = "Select Atari 7800 Cartridge...";
     opt.disabled = true;
     opt.selected = true;
     select.appendChild(opt);

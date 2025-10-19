@@ -12,7 +12,6 @@ const locales = {
       desc_settings: "Click<IMG/> <SPAN/> to view current keyboard mappings.", 
       desc_help: "Click<IMG/> <SPAN/> for detailed usage instructions.", 
       desc_load: "Load a cartridge using the drop-down menu or buttons below (you can also drag and drop a local file or remote file link onto the emulator).",
-      cart_select: "Select Atari 7800 Cartridge...",
       cart_local: "Select Local File",
       cart_remote: "Select Remote File",
       cart_prompt: "Enter the URL of a remote Cartridge file or Cartridge list"
