@@ -1,5 +1,6 @@
 import * as Util from "./util.js"
 import * as Events from "./events.js"
+import * as I18n from "../../../src/js/common/i18n.js"
 
 var errorHandler = null;
 var loadFromUrl = null;
