@@ -17,6 +17,8 @@ var GLOBAL_DEFAULT = false;
 var ENABLED_DEFAULT = true;
 var FALLBACK_DEFAULT = true;
 
+const WORKER_URL = "https://js7800-leaderboard-worker.johantw.workers.dev";
+
 var js7800 = null;
 var Main = null;
 var debug = false;
@@ -118,7 +120,7 @@ function loadSramGlobal(success, failure) {
   var mid = Message.showMessage("Loading global leaderboard...");
   
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', Util.getUrlPrefix() + "load.php?d=" + digest);
+  xhr.open('GET', WORKER_URL + "/?d=" + digest);
   xhr.onload = function () {
     if (xhr.status == 200) {
       // Success
@@ -204,7 +206,7 @@ function loadSram(postLoadCallback) {
 function saveSramGlobal() {
   console.log("Writing High Score SRAM to global storage.");
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', Util.getUrlPrefix() + "save.php?sid=" + sessionId + "&d=" + digest);
+  xhr.open('POST', WORKER_URL + "/?sid=" + sessionId + "&d=" + digest);
   xhr.onload = function () {
     if (xhr.status == 200) {
       console.log("Successfully saved global high scores for game");
