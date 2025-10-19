@@ -14,7 +14,7 @@
     "build": "npm run dbConvert && npm run buildModule && npm run buildSite && npm run buildLeaderboard",
     "buildModule": "webpack --mode=production",
     "buildSite": "webpack --mode=production --config site/webpack.config.js",
-    "buildLeaderboard": "webpack --mode=production --config site/leaderboard/webpack.config.js",
+    "buildLeaderboard": "webpack --mode=production --config site/leaderboard/webpack.config.js && copyfiles -u 2 site/leaderboard/index.html site/deploy/leaderboard",
     "webpackWatch": "webpack --watch --mode=production",
     "webpackWatchDebug": "webpack -d --watch ",
     "webpackWatchLeaderboard": "webpack --watch --mode=production --config site/leaderboard/webpack.config.js",
