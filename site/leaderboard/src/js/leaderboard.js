@@ -5,6 +5,8 @@ import gamepadImgSrc from '../images/gamepad-square.svg'
 import * as Message from '../../../src/js/common/message-common.js'
 import * as Util from '../../../src/js/common/util-common.js'
 
+const WORKER_URL = "https://js7800-leaderboard-worker.johantw.workers.dev";
+
 var REFRESH_INTERVAL = 60 * 1000;
 
 var topPlayers10El = null;
@@ -168,7 +170,7 @@ function updateMostCompetitive(games) {
 }
 
 function refreshSummary() {
-  read(Util.getUrlPrefix() + SUMMARY_URL, function(summary) {
+  read(WORKER_URL + "/summary", function(summary) {
     //console.log(summary);
     updateTopPlayers(summary.topScoresByPlayer, true);
     updateTopPlayers(summary.totalPointsByPlayer, false);
@@ -307,7 +309,7 @@ function loadScores(digest, filter) {
   gameSelectEl.value = digest;
   gameSelectEl.disabled = true;  
   setTimeout(function() {
-    read(Util.getUrlPrefix() + "/scoreboard-scores.php?d=" + digest, function(scores) {
+    read(WORKER_URL + "/scores?d=" + digest, function(scores) {
       currentScores = scores.scores;
       currentCart = null;
       if (scores.cart) {
@@ -365,7 +367,7 @@ function loadScoresAndPushHistory(digest, filter) {
 }
 
 function loadGamesList() {
-  read(Util.getUrlPrefix() + "/scoreboard-games.php", function(games) {
+  read(WORKER_URL + "/games", function(games) {
     gameSelectEl.onchange = function() {      
       loadScoresAndPushHistory(this.value);
     };
