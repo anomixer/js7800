@@ -1,4 +1,4 @@
-name: Build
+name: Build and Deploy
 
 on: [push, pull_request]
 
@@ -6,7 +6,7 @@ permissions:
   contents: write
 
 jobs:
-  build:
+  build-and-deploy:
 
     runs-on: ubuntu-latest
 
@@ -15,8 +15,8 @@ jobs:
         node-version: [12.x]
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
+    - name: Checkout repository
+      uses: actions/checkout@v4
       with:
         submodules: recursive
 
@@ -25,109 +25,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Peform build
+    - name: Install dependencies and build
       run: |
         npm install
         npm run build
 
-    - name: Upload dist
-      uses: actions/upload-artifact@v4
-      with:
-        name: dist
-        path: dist
-
-    - name: Upload site
-      uses: actions/upload-artifact@v4
-      with:
-        name: site
-        path: site/deploy
-
-    - name: Deploy to GitHub pages (master)
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+    - name: Deploy to GitHub Pages
       if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BASE_BRANCH: master
-        BRANCH: gh-pages
-        FOLDER: site/deploy
-        CLEAN_EXCLUDE: '["staging", "mobile", "cycles", "bios", "banksets", "banksets_cycleS", "tia"]'
-
-    - name: Deploy to GitHub pages (staging)
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      if: github.event_name == 'push' && github.ref == 'refs/heads/staging'
-      with:
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BASE_BRANCH: staging
-        BRANCH: gh-pages
-        FOLDER: site/deploy
-        TARGET_FOLDER: staging
-
-    - name: Deploy to GitHub pages (cycles)
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      if: github.event_name == 'push' && github.ref == 'refs/heads/cycles'
-      with:
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BASE_BRANCH: cycles
-        BRANCH: gh-pages
-        FOLDER: site/deploy
-        TARGET_FOLDER: cycles
-
-    - name: Deploy to GitHub pages (banksets)
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      if: github.event_name == 'push' && github.ref == 'refs/heads/banksets'
-      with:
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BASE_BRANCH: banksets
-        BRANCH: gh-pages
-        FOLDER: site/deploy
-        TARGET_FOLDER: banksets
-
-    - name: Deploy to GitHub pages (banksets + cycles)
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      if: github.event_name == 'push' && github.ref == 'refs/heads/banksets_cycleS'
-      with:
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BASE_BRANCH: banksets_cycleS
-        BRANCH: gh-pages
-        FOLDER: site/deploy
-        TARGET_FOLDER: banksets_cycles
-
-    - name: Deploy to GitHub pages (tia)
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      if: github.event_name == 'push' && github.ref == 'refs/heads/tia'
-      with:
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BASE_BRANCH: tia
-        BRANCH: gh-pages
-        FOLDER: site/deploy
-        TARGET_FOLDER: tia
-
-    - name: Deploy to GitHub pages (bios)
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      if: github.event_name == 'push' && github.ref == 'refs/heads/bios'
-      with:
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BASE_BRANCH: bios
-        BRANCH: gh-pages
-        FOLDER: site/deploy
-        TARGET_FOLDER: bios
-
-    - name: Deploy to GitHub pages (mobile)
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      if: github.event_name == 'push' && github.ref == 'refs/heads/mobile'
-      with:
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BASE_BRANCH: mobile
-        BRANCH: gh-pages
-        FOLDER: site/deploy
-        TARGET_FOLDER: mobile
-
-    - name: Deploy to GitHub pages (vulns)
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      if: github.event_name == 'push' && github.ref == 'refs/heads/vulns'
-      with:
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BASE_BRANCH: vulns
-        BRANCH: gh-pages
-        FOLDER: site/deploy
-        TARGET_FOLDER: vulns
+        branch: gh-pages
+        folder: site/deploy
