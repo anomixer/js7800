@@ -55,7 +55,7 @@ This is a fork of the original [raz0red/js7800](https://github.com/raz0red/js780
 
 ### Limitations
 
-*   **Global Leaderboard is Inaccessible**: The original global leaderboard service, which fetches high score data from https://twitchasylum.com/x, is protected by a CORS policy that only allows requests from the official `raz0red.github.io` domain. Therefore, this feature does not work in this fork. Please ensure the "High Score" save location is set to "Local" in the settings to avoid errors.
+*   **Global Leaderboard Status**: The original global leaderboard service, which fetches high score data from https://twitchasylum.com/x, is protected by a CORS policy that only allows requests from the official `raz0red.github.io` domain. We are currently working on re-enabling this feature for forked deployments by integrating a custom Cloudflare Worker backend. While the backend is functional, the frontend display of the leaderboard page is still under development. Please ensure the "High Score" save location is set to "Local" in the settings to avoid errors.
 
 ## Features
 

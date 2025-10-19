@@ -33,7 +33,9 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 - Watch builds
   ```sh path=null start=null
   npm run webpackWatch                # library
+  npm run webpackWatchDebug           # library (debug)
   npm run webpackWatchLeaderboard     # leaderboard bundle
+  npm run webpackWatchLeaderboardDebug # leaderboard bundle (debug)
   ```
 - Linting / tests
   ```text path=null start=null
@@ -91,7 +93,7 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 - Project homepage and live demo: https://raz0red.github.io/js7800/
 - Requires a modern browser for smooth emulation; integrated documentation is accessible via the site’s Help/Information UI.
 
-## Project Analysis & Modifications (as of 2025-10-19)
+## Project Analysis & Modifications (as of 2025年10月19日)
 
 This section documents analysis and changes performed by a Gemini-based AI assistant.
 
@@ -99,11 +101,51 @@ This section documents analysis and changes performed by a Gemini-based AI assis
 
 - **Core Logic**: i18n is handled by `src/js/common/i18n.js`. It uses a `locales` object to store strings for different languages (`en`, `zh-TW`, `zh-CN`).
 - **Usage**: UI strings are translated using the `I18n.t('key.name')` function.
-- **Static Content**: The Help dialog (`site/src/js/help-dialog.js`) loads its content from static HTML files located in `site/deploy/help/`. To support multiple languages, corresponding translated HTML files must be created (e.g., `page-name.html` requires a `page-name-zh-TW.html` for Traditional Chinese).
-- **Language Detection**: The `init()` function in `i18n.js` was modified to automatically detect the browser's language (`navigator.language`) if no language preference is found in `localStorage`. It will attempt to set the language to `zh-TW`, `zh-CN`, or default to `en`.
+- **Static Content**: The Help dialog (`site/src/js/help-dialog.js`) loads its content from static HTML files located in `site/deploy/help/`. Language-specific versions (e.g., `page-name-zh-TW.html`) were created for `settings.html`.
+- **Language Detection**: The `init()` function in `i18n.js` was modified to automatically detect the browser's language (`navigator.language`) if no language preference is found in `localStorage`. It attempts to set the language to `zh-TW`, `zh-CN`, or defaults to `en`.
+- **Cartridge Selection UI**: 
+    - `select local file`, `select remote file`, `Enter the URL...` strings in `site/src/js/buttons.js` were internationalized.
+    - `Select Atari 7800 Cartridge...` in `site/src/js/romlist.js` was initially internationalized, then reverted to hardcoded English per user request, then re-internationalized. (Current status: should be internationalized).
+    - **Fixes**: Missing `I18n` imports were added to `site/src/js/romlist.js` and `site/src/js/buttons.js`.
 
-### Global Leaderboard
+### Global Leaderboard (Cloudflare Pages & Workers Integration)
 
-- **CORS Issue**: The official global leaderboard service is hosted at `https://twitchasylum.com/x/`. The server is configured with a strict CORS policy (`Access-Control-Allow-Origin: https://raz0red.github.io`) that only accepts requests from the official `raz0red.github.io` domain.
-- **Conclusion**: This security policy makes it **impossible** for forked versions of this project (running on `localhost` or other domains like a different GitHub Pages site) to use the official global leaderboard. Any direct client-side requests will be blocked by the browser.
-- **Default Setting Change**: To prevent errors in local development and forked deployments, the default high score setting was changed from "Global" to "Local". This was done by modifying the `GLOBAL_DEFAULT` variable in `site/src/js/highscore.js` to `false`.
+- **Original Issue**: The original global leaderboard service at `https://twitchasylum.com/x/` is protected by a strict CORS policy (`Access-Control-Allow-Origin: https://raz0red.github.io`), making it inaccessible from forks.
+- **Solution Strategy**: Implement a custom backend using Cloudflare Workers and KV storage to proxy requests to the original service and store/retrieve data.
+- **Cloudflare Worker (`cloudflare-worker/leaderboard-worker.js`)**: 
+    - Acts as a proxy for `GET` and `POST` requests to `https://twitchasylum.com/x/`.
+    - Stores/retrieves leaderboard data in a Cloudflare KV Namespace named `js7800globalhiscore`.
+    - Proxies `GET` requests for `/summary`, `/games`, `/scores` (for the leaderboard page) and `/` (for individual game scores) to the original `twitchasylum.com` endpoints.
+    - Handles `POST` requests for `/` to save individual game scores to KV.
+    - Includes necessary CORS headers for frontend access.
+- **Frontend Integration (`site/src/js/highscore.js`)**: 
+    - `WORKER_URL` constant added.
+    - `loadSramGlobal` and `saveSramGlobal` functions modified to use `WORKER_URL` for individual game score operations.
+- **Leaderboard Page Integration (`site/leaderboard/src/js/leaderboard.js`)**: 
+    - `WORKER_URL` constant added.
+    - `read` function calls modified to use `WORKER_URL` for `/summary`, `/games`, and `/scores` endpoints.
+- **Default Setting Change**: The default high score setting was changed from "Global" to "Local" (`GLOBAL_DEFAULT = false;` in `site/src/js/highscore.js`) to prevent errors for new users.
+
+### Build & Deployment Debugging
+
+- **GitHub Pages Workflow (`.github/workflows/main.yml`)**: 
+    - Updated to use `GITHUB_TOKEN` and `permissions: contents: write` for forks.
+    - Upgraded `actions/checkout` and `JamesIves/github-pages-deploy-action` to `v4`.
+    - Simplified to only deploy `master` branch to `gh-pages`.
+- **Cloudflare Pages Build Command**: 
+    - Changed from `npm run buildSite` to `npm run build` to ensure `js7800.min.js` is built.
+- **Leaderboard Page HTML (`site/leaderboard/index.html`)**: 
+    - Created `site/leaderboard/index.html` as the entry point for the leaderboard page.
+    - Corrected the JavaScript entry point from `leaderboard.init()` to `leaderboard.start()`.
+    - Provided a more complete HTML structure with all expected IDs for `leaderboard.js`.
+- **`copyfiles` Dependency**: 
+    - Added `copyfiles` to `devDependencies` in `package.json` and updated `package-lock.json` to resolve `copyfiles: not found` error during build.
+- **Cloudflare Pages Build Environment**: 
+    - Added `NODE_OPTIONS: --openssl-legacy-provider` environment variable to resolve `ERR_OSSL_EVP_UNSUPPORTED` error.
+
+### Current Status
+
+- Frontend deployed to Cloudflare Pages (`https://js7800.pages.dev/`).
+- Cloudflare Worker deployed and functional for data fetching.
+- Main emulator UI and i18n are working.
+- **Leaderboard page (`https://js7800.pages.dev/leaderboard/`) is currently displaying as "messed up" (likely CSS issues).**
