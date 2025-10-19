@@ -1,0 +1,224 @@
+<div class="docs">
+    <div class="tabcontent__title">设定对话框</div>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="this.blur();">跳转至章节 <span class="down-arrow">&#x25BC;</span></button>
+        <div class="dropdown-content">
+            <div onclick="window.location.href='#display-settings'">显示</div>
+            <div onclick="window.location.href='#keyboard-settings'">键盘</div>
+            <div onclick="window.location.href='#gamepads-settings'">游戏手柄</div>
+            <div onclick="window.location.href='#hs-settings'">高分</div>
+            <div onclick="window.location.href='#advanced-settings'">高级</div>
+        </div>
+    </div>
+    <p>
+        「设定」对话框允许查看和修改 JS7800 模拟器的各个方面。
+        在对话框中所做的任何变更都可以透过点击「确定」按钮来保存。点击「取消」
+        按钮将舍弃任何待处理的变更。「默认值」按钮可用于将所有
+        设定还原为其原始默认值。
+    </p>
+    <p>
+        除非明确停用 Cookie，否则设定值将在会话之间保持不变。
+    </p>
+    <a name="display-settings"></a>
+    <div class="docs-section-title">显示设定</div>
+    <p>
+        「显示」设定分页（如下所示）用于控制 JS7800 画面的显示方式。
+    </p>
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #1f1f1f" src="help/images/display.png"></img>
+    </div>
+    <p>
+        「显示」设定分页上的每个字段说明如下。
+    </p>
+    <p>
+        <div class="dialog-grid docs-grid">
+            <div class="dialog-cell-label">
+                画面大小
+            </div>
+            <div class="dialog-cell-value">
+                画面大小设定控制 JS7800 画面的大小。虽然有多种尺寸
+                设定可用，但建议使用基于整数的值（2x、3x 等），因为它
+                支援清晰的显示（停用套用滤镜）而没有小数像素。
+            </div>
+            <div class="dialog-cell-label">
+                纵横比
+            </div>
+            <div class="dialog-cell-value">
+                纵横比（AR）设定控制画面宽度与其高度的比例。默认情况下，
+                选择 1:1 像素纵横比（PAR），支援清晰的显示（停用套用滤镜）
+                而没有小数像素。也提供其他纵横比，包括一个 6:7 PAR 选项，
+                试图模仿原始 Atari 7800 主机的比例。但是，除了 1:1 PAR 以外的比例
+                将导致小数像素，因此建议对显示进行滤镜处理（套用滤镜）。
+            </div>
+            <div class="dialog-cell-label">
+                全萤幕
+            </div>
+            <div class="dialog-cell-value">
+                全萤幕设定控制在全萤幕模式下画面的缩放方式。默认情况下，
+                选择「填满萤幕」，这会使画面缩放以填满整个萤幕
+                （同时仍保持所选的纵横比）。虽然此选项会占用整个
+                萤幕，但很可能会导致小数像素。为消除因
+                小数像素引起的不必要假影，「套用滤镜」设定可以启用。另一个可用选项，
+                「整数缩放」，使画面使用
+                Atari 7800 显示分辨率的整数倍进行垂直缩放。此设定与「1:1 像素纵横比」结合使用可确保
+                在全萤幕模式下不会出现小数像素。
+            </div>
+            <div class="dialog-cell-label">
+                调色板
+            </div>
+            <div class="dialog-cell-value">
+                调色板设定控制用于渲染每个显示画面的颜色集（调色板）。
+                「ProSystem 默认」调色板是 ProSystem 模拟器随附的原始调色板。这个
+                特定的调色板由明亮鲜艳的颜色组成，在
+                现代显示器上可能更受欢迎，但并不代表
+                连接到 CRT 显示器的 Atari 7800 实际上可以达到的效果。第二组调色板（冷色、暖色和热色）试图重现
+                将 Atari 7800 主机连接到 CRT 时实际会体验到的
+                颜色。「冷色、暖色和热色」
+                代表主机从开机到连续运行
+                15-30 分钟的各个阶段，及其对所显示颜色的影响。最后，「冷色、暖色和热色」
+                调色板根据调色板的整体亮度分为两组。
+            </div>
+            <div class="dialog-cell-label">
+                套用滤镜
+            </div>
+            <div class="dialog-cell-value">
+                此设定控制是否对显示套用滤镜。实际套用的滤镜取决于
+                特定的浏览器和版本（通常是双线性滤镜）。套用滤镜
+                会使画面出现轻微的模糊外观，但消除了
+                由小数像素引起的大部分假影。
+            </div>
+        </div>
+    </p>
+    <a name="keyboard-settings"></a>
+    <div class="docs-section-title">键盘</div>
+    <p>
+        「键盘映射」分页（如下所示）用于查看和/或修改 JS7800 的键盘映射（绑定）。
+    </p>
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #191919" src="help/images/keyboard.png"></img>
+    </div>
+    <p>
+        每个红色框表示当前绑定到控制器输入或主机按钮的按键。
+        要修改映射，只需点击要更改的输入旁的红色框。点击后，框将变为
+        白色，如上图控制器 1 的按钮 1 所示。一旦框变为白色，下一个按下的按键将
+        被映射到该特定输入。
+    </p>
+    <a name="gamepads-settings"></a>
+    <div class="docs-section-title">游戏手柄</div>
+    <p>
+        「游戏手柄兼容性」分页（如下所示）用于确定
+        当前连接到运行 JS7800 的装置的游戏手柄（控制器）的兼容性。游戏手柄分页不包含
+        任何可以修改的设定。
+    </p>
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #191919" src="help/images/gamepads.png"></img>
+    </div>
+    <p>
+        JS7800 最多支援两个游戏手柄（用于玩家 1 和玩家 2）。每个
+        控制器上方的资讯框（如上萤幕截图所示），指示所连接的控制器类型，以及
+        浏览器侦测到的映射模型。除非映射被侦测为「标准」，否则
+        目前游戏手柄很可能与 JS7800 不兼容。
+    </p>
+    <p>
+        除了侦测游戏手柄的类型和映射模型外，JS7800 还会显示
+        所连接游戏手柄的输入如何转换为 JS7800。当按下游戏手柄上的不同控件时
+        （D-pad、模拟摇杆、按钮），将出现一个白点（如上萤幕截图所示）以显示
+        该特定输入映射到哪个 JS7800 控件。
+    </p>
+    <p>
+        大多数现代游戏手柄应与 JS7800 兼容。Xbox One、Xbox 360、PS4、PS3 和 Switch
+        控制器已经过测试。D-pad 和左模拟摇杆映射到
+        Atari 7800 控制器的摇杆（或 D-pad）。「A」、「B」、「X」和「O」按钮映射到 Atari 7800 控制器
+        按钮。「Select」、「Back」和「Start」样式的按钮映射到
+        Atari 7800 主机的「SELECT」和
+        「RESET」按钮。最后，肩部按钮映射到
+        Atari 7800 主机的「PAUSE」按钮。
+    </p>
+    <p>
+        还值得注意的是，Robotron 风格的游戏（Robotron 和 TiME Salvo）在控制器 1 上支援双模拟摇杆
+        （左摇杆用于移动，右摇杆用于开火）。
+    </p>
+    <a name="hs-settings"></a>
+    <div class="docs-section-title">高分设定</div>
+    <p>
+        「高分」设定分页（如下所示）用于控制
+        兼容卡带的高分保存。要使卡带被视为兼容，它必须透过其标头（<span class="fixed">.a78</span> 副檔名）将自己标识为
+        支援高分卡带（HSC）。
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #222222" src="help/images/hssettings.png"></img>
+    </div>
+    </p>
+    <p>
+        有关在 JS7800 中使用
+        高分的详细资讯，请参阅左侧的「高分」说明分页。
+    </p>
+    <p>
+        <div class="dialog-grid docs-grid">
+            <div class="dialog-cell-label">
+                保存分数
+            </div>
+            <div class="dialog-cell-value">
+                保存分数开关控制是否为兼容卡带保存高分。
+            </div>
+            <div class="dialog-cell-label">
+                保存位置
+            </div>
+            <div class="dialog-cell-value">
+                保存位置下拉菜单用于选择从何处读取
+                和保存高分。高分可以保留在本机（仅在本机装置上）
+                或全局（在中央高分伺服器上）。
+            </div>
+            <div class="dialog-cell-label">
+                本机回退
+            </div>
+            <div class="dialog-cell-value">
+                本机回退开关控制对于
+                全局高分伺服器不支援的游戏，是否应将高分储存在本机。此选项仅在
+                储存位置设定为全局时可用（请参阅上文的「保存位置」）。
+            </div>
+        </div>
+    </p>
+    <a name="advanced-settings"></a>
+    <div class="docs-section-title">高级设定</div>
+    <p>
+        「高级」设定分页（如下所示）用于控制高级功能的组态。
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #222222" src="help/images/advanced.png"></img>
+    </div>
+    </p>
+    <p>
+        「高级」设定分页上的每个字段说明如下。
+    </p>
+    <p>
+        <div class="dialog-grid docs-grid">
+            <div class="dialog-cell-label">
+                扩展模块 (XM)
+            </div>
+            <div class="dialog-cell-value">
+                扩展模块设定控制是否启用 Atari 7800 扩展模块（XM）。
+                此设定有三个可能的值，「（自动）」、「启用」和「停用」。
+                「（自动）」根据卡带标头和 JS7800 内部卡带
+                数据库确定是启用还是停用扩展
+                模块。有关 Atari 7800 扩展模块（XM）的更多详细资讯，请参阅<a href="http://www.atarimuseum.com/videogames/consoles/7800/expansion/" target="_blank">此页面</a>。
+            </div>
+            <div class="dialog-cell-label">
+                跳帧
+            </div>
+            <div class="dialog-cell-value">
+                跳帧设定控制应跳过（不渲染）的帧数。
+                默认情况下，跳帧是停用的（不跳过任何帧）。跳帧可以
+                用作解决 JS7800 遇到的性能问题的一种方法。此设定
+                通常与停用「垂直同步」设定（见下文）结合使用。
+            </div>
+            <div class="dialog-cell-label">
+                垂直同步
+            </div>
+            <div class="dialog-cell-value">
+                垂直同步设定控制 JS7800 的帧率是否与
+                监视器的刷新率同步。垂直同步试图消除
+                画面撕裂等显示假影。可以停用此设定以解决
+                JS7800 遇到的性能问题。
+            </div>
+        </div>
+    </p>
+</div>
