@@ -17,6 +17,7 @@ import restartImgSrc from '../../images/restart.svg'
 import infoImgSrc from '../../images/information-outline.svg'
 import medalImgSrc from '../../images/medal.svg'
 // import medalImgSrc from '../../images/trophy-variant.svg'
+import * as I18n from '../common/i18n.js'
 
 var addProps = Utils.addProps;
 var Component = UiCommon.Component;
@@ -138,43 +139,43 @@ addProps(ToggleImageButton.prototype, {
 });
 
 var groupStart = new ControlGroupStart();
-var pauseButton = new ToggleImageButton("Pause", pauseImgSrc, "Resume", playImgSrc);
+var pauseButton = new ToggleImageButton(I18n.t('cbar.pause'), pauseImgSrc, I18n.t('cbar.resume'), playImgSrc);
 pauseButton.onClick = function () { ProSystem.Pause(this.getValue()); }
 groupStart.addChild(pauseButton);
-var soundButton = new ToggleImageButton("Sound Off", volImgSrc, "Sound On", volOffImgSrc);
+var soundButton = new ToggleImageButton(I18n.t('cbar.soundOff'), volImgSrc, I18n.t('cbar.soundOn'), volOffImgSrc);
 soundButton.onClick = function () { Sound.SetMuted(this.getValue()); }
 groupStart.addChild(soundButton);
-var restartButton = new ImageButton("Restart", restartImgSrc);
+var restartButton = new ImageButton(I18n.t('cbar.restart'), restartImgSrc);
 restartButton.onClick = function () { Events.fireEvent("restart") }
 groupStart.addChild(restartButton);
 
 var group = new ControlGroup();
-var selectButton = new Button("SELECT", "Select");
+var selectButton = new Button(I18n.t('cbar.selectText'), I18n.t('cbar.selectTooltip'));
 selectButton.onDown = function () { Input.setSelect(true); }
 selectButton.onUp = function () { Input.setSelect(false); }
 group.addChild(selectButton);
-var resetButton = new Button("RESET", "Reset");
+var resetButton = new Button(I18n.t('cbar.resetText'), I18n.t('cbar.resetTooltip'));
 resetButton.onDown = function () { Input.setReset(true); }
 resetButton.onUp = function () { Input.setReset(false); }
 group.addChild(resetButton);
-var leftDiffSwitch = new ToggleSwitch("Left difficulty switch");
+var leftDiffSwitch = new ToggleSwitch(I18n.t('cbar.leftDiff'));
 leftDiffSwitch.onClick = function () { Kb.setLeftDiffSet(!this.getValue()) }
 group.addChild(leftDiffSwitch);
-var rightDiffSwitch = new ToggleSwitch("Right difficulty switch")
+var rightDiffSwitch = new ToggleSwitch(I18n.t('cbar.rightDiff'))
 rightDiffSwitch.onClick = function () { Kb.setRightDiffSet(!this.getValue()) }
 group.addChild(rightDiffSwitch);
 
 var groupEnd = new ControlGroupEnd();
-var leaderboardButton = new ImageButton("Leaderboard", medalImgSrc);
+var leaderboardButton = new ImageButton(I18n.t('cbar.leaderboard'), medalImgSrc);
 leaderboardButton.onClick = function () { Events.fireEvent("showError", "Not implemented."); }
 groupEnd.addChild(leaderboardButton);
-var helpButton = new ImageButton("Help / Info", infoImgSrc);
+var helpButton = new ImageButton(I18n.t('cbar.help'), infoImgSrc);
 helpButton.onClick = function () { Events.fireEvent("showError", "Not implemented."); }
 groupEnd.addChild(helpButton);
-var settingsButton = new ImageButton("Settings", cogsImgSrc);
+var settingsButton = new ImageButton(I18n.t('cbar.settings'), cogsImgSrc);
 settingsButton.onClick = function () { Events.fireEvent("showError", "Not implemented."); }
 groupEnd.addChild(settingsButton);
-var fsButton = new ToggleImageButton("Fullscreen", fsImgSrc, "Exit Fullscreen", fsExitImgSrc);
+var fsButton = new ToggleImageButton(I18n.t('cbar.fullscreen'), fsImgSrc, I18n.t('cbar.exitFullscreen'), fsExitImgSrc);
 fsButton.onClick = function () { Video.isFullscreen() ? Video.exitFullScreen() : Video.fullScreen();  }
 groupEnd.addChild(fsButton);
 

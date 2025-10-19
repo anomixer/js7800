@@ -1,3 +1,5 @@
+**English** | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md)
+
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 [![Actions Status](https://github.com/raz0red/js7800/workflows/Build/badge.svg)](https://github.com/raz0red/js7800/actions)
 
@@ -12,6 +14,48 @@ https://raz0red.github.io/js7800/
 In order to operate correctly and smoothly (no lags, etc.), JS7800 requires an updated version of a modern browser (Chrome, Firefox, Safari) on a capably configured system.
 
 [![JS7800](https://github.com/raz0red/js7800/raw/master/screenshots/screenshot.png)](https://raz0red.github.io/js7800/)
+
+## Fork Information
+
+This is a fork of the original [raz0red/js7800](https://github.com/raz0red/js7800) repository with modifications to support multiple languages and improve the local development experience.
+
+### Modifications
+
+*   **Multi-language Support**: The UI now supports English, Traditional Chinese (繁體中文), and Simplified Chinese (简体中文).
+*   **Automatic Language Detection**: On first load, the application will attempt to match the browser's preferred language. The language can also be changed manually in the Settings menu.
+*   **Default to Local High Scores**: The default high score storage has been changed to "Local" to prevent network errors, as the global leaderboard is inaccessible.
+*   **Translated Documentation**: The README and internal help files have been translated.
+
+### How to Run Locally
+
+1.  **Install Dependencies:**
+    ```sh
+    npm install
+    ```
+
+2.  **Build the Site:**
+    ```sh
+    npm run buildSite
+    ```
+
+3.  **Serve the Files:**
+    Navigate to the project root and serve the `site/deploy` directory. You can use `npx` or Python's built-in web server.
+
+    *   **Using Node.js:**
+        ```sh
+        npx http-server site/deploy -p 8081
+        ```
+
+    *   **Using Python 3:**
+        ```sh
+        python -m http.server 8081 --directory site/deploy
+        ```
+    
+    Then, open your browser to `http://localhost:8081`.
+
+### Limitations
+
+*   **Global Leaderboard is Inaccessible**: The original global leaderboard service, which fetches high score data from https://twitchasylum.com/x, is protected by a CORS policy that only allows requests from the official `raz0red.github.io` domain. Therefore, this feature does not work in this fork. Please ensure the "High Score" save location is set to "Local" in the settings to avoid errors.
 
 ## Features
 

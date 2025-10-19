@@ -13,7 +13,7 @@ var SRAM_SCORE_OFFSET = 0x113D;
 var WRITE_DELAY = 2000; // 2 seconds
 var STORAGE_KEY = "highScoreSRAM";
 
-var GLOBAL_DEFAULT = true;
+var GLOBAL_DEFAULT = false;
 var ENABLED_DEFAULT = true;
 var FALLBACK_DEFAULT = true;
 
@@ -118,7 +118,7 @@ function loadSramGlobal(success, failure) {
   var mid = Message.showMessage("Loading global leaderboard...");
   
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', Util.getUrlPrefix() + "/load.php?d=" + digest);
+  xhr.open('GET', Util.getUrlPrefix() + "load.php?d=" + digest);
   xhr.onload = function () {
     if (xhr.status == 200) {
       // Success
@@ -204,7 +204,7 @@ function loadSram(postLoadCallback) {
 function saveSramGlobal() {
   console.log("Writing High Score SRAM to global storage.");
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', Util.getUrlPrefix() + "/save.php?sid=" + sessionId + "&d=" + digest);
+  xhr.open('POST', Util.getUrlPrefix() + "save.php?sid=" + sessionId + "&d=" + digest);
   xhr.onload = function () {
     if (xhr.status == 200) {
       console.log("Successfully saved global high scores for game");

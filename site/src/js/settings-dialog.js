@@ -4,6 +4,7 @@ import { Component } from "../../../src/js/common/ui-common.js";
 import * as Events from "./events.js"
 import * as Storage from "./storage.js"
 import { AboutTab } from "./about-tab.js"
+import * as I18n from "../../../src/js/common/i18n.js"
 
 var TabbedDialog = DialogModule.TabbedDialog;
 var TabSet = DialogModule.TabSet;
@@ -162,7 +163,7 @@ addProps(GamepadController.prototype, {
         value = '<span title="' + value + '">' + value.substring(0, pidx) + '</span>'
       }
     } else {
-      value = "None (connect and press button)";
+      value = I18n.t('settings.misc.noneConnect');
     }
     if (this.padId.innerHTML != value) {
       this.padId.innerHTML = value;
@@ -174,7 +175,7 @@ addProps(GamepadController.prototype, {
       var mapStr = pad.mapping.trim();
       value = mapStr.charAt(0).toUpperCase() + mapStr.substring(1);
     } else {
-      value = "(Unknown)";
+      value = I18n.t('settings.misc.unknown');
     }
     if (this.padMapping.innerHTML != value) {
       this.padMapping.innerHTML = value;
@@ -209,9 +210,9 @@ addProps(GamepadController.prototype, {
   doCreateElementBeforeTitle: function (rootEl) {
     var grid = document.createElement("div");
     grid.className = "gamepad-grid";
-    this.addNameCell(grid, "Gamepad:");
+    this.addNameCell(grid, I18n.t('settings.gamepads.gamepad'));
     this.padId = this.addValueCell(grid);
-    this.addNameCell(grid, "Mapping:");
+    this.addNameCell(grid, I18n.t('settings.gamepads.mapping'));
     this.padMapping = this.addValueCell(grid);
     rootEl.appendChild(grid)
   },
@@ -362,9 +363,9 @@ addProps(ConsoleButtonGamepad.prototype, {
 
 function ConsoleControls() {
   Component.call(this);
-  this.pauseButton = this.createPauseButton("PAUSE");
-  this.selectButton = this.createSelectButton("SELECT");
-  this.resetButton = this.createResetButton("RESET");
+  this.pauseButton = this.createPauseButton(I18n.t('settings.misc.pause'));
+  this.selectButton = this.createSelectButton(I18n.t('settings.misc.select'));
+  this.resetButton = this.createResetButton(I18n.t('settings.misc.reset'));
   this.buttons = [this.pauseButton, this.selectButton, this.resetButton];
   this.kb = null;
 }
@@ -381,7 +382,7 @@ addProps(ConsoleControls.prototype, {
     var title = document.createElement("div");
     rootEl.appendChild(title);
     title.className = "controller__title";
-    title.appendChild(document.createTextNode("Console Buttons"));
+    title.appendChild(document.createTextNode(I18n.t('settings.gamepads.consoleButtons')));
     var inner = document.createElement("div");
     rootEl.appendChild(inner);
     inner.className = "console__inner";
@@ -463,7 +464,7 @@ addProps(ConsoleControlsGamepad.prototype, {
 
 // Display tab
 
-var displayTab = new Tab("Display");
+var displayTab = new Tab(I18n.t('settings.tab.display'));
 addProps(displayTab, {  
   filterSwitch: null,
   sizeSelect: null,
@@ -497,54 +498,44 @@ addProps(displayTab, {
   createTabContent: function (rootEl) {
     var desc = document.createElement("div");
     desc.innerHTML =
-      '<div class="tabcontent__title">Display Settings</div>\n' +
-      '<p class="center">The following settings are used to control the screen display.</p>';
+      '<div class="tabcontent__title">' + I18n.t('settings.display.title') + '</div>\n' +
+      '<p class="center">' + I18n.t('settings.display.desc') + '</p>';
     rootEl.appendChild(desc);
     var grid = new Grid();
-    grid.addCell(new LabelCell("Screen size:"));
-    this.sizeSelect = new Select({
-      "2x": "2", 
-      "2.25x": "2.25", 
-      "2.5x": "2.5", 
-      "2.75x": "2.75", 
-      "3x": "3", 
-      "3.25x": "3.25", 
-      "3.5x": "3.5", 
-      "3.75x": "3.75", 
-      "4x": "4"
-    });
+    grid.addCell(new LabelCell(I18n.t('settings.display.screenSize')));
+    this.sizeSelect = new Select(I18n.t('settings.display.screenSizes'));
     grid.addCell(new ContentCell(this.sizeSelect));
-    grid.addCell(new LabelCell("Aspect ratio:"));
+    grid.addCell(new LabelCell(I18n.t('settings.display.aspectRatio')));
     this.arSelect = new Select({
-      "Pixel perfect (1:1 PAR)" : "1",
-      "Atari 7800 (6:7 PAR)" : "0.857",
-      "Widescreen (16:9)" : "1.334",
-      "Ultra-widescreen (2.37:1)" : "1.778"
+      [I18n.t('settings.display.ar_pp')] : "1",
+      [I18n.t('settings.display.ar_7800')] : "0.857",
+      [I18n.t('settings.display.ar_16x9')] : "1.334",
+      [I18n.t('settings.display.ar_ultra')] : "1.778"
     });
     grid.addCell(new ContentCell(this.arSelect));    
-    grid.addCell(new LabelCell("Fullscreen:"));
+    grid.addCell(new LabelCell(I18n.t('settings.display.fullscreen')));
     this.fsSelect =  new Select({
-      "Fill screen" : "0",
-      "Integer scaling (height)" : "1"
+      [I18n.t('settings.display.fs_fill')] : "0",
+      [I18n.t('settings.display.fs_integer')] : "1"
     });
     grid.addCell(new ContentCell(this.fsSelect));
-    grid.addCell(new LabelCell("Palette:"));
+    grid.addCell(new LabelCell(I18n.t('settings.display.palette')));
     // TODO: This is a very hacky way to support option groups,
     // Create a better solution (nested groups)
     this.palSelect = new Select({
-      "ProSystem default": "0", 
-      "OptGroup1": "Dark",
-      "Cool (Dark)": "1", 
-      "Warm (Dark)": "2",             
-      "Hot (Dark)": "3",
-      "OptGroup2": "Light",
-      "Cool (Light) ": "4", 
-      "Warm (Light) ": "5", 
-      "Hot (Light) ": "6"
+      [I18n.t('settings.misc.palDefault')]: "0", 
+      "OptGroup1": I18n.t('settings.misc.palDark'),
+      [I18n.t('settings.misc.palCoolDark')]: "1", 
+      [I18n.t('settings.misc.palWarmDark')]: "2",             
+      [I18n.t('settings.misc.palHotDark')]: "3",
+      "OptGroup2": I18n.t('settings.misc.palLight'),
+      [I18n.t('settings.misc.palCoolLight')]: "4", 
+      [I18n.t('settings.misc.palWarmLight')]: "5", 
+      [I18n.t('settings.misc.palHotLight')]: "6"
     });
     grid.addCell(new ContentCell(this.palSelect));
-    grid.addCell(new LabelCell("Apply filter:"));
-    this.filterSwitch = new ToggleSwitch("Toggle Filter");
+    grid.addCell(new LabelCell(I18n.t('settings.display.filter')));
+    this.filterSwitch = new ToggleSwitch(I18n.t('settings.misc.toggleFilter'));
     grid.addCell(new ContentCell(this.filterSwitch));
 
     rootEl.appendChild(grid.createElement());
@@ -553,7 +544,7 @@ addProps(displayTab, {
 
 // High scores tab
 
-var hsTab = new Tab("High Scores");
+var hsTab = new Tab(I18n.t('settings.tab.highscores'));
 addProps(hsTab, {
   enableSwitch: null,
   locationSelect: null,
@@ -579,12 +570,12 @@ addProps(hsTab, {
   },
   updateDesc() {
     var descText =
-    '<div class="tabcontent__title">High Score Settings</div>\n' +
-    '<p class="center">The following settings control high score persistence.</p>';
+    '<div class="tabcontent__title">' + I18n.t('settings.highscores.title') + '</div>\n' +
+    '<p class="center">' + I18n.t('settings.highscores.desc') + '</p>'; 
 
     if (HighScore.getDigest()) {
       descText +=
-        '<p class="center">Changes will not take effect until the next game is loaded.</p>'
+        '<p class="center">' + I18n.t('settings.highscores.pending') + '</p>'
     }
     this.desc.innerHTML = descText;
   },
@@ -595,24 +586,24 @@ addProps(hsTab, {
     this.updateDesc();
   
     var grid = new Grid();
-    grid.addCell(new LabelCell("Save scores:"));
-    this.enableSwitch = new ToggleSwitch("Toggle Filter");
+    grid.addCell(new LabelCell(I18n.t('settings.highscores.saveScores')));
+    this.enableSwitch = new ToggleSwitch(I18n.t('settings.misc.toggleFilter'));
     grid.addCell(new ContentCell(this.enableSwitch));
 
-    var locationLabel = new LabelCell("Save location:");
+    var locationLabel = new LabelCell(I18n.t('settings.highscores.saveLocation'));
     grid.addCell(locationLabel);    
     this.locationSelect = new Select({
-      "Local (this device only)": "0", 
-      "Global (worldwide leaderboard)": "1"
+      [I18n.t('settings.highscores.local')]: "0", 
+      [I18n.t('settings.highscores.global')]: "1"
     });    
 
     this.locationSelect.setWidth(17);
     var locationContent = new ContentCell(this.locationSelect);
     grid.addCell(locationContent);
 
-    var fallbackLabel = new LabelCell("Local fallback:");
+    var fallbackLabel = new LabelCell(I18n.t('settings.highscores.localFallback'));
     grid.addCell(fallbackLabel);
-    this.fallbackSwitch = new ToggleSwitch("Local Fallback");
+    this.fallbackSwitch = new ToggleSwitch(I18n.t('settings.highscores.localFallbackLabel'));
     var fallbackContent = new ContentCell(this.fallbackSwitch);
     grid.addCell(fallbackContent);
 
@@ -634,11 +625,11 @@ addProps(hsTab, {
 });
 
 // Gamepads tab
-var gamepadsTab = new Tab("Gamepads");
+var gamepadsTab = new Tab(I18n.t('settings.tab.gamepads'));
 addProps(gamepadsTab, {
   intervalId: null,
-  controller1: new GamepadController("Controller 1", 0),
-  controller2: new GamepadController("Controller 2", 1),
+  controller1: new GamepadController(I18n.t('settings.keyboard.controller1'), 0),
+  controller2: new GamepadController(I18n.t('settings.keyboard.controller2'), 1),
   console: new ConsoleControlsGamepad(),
   onShow: function () {
     this.controller1.onShow();
@@ -660,9 +651,9 @@ addProps(gamepadsTab, {
   createTabContent: function (rootEl) {
     var desc = document.createElement("div");
     desc.innerHTML =
-      '<div class="tabcontent__title">Gamepad Compatibility</div>\n' +
-      '<p class="center">This page provides the ability to <b class="callout">test compatibility</b> with connected gamepads.</p>\n' +
-      '<p class="center">Connect gamepads and test if they are mapped correctly (by pressing buttons, D-pad, etc.).' +
+      '<div class="tabcontent__title">' + I18n.t('settings.gamepads.title') + '</div>\n' +
+      '<p class="center">' + I18n.t('settings.gamepads.desc1') + '</p>\n' +
+      '<p class="center">' + I18n.t('settings.misc.gamepadTest') +
       // '<br><span style="color:#777; font-size:.93em;">(custom mappings are not currently supported)</span></p>';
       '</p>'
     rootEl.appendChild(desc);
@@ -677,10 +668,10 @@ addProps(gamepadsTab, {
 });
 
 // Keyboard tab
-var keyboardTab = new Tab("Keyboard");
+var keyboardTab = new Tab(I18n.t('settings.tab.keyboard'));
 addProps(keyboardTab, {
-  controller1: new KbController("Controller 1"),
-  controller2: new KbController("Controller 2"),
+  controller1: new KbController(I18n.t('settings.keyboard.controller1')),
+  controller2: new KbController(I18n.t('settings.keyboard.controller2')),
   console: new ConsoleControlsKeyboard(),
   onShow: function () {
     var kb = js7800.Keyboard;
@@ -709,9 +700,9 @@ addProps(keyboardTab, {
   createTabContent: function (rootEl) {
     var desc = document.createElement("div");
     desc.innerHTML =
-      '<div class="tabcontent__title">Keyboard Mappings</div>\n' +
-      '<p class="center">Click on the <b class="callout">red box</b> near a control to select it for mapping.</p>\n' +
-      '<p class="center">Once selected, press the <b class="callout">key</b> you would like to map to the control.</p>';
+      '<div class="tabcontent__title">' + I18n.t('settings.keyboard.title') + '</div>\n' +
+      '<p class="center">' + I18n.t('settings.keyboard.tip1') + '</p>\n' +
+      '<p class="center">' + I18n.t('settings.keyboard.tip2') + '</p>';
     rootEl.appendChild(desc);
     var controlsDiv = document.createElement("div");
     rootEl.appendChild(controlsDiv);
@@ -724,7 +715,7 @@ addProps(keyboardTab, {
 });
 
 // Advanced tab
-var advancedTab = new Tab("Advanced");
+var advancedTab = new Tab(I18n.t('settings.tab.advanced'));
 addProps(advancedTab, {
   xmSelect: null,
   vsyncSwitch: null,
@@ -747,31 +738,66 @@ addProps(advancedTab, {
   createTabContent: function (rootEl) {
     var desc = document.createElement("div");
     desc.innerHTML =
-      '<div class="tabcontent__title">Advanced</div>\n' +
-      '<p class="center">The following settings provide the ability to configure advanced features.</p>';
+      '<div class="tabcontent__title">' + I18n.t('settings.advanced.title') + '</div>\n' +
+      '<p class="center">' + I18n.t('settings.advanced.desc') + '</p>';
     rootEl.appendChild(desc);
 
     var grid = new Grid();
-    var xmLabel = new LabelCell("Expansion module (XM):");
+    var xmLabel = new LabelCell(I18n.t('settings.advanced.xm'));
     grid.addCell(xmLabel);    
     this.xmSelect = new Select({
-      "(Automatic)": "2", 
-      "Enabled": "1",
-      "Disabled": "0"
+      [I18n.t('settings.advanced.xm_auto')]: "2", 
+      [I18n.t('settings.advanced.xm_enabled')]: "1",
+      [I18n.t('settings.advanced.xm_disabled')]: "0"
     });
     var xmContent = new ContentCell(this.xmSelect);
     grid.addCell(xmContent);
-    grid.addCell(new LabelCell("Frame skipping:"));
+    grid.addCell(new LabelCell(I18n.t('settings.advanced.frameSkip')));
     this.skipSelect =  new Select({
-      "(None)" : "0",
-      "Low" : "1",
-      "Medium (50%)" : "2",
-      "High" : "3"
+      [I18n.t('settings.advanced.none')] : "0",
+      [I18n.t('settings.advanced.low')] : "1",
+      [I18n.t('settings.advanced.medium')] : "2",
+      [I18n.t('settings.advanced.high')] : "3"
     });
     grid.addCell(new ContentCell(this.skipSelect));
-    grid.addCell(new LabelCell("Vertical sync:"));
-    this.vsyncSwitch = new ToggleSwitch("Vertical Sync");
+    grid.addCell(new LabelCell(I18n.t('settings.advanced.vsync')));
+    this.vsyncSwitch = new ToggleSwitch(I18n.t('settings.advanced.vsyncLabel'));
     grid.addCell(new ContentCell(this.vsyncSwitch));    
+    rootEl.appendChild(grid.createElement());
+  }
+});
+
+// Language tab
+var languageTab = new Tab(I18n.t('settings.tab.language'));
+addProps(languageTab, {
+  langSelect: null,
+  onShow: function () {
+    if (this.langSelect) {
+      this.langSelect.setValue(I18n.getLocale());
+    }
+  },
+  onOk: function () {
+    var val = this.langSelect.getValue();
+    if (val && val !== I18n.getLocale()) {
+      I18n.setLocale(val, true);
+    }
+  },
+  onDefaults: function () {},
+  createTabContent: function (rootEl) {
+    var desc = document.createElement("div");
+    desc.innerHTML =
+      '<div class="tabcontent__title">' + I18n.t('settings.language.title') + '</div>' +
+      '<p class="center">' + I18n.t('settings.language.noteReload') + '</p>';
+    rootEl.appendChild(desc);
+
+    var grid = new Grid();
+    grid.addCell(new LabelCell(I18n.t('settings.language.label')));
+    this.langSelect = new Select({
+      [I18n.t('settings.language.en')]: 'en',
+      [I18n.t('settings.language.zhTW')]: 'zh-TW',
+      [I18n.t('settings.language.zhCN')]: 'zh-CN'
+    });
+    grid.addCell(new ContentCell(this.langSelect));
     rootEl.appendChild(grid.createElement());
   }
 });
@@ -782,14 +808,16 @@ settingsTabSet.addTab(keyboardTab, true);
 settingsTabSet.addTab(gamepadsTab);
 settingsTabSet.addTab(hsTab);
 settingsTabSet.addTab(advancedTab);
+settingsTabSet.addTab(languageTab);
 // settingsTabSet.addTab(new AboutTab());
+
 
 //
 // Settings dialog
 //
 
 function SettingsDialog() {
-  TabbedDialog.call(this, "Settings", false);
+  TabbedDialog.call(this, I18n.t('settings.title'), false);
 }
 SettingsDialog.prototype = Object.create(TabbedDialog.prototype);
 addProps(SettingsDialog.prototype, {
@@ -800,6 +828,9 @@ addProps(SettingsDialog.prototype, {
   onOk: function () {
     TabbedDialog.prototype.onOk.call(this);
     Storage.savePrefs();
+    if (I18n.needsReload()) {
+      setTimeout(function(){ window.location.reload(); }, 0);
+    }
   }
 });
 

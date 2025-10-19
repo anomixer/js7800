@@ -9,6 +9,7 @@ import * as Storage from "./storage.js"
 import * as HighScore from "./highscore.js"
 import { SettingsDialog } from "./settings-dialog.js"
 import { HelpDialog } from "./help-dialog.js"
+import * as I18n from "../../../src/js/common/i18n.js"
 
 import css from '../css/site.css'
 import messageCss from '../css/common/message-common.css'
@@ -65,7 +66,7 @@ function loadFromUrl(url, fromSelect) {
   var forceList = (
     urlLower.endsWith(".json") || (urlLower.indexOf(".json?") != -1));
 
-  loadingMessageId = showMessage('Loading...')
+  loadingMessageId = showMessage(I18n.t('common.loading'))
 
   if (!onEmulationStartedCb) {
     onEmulationStartedCb = new Events.Listener("onEmulationStarted",
@@ -173,6 +174,7 @@ function checkDebugParam() {
 }
 
 function init(in7800) {
+  I18n.init();
   js7800 = in7800;
   var main = js7800.Main;
   var cbar = js7800.ControlsBar;
@@ -191,12 +193,15 @@ function init(in7800) {
   // Create the description
   var desc = main.descriptionDiv;
   desc.className = "instructs";
-  desc.innerHTML =
-    '<div>Click<img id="ins_settings_img" src="' + cbar.cogsImgSrc + '"></img><span id="ins_settings" class="ilink">Settings</span> to view current keyboard mappings.</div>';
-  desc.innerHTML +=
-    '<div class="ihelp">Click<img id="ins_help_img" src="' + cbar.infoImgSrc + '"></img><span id="ins_help" class="ilink">Help</span> for detailed usage instructions.</div>';
-  desc.innerHTML +=
-    '<div class="ihelp">Load a cartridge using the drop-down menu or buttons below (you can also drag and drop a local file or remote file link onto the emulator).</div>';
+  var s1 = I18n.t('site.desc_settings')
+    .replace('<IMG/>', '<img id="ins_settings_img" src="' + cbar.cogsImgSrc + '"></img>')
+    .replace('<SPAN/>', '<span id="ins_settings" class="ilink">' + I18n.t('common.settings') + '</span>');
+  desc.innerHTML = '<div>' + s1 + '</div>';
+  var s2 = I18n.t('site.desc_help')
+    .replace('<IMG/>', '<img id="ins_help_img" src="' + cbar.infoImgSrc + '"></img>')
+    .replace('<SPAN/>', '<span id="ins_help" class="ilink">' + I18n.t('common.help') + '</span>');
+  desc.innerHTML += '<div class="ihelp">' + s2 + '</div>';
+  desc.innerHTML += '<div class="ihelp">' + I18n.t('site.desc_load') + '</div>';
 
   // js7800 parent element
   var parent = document.getElementById('js7800__fullscreen-container');
@@ -269,7 +274,7 @@ function init(in7800) {
 
   // Cartridge list loaded listener
   Events.addListener(new Events.Listener("romlistLoaded", function () {
-    var id = showMessage("Succesfully loaded cartridge list.");
+    var id = showMessage(I18n.t('common.loadedCartList'));
     hideMessage(id, 1000);
   }));
 
