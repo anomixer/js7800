@@ -12,6 +12,7 @@ const locales = {
       desc_settings: "Click<IMG/> <SPAN/> to view current keyboard mappings.", 
       desc_help: "Click<IMG/> <SPAN/> for detailed usage instructions.", 
       desc_load: "Load a cartridge using the drop-down menu or buttons below (you can also drag and drop a local file or remote file link onto the emulator).",
+      cart_select: "Select Atari 7800 Cartridge...",
       cart_local: "Select Local File",
       cart_remote: "Select Remote File",
       cart_prompt: "Enter the URL of a remote Cartridge file or Cartridge list"
@@ -49,7 +50,12 @@ const locales = {
   "zh-TW": {
     common: { ok: "確定", cancel: "取消", defaults: "預設值", defaultsTitle: "重設為預設值", close: "關閉", settings: "設定", help: "說明", loading: "載入中...", loadedCartList: "已成功載入卡帶清單。" },
     cbar: { pause: "暫停", resume: "繼續", soundOff: "關閉聲音", soundOn: "開啟聲音", restart: "重新啟動", selectText: "SELECT", selectTooltip: "選擇", resetText: "RESET", resetTooltip: "重設", leftDiff: "左難度切換", rightDiff: "右難度切換", leaderboard: "排行榜", help: "說明 / 資訊", settings: "設定", fullscreen: "全螢幕", exitFullscreen: "離開全螢幕" },
-    site: { desc_settings: "點擊<IMG/> <SPAN/> 以檢視目前鍵盤對應。", desc_help: "點擊<IMG/> <SPAN/> 以取得詳細使用說明。", desc_load: "使用下拉選單或下方按鈕載入卡帶（也可拖曳本機檔案或遠端連結到模擬器）。" },
+    site: { desc_settings: "點擊<IMG/> <SPAN/> 以檢視目前鍵盤對應。", desc_help: "點擊<IMG/> <SPAN/> 以取得詳細使用說明。", desc_load: "使用下拉選單或下方按鈕載入卡帶（也可拖曳本機檔案或遠端連結到模擬器）。",
+      cart_select: "選擇 Atari 7800 卡帶...",
+      cart_local: "選擇本機檔案",
+      cart_remote: "選擇遠端檔案",
+      cart_prompt: "輸入遠端卡帶檔案或卡帶清單的 URL"
+    },
     settings: {
       title: "設定",
       tab: { display: "顯示", keyboard: "鍵盤", gamepads: "手把", highscores: "高分", advanced: "進階", language: "語言" },
@@ -83,7 +89,12 @@ const locales = {
   "zh-CN": {
     common: { ok: "确定", cancel: "取消", defaults: "默认值", defaultsTitle: "重置为默认值", close: "关闭", settings: "设置", help: "帮助", loading: "加载中...", loadedCartList: "已成功载入卡带清单。" },
     cbar: { pause: "暂停", resume: "继续", soundOff: "关闭声音", soundOn: "打开声音", restart: "重新启动", selectText: "SELECT", selectTooltip: "选择", resetText: "RESET", resetTooltip: "重置", leftDiff: "左难度切换", rightDiff: "右难度切换", leaderboard: "排行榜", help: "帮助 / 信息", settings: "设置", fullscreen: "全屏", exitFullscreen: "退出全屏" },
-    site: { desc_settings: "点击<IMG/> <SPAN/> 以查看当前键位映射。", desc_help: "点击<IMG/> <SPAN/> 查看详细使用说明。", desc_load: "使用下拉菜单或下方按钮载入卡带（也可拖拽本地文件或远程链接到模拟器）。" },
+    site: { desc_settings: "点击<IMG/> <SPAN/> 以查看当前键位映射。", desc_help: "点击<IMG/> <SPAN/> 查看详细使用说明。", desc_load: "使用下拉菜单或下方按钮载入卡带（也可拖拽本地文件或远程链接到模拟器）。",
+      cart_select: "选择 Atari 7800 卡带...",
+      cart_local: "选择本地文件",
+      cart_remote: "选择远程文件",
+      cart_prompt: "输入远程卡带文件或卡带列表的 URL"
+    },
     settings: {
       title: "设置",
       tab: { display: "显示", keyboard: "键盘", gamepads: "手柄", highscores: "高分", advanced: "高级", language: "语言" },
