@@ -93,9 +93,114 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 - Project homepage and live demo: https://raz0red.github.io/js7800/
 - Requires a modern browser for smooth emulation; integrated documentation is accessible via the site’s Help/Information UI.
 
-## Project Analysis & Modifications (as of 2025年10月19日)
+## Cloudflare Workers & Pages Deployment Guide
 
-This section documents analysis and changes performed by a Gemini-based AI assistant.
+### Prerequisites
+
+- Cloudflare account (free tier is sufficient)
+- GitHub account with a fork of this repository
+- Node.js v14 or higher
+
+### Step 1: Deploy Cloudflare Worker
+
+#### 1.1 Create Worker
+
+```bash
+# In Cloudflare Dashboard:
+# Workers & Pages → Create application → Create Worker
+# Name: js7800-leaderboard-worker
+```
+
+#### 1.2 Add Worker Code
+
+1. Copy code from `cloudflare-worker/leaderboard-worker.js`
+2. Paste into Cloudflare Worker editor
+3. Click "Save and Deploy"
+
+#### 1.3 Create KV Namespace
+
+```bash
+# In Cloudflare Dashboard:
+# Workers → KV → Create namespace
+# Name: js7800globalhiscore
+```
+
+#### 1.4 Bind KV to Worker
+
+1. In Worker settings, go to "Bindings"
+2. Add KV namespace binding:
+   - Variable name: `LEADERBOARD_KV`
+   - Namespace: `js7800globalhiscore`
+
+#### 1.5 Get Worker URL
+
+After deployment, you'll see:
+```
+Your worker is published at:
+https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev
+```
+
+### Step 2: Update Source Files
+
+Update `WORKER_URL` in:
+
+1. **`site/src/js/highscore.js`**
+   ```javascript
+   const WORKER_URL = "https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev";
+   ```
+
+2. **`site/leaderboard/src/js/leaderboard.js`**
+   ```javascript
+   const WORKER_URL = "https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev";
+   ```
+
+### Step 3: Deploy to Cloudflare Pages
+
+#### 3.1 Connect Repository
+
+1. In Cloudflare Dashboard, go to **Pages**
+2. Click **Create a project** → **Connect to Git**
+3. Select your fork of js7800
+4. Authorize Cloudflare to access your GitHub account
+
+#### 3.2 Configure Build Settings
+
+1. **Build Command**: `npm run build`
+2. **Build Output Directory**: `site/deploy`
+3. **Environment Variables**:
+   ```
+   NODE_OPTIONS = --openssl-legacy-provider
+   ```
+
+#### 3.3 Deploy
+
+1. Click **Save and Deploy**
+2. Cloudflare will automatically:
+   - Clone your repository
+   - Install dependencies
+   - Build the project
+   - Deploy to `https://YOUR-PROJECT.pages.dev`
+
+### Step 4: Verify Deployment
+
+1. Navigate to `https://YOUR-PROJECT.pages.dev`
+2. Go to **Global Leaderboard**: `https://YOUR-PROJECT.pages.dev/leaderboard/`
+3. Select a game to view global high scores
+4. Play a game and submit high score to verify synchronization
+
+### Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| Worker returns 404 | Verify worker is deployed and KV namespace is bound |
+| CORS errors in console | Ensure worker has `Access-Control-Allow-Origin: *` header |
+| Leaderboard page shows error | Check if worker URL is correct in source files and rebuilt |
+| Build fails | Run `npm install` locally, ensure Node.js version is compatible |
+| No scores appear | Verify KV namespace has data from original twitchasylum service |
+
+## Project Analysis & Modifications (as of 2025年10月20日)
+
+This section documents analysis and changes performed by AI assistants.
 
 ### Internationalization (i18n)
 
