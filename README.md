@@ -23,8 +23,9 @@ This is a fork of the original [raz0red/js7800](https://github.com/raz0red/js780
 
 *   **Multi-language Support**: The UI now supports English, Traditional Chinese (繁體中文), and Simplified Chinese (简体中文).
 *   **Automatic Language Detection**: On first load, the application will attempt to match the browser's preferred language. The language can also be changed manually in the Settings menu.
-*   **Default to Local High Scores**: The default high score storage has been changed to "Local" to prevent network errors, as the global leaderboard is inaccessible.
+*   **Default to Local High Scores**: The default high score storage has been changed to "Local" to prevent network errors, as the global leaderboard is now accessible through a Cloudflare Workers proxy.
 *   **Translated Documentation**: The README and internal help files have been translated.
+*   **Global Leaderboard Synchronization**: Implemented Cloudflare Workers integration to enable global high score synchronization for forked deployments.
 
 ### How to Run Locally
 
@@ -35,7 +36,7 @@ This is a fork of the original [raz0red/js7800](https://github.com/raz0red/js780
 
 2.  **Build the Site:**
     ```sh
-    npm run buildSite
+    npm run build
     ```
 
 3.  **Serve the Files:**
@@ -53,9 +54,101 @@ This is a fork of the original [raz0red/js7800](https://github.com/raz0red/js780
     
     Then, open your browser to `http://localhost:8081`.
 
-### Limitations
+### Global Leaderboard Synchronization Attempts
 
-*   **Global Leaderboard Status**: The original global leaderboard service, which fetches high score data from https://twitchasylum.com/x, is protected by a CORS policy that only allows requests from the official `raz0red.github.io` domain. We are currently working on re-enabling this feature for forked deployments by integrating a custom Cloudflare Worker backend. While the backend is functional, the frontend display of the leaderboard page is still under development. Please ensure the "High Score" save location is set to "Local" in the settings to avoid errors.
+The original global leaderboard service (https://twitchasylum.com/x/) maintains high scores for hundreds of Atari 7800 games, allowing players to compete globally. However, the service is protected by a CORS policy that only permits requests from the official `raz0red.github.io` domain, preventing forks from accessing it.
+
+#### Solution: Cloudflare Workers Proxy
+
+We implemented a custom solution using **Cloudflare Workers** and **Cloudflare KV Storage** to enable global leaderboard synchronization in forked deployments:
+
+**How It Works:**
+1. **Cloudflare Worker as Proxy**: A worker intercepts all leaderboard requests and forwards them to the original `twitchasylum.com/x/` service.
+2. **CORS Header Injection**: The worker adds appropriate CORS headers (`Access-Control-Allow-Origin: *`) to allow requests from any origin.
+3. **Data Caching**: Responses are cached in Cloudflare KV Storage to improve performance and reduce dependency on the original service.
+4. **Score Synchronization**: When players submit high scores through the emulator, scores are saved both locally and to the global leaderboard via the worker.
+
+**Benefits:**
+- Players in forked deployments can now see and compete on the global leaderboard
+- Faster response times through caching
+- Improved reliability through fallback to cached data
+- Seamless integration with existing high-score system
+
+#### Deployment to Cloudflare Workers & Pages
+
+##### Step 1: Set Up Cloudflare Account
+
+1. Create a free account at [cloudflare.com](https://www.cloudflare.com)
+2. Navigate to **Workers & Pages** section
+3. Create a new Worker project
+
+##### Step 2: Deploy Cloudflare Worker
+
+1. **Create the Worker Script:**
+   - In Cloudflare Dashboard, go to **Workers & Pages** → **Create application** → **Create Worker**
+   - Name it (e.g., `js7800-leaderboard-worker`)
+   - Click **Create**
+
+2. **Add Worker Code:**
+   - Copy the code from `cloudflare-worker/leaderboard-worker.js` in this repository
+   - Paste it into the Cloudflare Worker editor
+   - Save and deploy
+
+3. **Create KV Namespace:**
+   - Go to **Workers** → **KV** in the Cloudflare Dashboard
+   - Create a new namespace: `js7800globalhiscore`
+   - Bind it to your worker with the same name
+
+4. **Get Worker URL:**
+   - After deployment, you'll get a URL like `https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev`
+   - Update `WORKER_URL` constant in:
+     - `site/src/js/highscore.js`
+     - `site/leaderboard/src/js/leaderboard.js`
+
+##### Step 3: Deploy to Cloudflare Pages
+
+1. **Connect Repository:**
+   - In Cloudflare Dashboard, go to **Pages**
+   - Click **Create a project** → **Connect to Git**
+   - Select your fork of js7800 repository
+   - Authorize Cloudflare to access GitHub
+
+2. **Configure Build Settings:**
+   - **Build Command**: `npm run build`
+   - **Build Output Directory**: `site/deploy`
+   - **Environment Variables**:
+     ```
+     NODE_OPTIONS = --openssl-legacy-provider
+     ```
+
+3. **Deploy:**
+   - Click **Save and Deploy**
+   - Cloudflare will automatically build and deploy your site
+   - You'll get a public URL like `https://your-project.pages.dev`
+
+##### Step 4: Verify Global Leaderboard
+
+1. Navigate to your deployed site: `https://your-project.pages.dev`
+2. Go to **Global Leaderboard** page: `https://your-project.pages.dev/leaderboard/`
+3. Select a game to view global high scores
+4. Play a game and submit a high score to verify synchronization
+
+##### Troubleshooting
+
+**Worker not returning data:**
+- Verify KV namespace is correctly bound
+- Check browser console for CORS errors
+- Ensure `WORKER_URL` is correctly set in source files
+
+**Leaderboard page shows "Error":**
+- Check if Worker is deployed and responding
+- Verify network requests in browser DevTools
+- Ensure KV namespace contains data
+
+**Build fails on Cloudflare Pages:**
+- Check build logs in Cloudflare Dashboard
+- Ensure `NODE_OPTIONS` environment variable is set
+- Run `npm install` locally to verify dependencies
 
 ## Features
 
@@ -162,4 +255,3 @@ For information on the ["cartridge list"](https://github.com/raz0red/js7800/wiki
 
 ### 05/16/20 (0.0.0)
     - Initial release
-

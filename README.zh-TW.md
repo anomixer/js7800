@@ -25,6 +25,7 @@ https://raz0red.github.io/js7800/
 *   **自動語言偵測**: 首次載入時，應用程式將嘗試匹配瀏覽器的偏好語言。語言也可以在「設定」選單中手動變更。
 *   **預設使用本地高分**: 高分儲存的預設值已變更為「本地」，以避免因全球排行榜無法存取而產生的網路錯誤。
 *   **已翻譯文件**: README 和內部說明檔案皆已翻譯。
+*   **全球排行榜同步**: 實現 Cloudflare Workers 整合，為分支部署啟用全球高分同步功能。
 
 ### 如何在本地執行
 
@@ -35,7 +36,7 @@ https://raz0red.github.io/js7800/
 
 2.  **建置網站:**
     ```sh
-    npm run buildSite
+    npm run build
     ```
 
 3.  **啟動伺服器:**
@@ -53,9 +54,101 @@ https://raz0red.github.io/js7800/
     
     然後，在您的瀏覽器中開啟 `http://localhost:8081`。
 
-### 限制
+### 全球排行榜同步嘗試
 
-*   **全球排行榜狀態**: 原始的全球排行榜服務，其高分資料取自 <https://twitchasylum.com/x>，受 CORS 政策保護，僅允許來自官方 `raz0red.github.io` 網域的請求。我們目前正努力透過整合自訂的 Cloudflare Worker 後端，為分支部署重新啟用此功能。儘管後端已可運作，但排行榜頁面的前端顯示仍在開發中。請確保在「設定」中將「高分」的儲存位置設為「本地」以避免錯誤。
+原始全球排行榜服務 (https://twitchasylum.com/x/) 維護著數百款 Atari 7800 遊戲的高分紀錄，讓玩家能在全球範圍內競爭。然而，該服務受 CORS 政策保護，僅允許來自官方 `raz0red.github.io` 網域的請求，這導致分支無法存取該服務。
+
+#### 解決方案：Cloudflare Workers 代理
+
+我們使用 **Cloudflare Workers** 和 **Cloudflare KV 儲存** 實現了自訂解決方案，以在分支部署中啟用全球排行榜同步：
+
+**運作原理：**
+1. **Cloudflare Worker 作為代理**: 工作者攔截所有排行榜請求並將其轉發到原始的 `twitchasylum.com/x/` 服務。
+2. **CORS 標頭注入**: 工作者添加適當的 CORS 標頭 (`Access-Control-Allow-Origin: *`) 以允許來自任何來源的請求。
+3. **資料快取**: 回應被快取在 Cloudflare KV 儲存中，以提高效能並減少對原始服務的依賴。
+4. **分數同步**: 當玩家透過模擬器提交高分時，分數會同時儲存到本機和全球排行榜（透過工作者）。
+
+**優點：**
+- 分支部署中的玩家現在可以查看並在全球排行榜上競爭
+- 透過快取提供更快的回應時間
+- 透過回退到快取資料實現更高的可靠性
+- 與現有高分系統無縫整合
+
+#### 部署到 Cloudflare Workers & Pages
+
+##### 步驟 1：設定 Cloudflare 帳戶
+
+1. 在 [cloudflare.com](https://www.cloudflare.com) 建立免費帳戶
+2. 導航至 **Workers & Pages** 部分
+3. 建立新的 Worker 專案
+
+##### 步驟 2：部署 Cloudflare Worker
+
+1. **建立 Worker 指令碼:**
+   - 在 Cloudflare 儀表板中，進入 **Workers & Pages** → **建立應用程式** → **建立 Worker**
+   - 命名（例如 `js7800-leaderboard-worker`）
+   - 點擊 **建立**
+
+2. **新增 Worker 程式碼:**
+   - 從此儲存庫的 `cloudflare-worker/leaderboard-worker.js` 複製程式碼
+   - 貼到 Cloudflare Worker 編輯器中
+   - 儲存並部署
+
+3. **建立 KV 命名空間:**
+   - 在 Cloudflare 儀表板中進入 **Workers** → **KV**
+   - 建立新命名空間：`js7800globalhiscore`
+   - 使用相同名稱將其綁定到您的工作者
+
+4. **取得 Worker URL:**
+   - 部署後，您將獲得類似的 URL：`https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev`
+   - 更新下列檔案中的 `WORKER_URL` 常數：
+     - `site/src/js/highscore.js`
+     - `site/leaderboard/src/js/leaderboard.js`
+
+##### 步驟 3：部署到 Cloudflare Pages
+
+1. **連接儲存庫:**
+   - 在 Cloudflare 儀表板中，進入 **Pages**
+   - 點擊 **建立專案** → **連接到 Git**
+   - 選擇您的 js7800 分支
+   - 授權 Cloudflare 存取 GitHub
+
+2. **設定建置設定:**
+   - **建置命令**: `npm run build`
+   - **建置輸出目錄**: `site/deploy`
+   - **環境變數**:
+     ```
+     NODE_OPTIONS = --openssl-legacy-provider
+     ```
+
+3. **部署:**
+   - 點擊 **儲存並部署**
+   - Cloudflare 將自動建置並部署您的網站
+   - 您將獲得公開 URL，例如 `https://your-project.pages.dev`
+
+##### 步驟 4：驗證全球排行榜
+
+1. 導航至您部署的網站：`https://your-project.pages.dev`
+2. 前往 **全球排行榜** 頁面：`https://your-project.pages.dev/leaderboard/`
+3. 選擇遊戲以查看全球高分
+4. 玩遊戲並提交高分以驗證同步
+
+##### 疑難排解
+
+**Worker 不返回資料：**
+- 驗證 KV 命名空間是否正確綁定
+- 檢查瀏覽器控制台是否有 CORS 錯誤
+- 確保在來源檔案中正確設定 `WORKER_URL`
+
+**排行榜頁面顯示「錯誤」：**
+- 檢查 Worker 是否已部署並正在回應
+- 驗證瀏覽器 DevTools 中的網路請求
+- 確保 KV 命名空間包含資料
+
+**Cloudflare Pages 上的建置失敗：**
+- 檢查 Cloudflare 儀表板中的建置日誌
+- 確保設定了 `NODE_OPTIONS` 環境變數
+- 在本地執行 `npm install` 以驗證依賴性
 
 ## 功能
 
@@ -86,75 +179,3 @@ https://raz0red.github.io/js7800/
 JS7800 透過模擬器畫面正下方的控制列中的「說明/資訊」按鈕提供整合文件。
 
 有關 ["卡帶清單"](https://github.com/raz0red/js7800/wiki/Cartridge%20Lists) 格式、["請求參數"](https://github.com/raz0red/js7800/wiki/Request%20Parameters) 等更多資訊，請參閱 [JS7800 Wiki](https://github.com/raz0red/js7800/wiki)。
-
-## 更新日誌
-
-### 24年1月25日 (0.0.9)
-    - 支援 Souper
-    - 支援 Activision OM ROM 版面配置
-    - 修正 Pole Position II 賽道選擇問題（由 AtariAge 的 RevEng 修正）
-    - Tower Toppler 和 Jinks 的複合視訊平滑處理（由 AtariAge 的 RevEng 處理）
-    - 更新調色盤（由 AtariAge 的 Trebor 貢獻）
-    - 更新 Popeye (JS7800 Demo 2.41)（由 AtariAge 的 darryl1970 貢獻）
-
-### 23年8月16日 (0.0.8)
-    - 修正 TIA 保真度問題（由 AtariAge 的 RevEng 貢獻）
-
-### 23年8月13日 (0.0.7)
-    - 重寫 Pokey（由 AtariAge 的 RevEng 貢獻）
-    - 修正 RIOT 中斷鏡像問題（由 AtariAge 的 RevEng 貢獻）
-    - 新增 Drelbs homebrew
-    - 新增最新版 Arkanoid homebrew（因 RIOT 修正而可運作）
-    - 新增數個基於 Pokey 的 demo
-
-### 23年8月10日 (0.0.6)
-    - 更新調色盤（由 AtariAge 的 Trebor 貢獻）
-    - 調整 YM-2151 預設音量
-    - 修正卡帶標頭中的電視類型
-
-### 23年7月30日 (0.0.5)
-    - 支援 Banksets
-    - 修正 Maria 背景顏色問題（Keystone Koppers）
-    - 修正卡帶標頭（修正了數個需要特殊版本的 ROM）
-    - 改善週期準確性（解決數個遊戲的小問題）
-    - 支援 YM-2151 homebrew 自動偵測
-    - 支援 Pokey 濾鏡（由 AtariAge 的 RevEng 貢獻）
-    - 支援 7800 診斷卡帶
-    - 支援儲存狀態（僅能透過 webЯcade 存取）
-    - 新增至預設遊戲清單：IE78 (Demo)、Bad Apple (Demo)、Bankset Tests、
-      Baby Pac-Man、7800 Test、Keystone Koppers (Demo)、Galaxian、PentaGo!
-    - 更新數個遊戲至最新版本
-    - 為以下遊戲新增高分支援：1942、Galaxian、Keystone Koppers、PentaGo!、
-      以及已支援遊戲的最新版本。
-
-### 21年1月5日 (0.0.4)
-    - 為 "Popeye" 新增全球高分支援
-    - 為最新版 "Pac-Man Collection!" 新增全球高分支援
-    - 更新至 "Dragon's Cache"、"Dragon's Descent"、"Popeye"、
-      "Spire of the Ancients"、"E.X.O" 和 "Knight Guy: Castle Days" 的最新版本
-
-### 20年9月3日 (0.0.3)
-    - 新增對未記載的 ASR 和 ANC 操作碼的支援（修正 "Popeye 7800: Mini-game" 的圖形小問題）
-    - 為最新版 "Pac-Man XM" 新增全球高分支援
-    - 將 "Popeye 7800: Mini-game" 和 "Knight Guy: Castle Days" 新增至開發中遊戲的預設清單
-    - 更新至 "Dragon's Cache"、"Dragon's Descent"、"GoSub" 和
-      "Spire of the Ancients" 的最新版本
-    - 更新至 "Dragon's Descent" 最新版本需要重設該遊戲的全球高分（因最新版修改了高分儲存方式）
-
-### 20年6月18日 (0.0.2)
-    - 更新 XM 實作以與已發布的硬體保持一致
-    - 初步支援 Yamaha (YM2151) 聲音晶片
-    - 可停用垂直同步（在設定對話框的「進階」分頁）
-    - 將 Zanac 和 Side-Crawler's Dance 的 Yamaha 音樂 demo 新增至預設卡帶清單
-    - 將 XM 記憶體測試新增至預設卡帶清單
-    - 預設情況下，全球高分伺服器不支援的遊戲，其高分將儲存在本機
-    - 解決了當本機儲存被停用時，全球高分不受支援的缺陷
-
-### 20年5月26日 (0.0.1)
-    - 可在「暗色」和「亮色」變化中選擇調色盤（「冷色」、「暖色」和「熱色」）
-    - 「全螢幕」縮放選項（整數 vs. 填滿）
-    - 「全球排行榜」頁面
-    - 透過控制列啟動「全球排行榜」
-
-### 20年5月16日 (0.0.0)
-    - 初始版本
