@@ -148,4 +148,4 @@ This section documents analysis and changes performed by a Gemini-based AI assis
 - Frontend deployed to Cloudflare Pages (`https://js7800.pages.dev/`).
 - Cloudflare Worker deployed and functional for data fetching.
 - Main emulator UI and i18n are working.
-- **Leaderboard page (`https://js7800.pages.dev/leaderboard/`) is currently displaying as "messed up" (likely CSS issues).**
+- **Leaderboard page (`https://js7800.pages.dev/leaderboard/`) is now displaying correctly with proper 3-column layout.**

@@ -55,6 +55,18 @@ Implement a fully functional (read/write) global leaderboard for the `js7800` em
 - Main emulator UI and i18n are working.
 - **Leaderboard page (`https://js7800.pages.dev/leaderboard/`) is currently displaying as "messed up" (visually incorrect layout/styling), indicating a likely CSS application issue.** The user reports no new JavaScript errors in the console, and network requests for data are successful.
 
-## Next Steps (Pending)
+## Next Steps (Completed)
 
-- Diagnose and fix the CSS application issue on the leaderboard page. This will involve further inspection of the browser's Developer Tools (Elements and Styles tabs) to determine if CSS is being injected, if rules are present, and if they are being applied correctly.
+- Fixed the CSS application issue on the leaderboard page by:
+  1. **Corrected HTML structure** to match original author's design:
+     - Left column: Top Players and Latest High Scores
+     - Center column: Game selector and scores table (flexible)
+     - Right column: Top Players (Most competitive modes) and Most Competitive Modes
+  2. **Fixed text color** from #999 to #CCC for scores table text
+  3. **Restored correct title and description**:
+     - Title: "JS7800 Global Leaderboard"
+     - Description: "Select a game in the drop-down menu below to view current high scores."
+  4. **Removed conflicting CSS rules** that caused layout issues (float + flexbox conflicts)
+  5. **Applied proper flexbox layout** with correct width properties for all columns
+
+The leaderboard page now displays correctly with proper 3-column layout as intended by the original author.
