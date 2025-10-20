@@ -41,6 +41,12 @@ body {
   text-align: left;
 }
 
+.leaderboard-layout {
+  display: flex;
+  gap: 2em;
+  align-items: flex-start;
+}
+
 #left {
   float: left;
   width: 200px;
