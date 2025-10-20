@@ -13,7 +13,7 @@ var SRAM_SCORE_OFFSET = 0x113D;
 var WRITE_DELAY = 2000; // 2 seconds
 var STORAGE_KEY = "highScoreSRAM";
 
-var GLOBAL_DEFAULT = false;
+var GLOBAL_DEFAULT = true;
 var ENABLED_DEFAULT = true;
 var FALLBACK_DEFAULT = true;
 
