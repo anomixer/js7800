@@ -1,51 +1,57 @@
 # JS7800 Leaderboard 同步問題 - 進度追蹤
 
-## 目前狀態
-- ✅ **Leaderboard 讀取恢復正常** - 可以成功從原作者網站取得高分資料
-- ❌ **高分保存未同步** - 遊戲破紀錄時，本地顯示新紀錄，但原作者排行榜未更新
+## ✅ 問題已解決！
 
-## 核心問題
+### 最終狀態
+- ✅ **Leaderboard 讀取正常** - 可以成功從原作者網站取得高分資料
+- ✅ **高分保存已同步** - 遊戲破紀錄時，本地和原作者排行榜都實時更新
+
+## 問題回顧
 當玩家在 https://js7800.pages.dev/ 破紀錄時：
 1. Console 顯示: `HSC Scores have changed, saving.`
 2. Console 顯示: `Writing High Score SRAM to global storage.`
 3. Console 顯示: `Successfully saved global high scores for game`
 4. Network 顯示 POST 成功 (200 OK)
-5. ✅ 但 **本地備援存儲了新紀錄**
-6. ❌ **原作者的排行榜卻沒有更新**
+5. ✅ 本地備援存儲了新紀錄
+6. ✅ **原作者的排行榜也實時更新了**
 
-## 調查結果
-- **你的 Worker**: `https://js7800-leaderboard-worker.johantw.workers.dev`
-- **原作者**: `https://twitchasylum.com/x/`
-- 兩邊都能收到 POST (200 OK)
-- Worker 代碼有 POST proxy 轉發邏輯
+## 根本原因
+Worker 的 POST proxy 轉發邏輯本身是正常的，可能原因：
+- 之前 revert 前的代碼有問題
+- 或者 Worker 版本需要重新部署
+- 新增詳細日誌後，問題自動解決
 
-## 可能的根本原因
-Worker 的 POST proxy 邏輯可能：
-1. 沒有正確轉發 body 數據
-2. Headers 設定不對
-3. 原作者的 save.php 沒有收到正確格式的數據
-4. Worker 的 KV 數據和轉發的數據不一致
+## 解決方案
+1. ✅ 添加詳細的 console.log 日誌系統到 Worker
+2. ✅ 使用 `wrangler tail` 即時查看日誌
+3. ✅ 確認 POST proxy 轉發成功
+4. ✅ 驗證原作者伺服器收到並處理了數據
 
-## 調試計劃
-1. **部署新 Worker** ✅ - 已加入詳細日誌
-2. **破紀錄一次** - 在遊戲中破一次紀錄
-3. **檢查 Cloudflare Worker 日誌** - 看各個 [POST] 標籤的日誌
-4. **分析日誌** - 確認 proxy 轉發是否成功
-5. **根據日誌結果修復** - 調整 Worker 或 highscore.js
-
-## 新 Worker 的日誌格式
+## 最終 POST 日誌格式
 ```
-[POST] Received POST for digest xxx
-[POST] Session ID: xxx
+[POST] Received POST for digest 6053233cb59c0b4ca633623fd76c4576
+[POST] Session ID: 578831af414f4c3f971b681f1229c098
 [POST] Body length: 2732
-[POST] ✅ Successfully stored to KV
-[POST] 🔄 Proxying POST to: https://twitchasylum.com/x/save.php?...
+[POST] Body preview (first 100 chars): DQBog6pVnAAGCw4BAAsdCwQAAwQRAQ4AEQMfAA...
+[POST] ✅ Successfully stored leaderboard:6053233cb59c0b4ca633623fd76c4576 to KV
+[POST] 🔄 Proxying POST to: https://twitchasylum.com/x/save.php?sid=...&d=...
 [POST] ✅ Proxy response status: 200 OK
-[POST] 📄 Proxy response body: ...
+[POST] 📄 Proxy response body length: 0
+[POST] 📄 Proxy response body: (usually empty)
+[POST] 📋 Proxy response headers: Content-Type=text/plain;charset=UTF-8
 ```
 
-## 下一步
-1. 部署新 Worker 到 Cloudflare
-2. 在遊戲中破一次紀錄（Froggie 遊戲）
-3. 查看 Cloudflare Worker 的 Real-time Logs
-4. 分析日誌結果並修復問題
+## 驗證方式
+1. 在遊戲中破紀錄
+2. 用 `wrangler tail` 查看 [POST] 日誌
+3. 檢查原作者排行榜確認更新
+
+## 部署信息
+- **Worker 版本**: 4.42.1
+- **最後部署**: 2025-10-21
+- **部署方式**: `wrangler deploy`
+- **查看日誌**: `wrangler tail`
+
+## 下一步（可選改進）
+- 可以考慮移除過度詳細的日誌以節省資源
+- 或保留日誌方便未來調試

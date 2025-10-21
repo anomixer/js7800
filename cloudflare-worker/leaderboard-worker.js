@@ -82,10 +82,16 @@ async function handleRequest(request) {
         
         const proxyResponseText = await proxyResponse.text();
         console.log(`[POST] ✅ Proxy response status: ${proxyResponse.status} ${proxyResponse.statusText}`);
-        console.log(`[POST] 📄 Proxy response body: ${proxyResponseText.substring(0, 200)}`);
+        console.log(`[POST] 📄 Proxy response body length: ${proxyResponseText.length}`);
+        console.log(`[POST] 📄 Proxy response body: ${proxyResponseText.substring(0, 500)}`);
+        console.log(`[POST] 📋 Proxy response headers: Content-Type=${proxyResponse.headers.get('content-type')}`);
         
         if (!proxyResponse.ok) {
           console.error(`[POST] ⚠️  Proxy POST returned non-200 status: ${proxyResponse.status}`);
+        }
+        
+        if (proxyResponseText.length === 0) {
+          console.warn(`[POST] ⚠️  WARNING: Proxy response body is empty!`);
         }
       } catch (proxyError) {
         console.error(`[POST] ❌ Error proxying to original save.php: ${proxyError.message}`);
