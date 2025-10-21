@@ -19,6 +19,10 @@ In order to operate correctly and smoothly (no lags, etc.), JS7800 requires an u
 
 This is a fork of the original [raz0red/js7800](https://github.com/raz0red/js7800) repository with modifications to support multiple languages and improve the local development experience.
 
+**Note:** This fork focuses on internationalization enhancements while maintaining the same excellent gameplay experience as the original. The core emulation and game compatibility remain unchanged.
+
+**Play it now**: https://js7800.pages.dev
+
 ### Modifications
 
 *   **Multi-language Support**: The UI now supports English, Traditional Chinese (繁體中文), and Simplified Chinese (简体中文).
