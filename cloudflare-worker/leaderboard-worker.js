@@ -2,6 +2,46 @@ addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
 
+// 簡單的記憶體快取（請注意：Worker 每次都會重新啟動，所以這只在單次連接中有效）
+const requestCache = {};
+const CACHE_DURATION = 60 * 1000; // 60 秒快取
+const MIN_REQUEST_INTERVAL = 10 * 1000; // 10 秒最小間隔
+const lastRequestTime = {};
+
+function getCacheKey(url, method = 'GET') {
+  return `${method}:${url}`;
+}
+
+function isCacheValid(key) {
+  const cached = requestCache[key];
+  if (!cached) return false;
+  return Date.now() - cached.timestamp < CACHE_DURATION;
+}
+
+function isRateLimited(key) {
+  const lastTime = lastRequestTime[key];
+  if (!lastTime) return false;
+  return Date.now() - lastTime < MIN_REQUEST_INTERVAL;
+}
+
+function setCacheAndTime(key, data) {
+  requestCache[key] = {
+    data: data,
+    timestamp: Date.now()
+  };
+  lastRequestTime[key] = Date.now();
+}
+
+function getFromCache(key) {
+  const cached = requestCache[key];
+  return cached ? cached.data : null;
+}
+
+// 檢查是否是錯誤回應（data length 288 通常是錯誤頁面）
+function isErrorResponse(text) {
+  return text.length < 500 || text.startsWith('<');
+}
+
 async function handleRequest(request) {
   const url = new URL(request.url)
   const path = url.pathname
@@ -104,12 +144,42 @@ async function handleRequest(request) {
   // --- Handle /summary ---
   else if (path === '/summary') {
     if (request.method === 'GET') {
+      const cacheKey = getCacheKey('https://twitchasylum.com/x/scoreboard-summary.php');
+      
+      // 檢查快取
+      if (isCacheValid(cacheKey)) {
+        console.log(`[SUMMARY] ✅ Returning cached data`);
+        return new Response(getFromCache(cacheKey), { headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+      }
+      
+      // 檢查速率限制
+      if (isRateLimited(cacheKey)) {
+        console.log(`[SUMMARY] ⏱️  Rate limited, returning cached data if available`);
+        const cached = getFromCache(cacheKey);
+        if (cached) {
+          return new Response(cached, { headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+        }
+      }
+      
       try {
         const originalUrl = `https://twitchasylum.com/x/scoreboard-summary.php`;
         console.log(`[SUMMARY] Fetching from: ${originalUrl}`);
         const response = await fetch(originalUrl);
         const data = await response.text();
+        
+        // 檢查是否是錯誤回應
+        if (isErrorResponse(data)) {
+          console.warn(`[SUMMARY] ⚠️  Received error response (length: ${data.length}), likely rate limited`);
+          const cached = getFromCache(cacheKey);
+          if (cached) {
+            console.log(`[SUMMARY] 📦 Using cached data as fallback`);
+            return new Response(cached, { headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+          }
+          return new Response(`Error fetching summary: Server rate limited or error`, { status: 503, headers: corsHeaders });
+        }
+        
         console.log(`[SUMMARY] ✅ Fetched successfully. Data length: ${data.length}`);
+        setCacheAndTime(cacheKey, data);
         return new Response(data, { headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
       } catch (error) {
         console.error(`[SUMMARY] ❌ Error fetching summary: ${error.message}`);
@@ -120,12 +190,42 @@ async function handleRequest(request) {
   // --- Handle /games ---
   else if (path === '/games') {
     if (request.method === 'GET') {
+      const cacheKey = getCacheKey('https://twitchasylum.com/x/scoreboard-games.php');
+      
+      // 檢查快取
+      if (isCacheValid(cacheKey)) {
+        console.log(`[GAMES] ✅ Returning cached data`);
+        return new Response(getFromCache(cacheKey), { headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+      }
+      
+      // 檢查速率限制
+      if (isRateLimited(cacheKey)) {
+        console.log(`[GAMES] ⏱️  Rate limited, returning cached data if available`);
+        const cached = getFromCache(cacheKey);
+        if (cached) {
+          return new Response(cached, { headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+        }
+      }
+      
       try {
         const originalUrl = `https://twitchasylum.com/x/scoreboard-games.php`;
         console.log(`[GAMES] Fetching from: ${originalUrl}`);
         const response = await fetch(originalUrl);
         const data = await response.text();
+        
+        // 檢查是否是錯誤回應
+        if (isErrorResponse(data)) {
+          console.warn(`[GAMES] ⚠️  Received error response (length: ${data.length}), likely rate limited`);
+          const cached = getFromCache(cacheKey);
+          if (cached) {
+            console.log(`[GAMES] 📦 Using cached data as fallback`);
+            return new Response(cached, { headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+          }
+          return new Response(`Error fetching games: Server rate limited or error`, { status: 503, headers: corsHeaders });
+        }
+        
         console.log(`[GAMES] ✅ Fetched successfully. Data length: ${data.length}`);
+        setCacheAndTime(cacheKey, data);
         return new Response(data, { headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
       } catch (error) {
         console.error(`[GAMES] ❌ Error fetching games list: ${error.message}`);
@@ -139,12 +239,43 @@ async function handleRequest(request) {
       if (!digest) {
         return new Response('Missing game digest (d) parameter', { status: 400, headers: corsHeaders });
       }
+      
+      const cacheKey = getCacheKey(`https://twitchasylum.com/x/scoreboard-scores.php?d=${digest}`);
+      
+      // 檢查快取
+      if (isCacheValid(cacheKey)) {
+        console.log(`[SCORES] ✅ Returning cached data for ${digest}`);
+        return new Response(getFromCache(cacheKey), { headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+      }
+      
+      // 檢查速率限制
+      if (isRateLimited(cacheKey)) {
+        console.log(`[SCORES] ⏱️  Rate limited, returning cached data if available`);
+        const cached = getFromCache(cacheKey);
+        if (cached) {
+          return new Response(cached, { headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+        }
+      }
+      
       try {
         const originalUrl = `https://twitchasylum.com/x/scoreboard-scores.php?d=${digest}`;
         console.log(`[SCORES] Fetching from: ${originalUrl}`);
         const response = await fetch(originalUrl);
         const data = await response.text();
+        
+        // 檢查是否是錯誤回應
+        if (isErrorResponse(data)) {
+          console.warn(`[SCORES] ⚠️  Received error response (length: ${data.length}), likely rate limited`);
+          const cached = getFromCache(cacheKey);
+          if (cached) {
+            console.log(`[SCORES] 📦 Using cached data as fallback`);
+            return new Response(cached, { headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+          }
+          return new Response(`Error fetching scores: Server rate limited or error`, { status: 503, headers: corsHeaders });
+        }
+        
         console.log(`[SCORES] ✅ Fetched successfully. Data length: ${data.length}`);
+        setCacheAndTime(cacheKey, data);
         return new Response(data, { headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
       } catch (error) {
         console.error(`[SCORES] ❌ Error fetching scores for digest ${digest}: ${error.message}`);
