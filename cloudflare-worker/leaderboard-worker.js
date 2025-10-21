@@ -4,7 +4,7 @@ addEventListener('fetch', event => {
 
 // 簡單的記憶體快取（請注意：Worker 每次都會重新啟動，所以這只在單次連接中有效）
 const requestCache = {};
-const CACHE_DURATION = 60 * 1000; // 60 秒快取
+const CACHE_DURATION = 30 * 1000; // 30 秒快取
 const MIN_REQUEST_INTERVAL = 10 * 1000; // 10 秒最小間隔
 const lastRequestTime = {};
 

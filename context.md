@@ -21,19 +21,29 @@ Worker 收到 POST
     └─ proxy 轉發到 twitchasylum.com/x/save.php
     ↓
 原作者伺服器更新排行榜 ✅
+    ↓
+排行榜自動同步（透過快取機制）✅
 ```
 
 ## 高分數據流程
-### 讀取流程 ✅ 正常
+### 讀取流程 ✅ 正常（含智能快取）
 ```
-leaderboard.js 調用 /games 端點
-    ↓ 
-Worker 轉發到 twitchasylum.com/x/scoreboard-games.php
+leaderboard.js 調用端點（/games, /summary, /scores）
     ↓
-返回遊戲列表（Base64 編碼 SRAM）
+Worker 檢查 30 秒快取
+    ├─ 有快取 → 直接返回 ✅
+    └─ 無快取 → 轉發到原作者
+    ↓
+Worker 檢查 10 秒速率限制
+    ├─ 被限制 → 返回快取數據（降級）✅
+    └─ 未限制 → 發出新請求
+    ↓
+原作者返回數據或錯誤頁面
+    ├─ 正常回應 → 快取並返回 ✅
+    └─ 錯誤（length < 500）→ 使用快取降級 ✅
 ```
 
-### 保存流程 ✅ 正常
+### 保存流程 ✅ 完全正常
 ```
 highscore.js: xhr.send(sramToBase64(sram))
     ↓
@@ -41,8 +51,8 @@ POST to: https://js7800-leaderboard-worker.johantw.workers.dev/?sid=xxx&d=xxx
     ↓ Body: Base64 編碼的 SRAM 數據 (~2732 bytes)
     ↓
 Worker 收到後:
-    ├─ await js7800globalhiscore.put(key, body)  ✅
-    └─ fetch(twitchasylum.com/x/save.php, POST body)  ✅ 成功轉發
+    ├─ await js7800globalhiscore.put(key, body)  ✅ 保存到 KV
+    └─ fetch(twitchasylum.com/x/save.php, POST body)  ✅ proxy 轉發
     ↓
 原作者伺服器處理並更新排行榜 ✅
 ```
@@ -54,7 +64,9 @@ Worker 收到後:
   
 - **Worker**: `C:\dev\js7800\cloudflare-worker\leaderboard-worker.js`
   - POST 處理部分 (第 45-97 行)
-  - 包含詳細日誌用於調試
+  - 快取機制 (第 3-37 行)
+  - 速率限制檢測 (第 17-22, 102-119 行等)
+  - 錯誤回應檢測 (第 24-25 行)
   - KV 存儲: `js7800globalhiscore`
   
 - **leaderboard.js**: `C:\dev\js7800\site\leaderboard\src\js\leaderboard.js`
@@ -65,7 +77,7 @@ Worker 收到後:
 
 ### 你的 Worker POST (成功✅):
 ```
-URL: https://js7800-leaderboard-worker.johantw.workers.dev/?sid=578831af414f4c3f971b681f1229c098&d=6053233cb59c0b4ca633623fd76c4576
+URL: https://js7800-leaderboard-worker.johantw.workers.dev/?sid=7a18043cdb06429e8fb18b52a6520f62&d=6053233cb59c0b4ca633623fd76c4576
 Method: POST
 Status: 200 OK
 Content-Type: text/plain;charset=UTF-8
@@ -75,15 +87,27 @@ Body: Base64 編碼的 SRAM (DQBog6pVnAAGCw4B...)
 
 ### Worker Proxy 到原作者 (成功✅):
 ```
-URL: https://twitchasylum.com/x/save.php?sid=578831af414f4c3f971b681f1229c098&d=6053233cb59c0b4ca633623fd76c4576
+URL: https://twitchasylum.com/x/save.php?sid=7a18043cdb06429e8fb18b52a6520f62&d=6053233cb59c0b4ca633623fd76c4576
 Method: POST
 Status: 200 OK
 Content-Type: text/plain;charset=UTF-8
 Body Length: 2732 bytes
-Response: 通常為空，但伺服器成功處理了數據
+Response: 通常為空，但伺服器成功處理了數據 ✅
 ```
 
-## Worker 日誌系統 📊
+## Worker 快取系統 📊
+
+### 快取配置
+```javascript
+const CACHE_DURATION = 30 * 1000;      // 30 秒快取
+const MIN_REQUEST_INTERVAL = 10 * 1000; // 10 秒最小請求間隔
+```
+
+### 快取機制
+1. **記憶體快取** - 同一 URL 的請求結果快取 30 秒
+2. **速率限制檢測** - 10 秒內不重複發送相同請求
+3. **錯誤識別** - 識別 data length < 500 或以 `<` 開頭（HTML 錯誤頁）
+4. **智能降級** - 被限制時自動使用舊快取而不報錯
 
 ### 日誌格式 (分類標籤)
 - `[GET]` - GET 請求日誌（讀取高分）
@@ -91,6 +115,12 @@ Response: 通常為空，但伺服器成功處理了數據
 - `[SUMMARY]` - /summary 端點日誌（排行榜摘要）
 - `[GAMES]` - /games 端點日誌（遊戲列表）
 - `[SCORES]` - /scores 端點日誌（特定遊戲排行）
+
+### 快取相關日誌標籤
+- `✅ Returning cached data` - 命中快取，直接返回
+- `⏱️ Rate limited, returning cached data` - 被速率限制，返回快取
+- `📦 Using cached data as fallback` - 遇到錯誤，使用快取降級
+- `⚠️ Received error response` - 檢測到錯誤回應（HTML 頁面）
 
 ### 查看 Worker 日誌方式
 
@@ -106,25 +136,26 @@ wrangler tail
 3. 選擇 `js7800-leaderboard-worker`
 4. 點擊 **Logs** 標籤
 
-### 典型 POST 日誌例子
+### 典型日誌例子
 ```
-POST https://js7800-leaderboard-worker.johantw.workers.dev/?sid=REDACTED&d=REDACTED - Ok @ 2025/10/21 下午11:06:19
+GET https://js7800-leaderboard-worker.johantw.workers.dev/games - Ok
+  (log) [GAMES] ✅ Returning cached data
+
+GET https://js7800-leaderboard-worker.johantw.workers.dev/summary - Ok
+  (log) [SUMMARY] ⏱️ Rate limited, returning cached data if available
+  (log) [SUMMARY] 📦 Using cached data as fallback
+
+POST https://js7800-leaderboard-worker.johantw.workers.dev/?sid=REDACTED&d=REDACTED - Ok
   (log) [POST] Received POST for digest 6053233cb59c0b4ca633623fd76c4576
-  (log) [POST] Session ID: 578831af414f4c3f971b681f1229c098
-  (log) [POST] Body length: 2732
-  (log) [POST] Body preview (first 100 chars): DQBog6pVnAAGCw4BAAsdCwQAAwQRAQ4AEQMfAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-  (log) [POST] ✅ Successfully stored leaderboard:6053233cb59c0b4ca633623fd76c4576 to KV
-  (log) [POST] 🔄 Proxying POST to: https://twitchasylum.com/x/save.php?sid=578831af414f4c3f971b681f1229c098&d=6053233cb59c0b4ca633623fd76c4576
+  (log) [POST] ✅ Successfully stored to KV
+  (log) [POST] 🔄 Proxying POST to: https://twitchasylum.com/x/save.php?...
   (log) [POST] ✅ Proxy response status: 200 OK
-  (log) [POST] 📄 Proxy response body length: 0
-  (log) [POST] 📄 Proxy response body: 
-  (log) [POST] 📋 Proxy response headers: Content-Type=text/plain;charset=UTF-8
 ```
 
 ## 排行榜頁面修復 ✅
 ### 問題（已解決）
 - leaderboard.js 編譯後，`leaderboard.start()` 沒有被正確呼叫
-- 原因: 源碼中的某些改動導致 UMD export 出現問題
+- 原因: 某些改動導致 UMD export 出現問題
 
 ### 解決方案
 - Revert 到 commit 32be642（穩定版本）
@@ -134,16 +165,16 @@ POST https://js7800-leaderboard-worker.johantw.workers.dev/?sid=REDACTED&d=REDAC
 ✅ 已完全恢復，可以讀取原作者的排行榜資料
 
 ## 原作者伺服器注意事項 ⚠️
-- 有速率限制（約 10 秒內不能連續請求多次）
-- 超過限制返回: `SyntaxError: Unexpected token '<'`
-- Data length 288 通常表示錯誤頁面或速率限制
-- 建議每次請求間隔至少 10 秒
+- 有速率限制（約 10 秒內不能連續請求）
+- 超過限制返回 HTML 錯誤頁面（data length 288）
+- 返回格式: `SyntaxError: Unexpected token '<'`
+- **已解決**: Worker 自動識別並使用快取降級
 
 ## Cloudflare KV 配置
 - **KV Namespace**: `js7800globalhiscore`
 - **Key 格式**: `leaderboard:{game_digest}`
 - **Value 格式**: Base64 編碼的 SRAM 數據
-- **存儲用途**: 快速緩存，避免頻繁請求原作者伺服器
+- **存儲用途**: 持久快取，避免頻繁請求原作者伺服器
 
 ## 部署和維護
 
@@ -153,25 +184,27 @@ cd C:\dev\js7800\cloudflare-worker
 wrangler deploy
 ```
 
-### 查看部署狀態
+### 同步到 GitHub
 ```bash
-wrangler deployments list
-```
-
-### 調試時查看即時日誌
-```bash
-wrangler tail
+cd C:\dev\js7800
+git add .
+git commit -m "Worker optimization message"
+git push
 ```
 
 ### 版本信息
 - **Wrangler 版本**: 4.42.1+
 - **Worker 語言**: JavaScript (ES Modules)
 - **運行時**: Cloudflare Workers
+- **快取策略**: 30 秒記憶體快取 + 10 秒速率限制
 
-## 測試清單
+## 測試清單 ✅
 - ✅ 能讀取原作者的遊戲列表
 - ✅ 能讀取原作者的排行榜摘要
 - ✅ 能讀取特定遊戲的排行榜
 - ✅ 能保存本地高分到 KV
 - ✅ 能 proxy 轉發高分到原作者伺服器
 - ✅ 原作者排行榜實時更新
+- ✅ 頻繁刷新不會出現錯誤（使用快取）
+- ✅ 快取機制正常運作
+- ✅ 速率限制自動降級
