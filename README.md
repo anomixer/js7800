@@ -1,4 +1,4 @@
-**English** | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md)
+**English** | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
 
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 [![Actions Status](https://github.com/raz0red/js7800/workflows/Build/badge.svg)](https://github.com/raz0red/js7800/actions)
@@ -25,13 +25,12 @@ This is a fork of the original [raz0red/js7800](https://github.com/raz0red/js780
 
 ### Modifications
 
-*   **Multi-language Support**: The UI now supports English, Traditional Chinese (繁體中文), and Simplified Chinese (简体中文).
+*   **Multi-language Support**: The UI now supports English, Traditional Chinese (繁體中文), Simplified Chinese (简体中文), Japanese (日本語), and Korean (한국어).
 *   **Automatic Language Detection**: On first load, the application will attempt to match the browser's preferred language. The language can also be changed manually in the Settings menu.
-*   **Global Leaderboard Multi-language Support**: The Global Leaderboard page also supports the same three languages and automatically syncs with the main emulator's language setting.
-*   **Default to Local High Scores**: The default high score storage has been changed to "Local" to prevent network errors, as the global leaderboard is now accessible through a Cloudflare Workers proxy.
+*   **Global Leaderboard Multi-language Support**: The Global Leaderboard page also supports the same five languages and automatically syncs with the main emulator's language setting.
+*   **Global High Scores by Default**: The default high score storage has been set to "Global (worldwide leaderboard)" to enable seamless synchronization with the original leaderboard system via Cloudflare Workers proxy.
 *   **Translated Documentation**: The README and internal help files have been translated.
 *   **Global Leaderboard Synchronization**: Implemented Cloudflare Workers integration to enable global high score synchronization for forked deployments.
-*   **UI Improvements**: Fixed duplicate button icons on the Global Leaderboard page and improved error messages with helpful hints.
 
 ### How to Run Locally
 
@@ -42,6 +41,7 @@ This is a fork of the original [raz0red/js7800](https://github.com/raz0red/js780
 
 2.  **Build the Site:**
     ```sh
+    set NODE_OPTIONS=--openssl-legacy-provider
     npm run build
     ```
 

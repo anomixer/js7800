@@ -68,6 +68,48 @@ const translations = {
     players: "位玩家",
     refresh: "刷新",
     play: "开始游戏"
+  },
+  "ja": {
+    title: "グローバルリーダーボード",
+    description: "下のドロップダウンメニューからゲームを選択して現在のハイスコアを表示します。",
+    topPlayers: "トッププレイヤー",
+    topPlayersAll: "トッププレイヤー<br>(全ゲーム)",
+    topPlayersMost: "トッププレイヤー<br>(最も競争的なモード)",
+    latestScores: "最新ハイスコア",
+    mostCompetitive: "最も競争的なモード",
+    game: "ゲーム：",
+    settings: "設定：",
+    allSettings: "(すべて)",
+    player: "プレイヤー",
+    score: "スコア",
+    date: "日付",
+    noScores: "このゲームには現在スコアがありません。",
+    points: "ポイント",
+    scores: "スコア",
+    players: "プレイヤー",
+    refresh: "リフレッシュ",
+    play: "プレイ"
+  },
+  "ko": {
+    title: "글로벌 리더보드",
+    description: "아래 드롭다운 메뉴에서 게임을 선택하여 현재 하이스코어를 확인하세요.",
+    topPlayers: "톱 플레이어",
+    topPlayersAll: "톱 플레이어<br>(모든 게임)",
+    topPlayersMost: "톱 플레이어<br>(가장 경쟁적인 모드)",
+    latestScores: "최신 하이스코어",
+    mostCompetitive: "가장 경쟁적인 모드",
+    game: "게임：",
+    settings: "설정：",
+    allSettings: "(모두)",
+    player: "플레이어",
+    score: "점수",
+    date: "날짜",
+    noScores: "이 게임에는 현재 점수가 없습니다.",
+    points: "점",
+    scores: "점수",
+    players: "플레이어",
+    refresh: "새로고침",
+    play: "플레이"
   }
 };
 
@@ -88,7 +130,7 @@ function init() {
       currentLocale = stored;
       return;
     }
-  } catch (e) {}
+  } catch (e) { }
 
   // 2. If no saved setting, detect from browser language
   const lang = navigator.language.toLowerCase();
@@ -96,6 +138,10 @@ function init() {
     currentLocale = 'zh-TW';
   } else if (lang.startsWith('zh')) {
     currentLocale = 'zh-CN';
+  } else if (lang === 'ja') {
+    currentLocale = 'ja';
+  } else if (lang === 'ko') {
+    currentLocale = 'ko';
   } else {
     currentLocale = 'en';
   }

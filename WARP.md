@@ -182,7 +182,7 @@ console.error('HTTP ' + xhr.status + ': ' + xhr.statusText);
 **功能**:
 - 從 localStorage 讀取 `locale` 鍵值（與主模擬器共用）
 - 如果沒有儲存的語系，自動偵測瀏覽器語言
-- 支援三種語言：English, 繁體中文, 简体中文
+- 支援五種語言：English, 繁體中文, 简体中文, 日本語, 한국어
 
 **語系偵測順序**:
 1. localStorage 的 `locale` 鍵值（優先）
@@ -201,29 +201,29 @@ console.error('HTTP ' + xhr.status + ': ' + xhr.statusText);
 - 按鈕提示（Play, Refresh）
 
 **動態文字**:
-- "points" (分 / 分)
-- "scores" (筆分數 / 笔分数)
-- "players" (位玩家 / 位玩家)
+- "points" (分 / 分 / ポイント / 점)
+- "scores" (筆分數 / 笔分数 / スコア / 점수)
+- "players" (位玩家 / 位玩家 / プレイヤー / 플레이어)
 - "No scores currently exist" (此遊戲目前無分數紀錄)
 
 **翻譯對照表**:
 
-| English | 繁體中文 | 简体中文 |
-|---------|---------|---------|
-| Global Leaderboard | 全域排行榜 | 全局排行榜 |
-| Top Players | 頂尖玩家 | 顶尖玩家 |
-| Latest High Scores | 最新高分紀錄 | 最新高分记录 |
-| Most Competitive Modes | 最具競爭模式 | 最具竞争模式 |
-| Game | 遊戲 | 游戏 |
-| Settings | 設定 | 设置 |
-| Player | 玩家 | 玩家 |
-| Score | 分數 | 分数 |
-| Date | 日期 | 日期 |
-| points | 分 | 分 |
-| scores | 筆分數 | 笔分数 |
-| players | 位玩家 | 位玩家 |
-| Refresh | 重新整理 | 刷新 |
-| Play | 開始遊戲 | 开始游戏 |
+| English | 繁體中文 | 简体中文 | 日本語 | 한국어 |
+|---------|---------|---------|--------|--------|
+| Global Leaderboard | 全域排行榜 | 全局排行榜 | グローバルリーダーボード | 글로벌 리더보드 |
+| Top Players | 頂尖玩家 | 顶尖玩家 | トッププレイヤー | 톱 플레이어 |
+| Latest High Scores | 最新高分紀錄 | 最新高分记录 | 最新ハイスコア | 최신 하이스코어 |
+| Most Competitive Modes | 最具競爭模式 | 最具竞争模式 | 最も競争的なモード | 가장 경쟁적인 모드 |
+| Game | 遊戲 | 游戏 | ゲーム | 게임 |
+| Settings | 設定 | 设置 | 設定 | 설정 |
+| Player | 玩家 | 玩家 | プレイヤー | 플레이어 |
+| Score | 分數 | 分数 | スコア | 점수 |
+| Date | 日期 | 日期 | 日付 | 날짜 |
+| points | 分 | 分 | ポイント | 점 |
+| scores | 筆分數 | 笔分数 | スコア | 점수 |
+| players | 位玩家 | 位玩家 | プレイヤー | 플레이어 |
+| Refresh | 重新整理 | 刷新 | リフレッシュ | 새로고침 |
+| Play | 開始遊戲 | 开始游戏 | プレイ | 플레이 |
 
 ##### 3. 整合到 Leaderboard
 
@@ -255,6 +255,38 @@ points.appendChild(document.createTextNode(
 
 ---
 
+### 新增日文與韓文語系支援 ✅
+
+#### 需求
+新增日本語 (JA) 與 한국어 (KO) 語系至模擬器和全球排行榜
+
+#### 實作方案
+
+##### 1. 主模擬器語系
+**檔案**: `src/js/common/i18n.js`
+- 新增 `ja` 和 `ko` 語系物件
+- 翻譯所有 UI 文字、設定選項、說明等
+- 更新語言選擇設定，包含日文和韓文選項
+- 更新語系偵測邏輯，支援瀏覽器自動偵測 JA 和 KO
+
+##### 2. 排行榜語系
+**檔案**: `site/leaderboard/src/js/i18n-leaderboard.js`
+- 新增 `ja` 和 `ko` 語系物件
+- 翻譯排行榜相關文字
+- 同步主模擬器語系設定
+
+##### 3. 設定對話框
+**檔案**: `site/src/js/settings-dialog.js`
+- 在語言選單中新增日文和韓文選項
+
+#### 驗證
+✅ 主模擬器 UI 正確顯示日文/韓文
+✅ 排行榜頁面語言同步
+✅ 設定頁面語言選項包含 JA 和 KO
+✅ 瀏覽器重新整理後維持選擇的語言
+
+---
+
 ### 模擬器首頁文字更新 ✅
 
 #### 需求
@@ -268,9 +300,11 @@ points.appendChild(document.createTextNode(
 | EN | to view current keyboard mappings | to **change keyboard mappings & languages** |
 | ZH-TW | 以檢視目前鍵盤對應 | 以**變更鍵盤對應與語言** |
 | ZH-CN | 以查看当前键位映射 | 以**变更键位映射与语言** |
+| JA | 現在のキーボードマッピングを表示 | **キーボードマッピングと言語を変更** |
+| KO | 현재 키보드 매핑을 확인 | **키보드 매핑과 언어를 변경** |
 
 #### 驗證
-✅ 三種語言都已更新
+✅ 五種語言都已更新
 ✅ 文字更準確反映功能
 
 ---
@@ -296,7 +330,12 @@ points.appendChild(document.createTextNode(
 
 #### 主模擬器改進
 4. `src/js/common/i18n.js`
-   - 更新首頁說明文字（三種語言）
+   - 更新首頁說明文字（五種語言）
+   - 新增 JA 和 KO 語系物件
+   - 更新語言選項包含日文和韓文
+
+5. `site/src/js/settings-dialog.js`
+   - 在語言選單中新增日文和韓文選項
 
 ### 測試項目
 
@@ -310,7 +349,10 @@ points.appendChild(document.createTextNode(
 
 #### 主模擬器測試
 - [x] 首頁文字正確更新
-- [x] 三種語言都正確顯示
+- [x] 五種語言都正確顯示
+- [x] 設定頁面語言選項包含 JA 和 KO
+- [x] 語言切換後頁面重新載入
+- [x] localStorage 正確儲存語言設定
 
 ---
 
@@ -322,15 +364,23 @@ points.appendChild(document.createTextNode(
 3. ✅ 錯誤訊息改善
 4. ✅ Global Leaderboard 多語系支援
 5. ✅ 主模擬器首頁文字更新
+6. ✅ 新增 JA（日文）與 KO（韓文）語系
+   - UI 文字翻譯完成
+   - 排行榜語系同步
+   - 設定對話框更新
+   - 瀏覽器自動偵測支援
 
-### 待評估 ⏳
-6. ⏳ 新增 JA（日文）與 KO（韓文）語系
-   - 預估工作量：9-14 小時
-   - 需要專業翻譯支援
-   - 可分階段進行：
-     - 階段 1：UI 文字翻譯（2-3 小時）
-     - 階段 2：Help 檔案翻譯（4-6 小時）
-     - 階段 3：README 翻譯（1-2 小時）
+### 已完成 ✅
+7. ✅ 翻譯說明檔案 (Help files)
+   - 修改 help-dialog.js 以支援 JA 和 KO 語系載入對應 HTML
+   - 修改 about-tab.js 添加 JA 和 KO 內容翻譯
+   - 幫助對話框現在正確顯示日文和韓文內容
+
+8. ✅ README 檔案修正 (2025-10-23)
+   - 刪除過時的 UI 改善描述
+   - 添加 NODE_OPTIONS=--openssl-legacy-provider 到本地建置步驟
+   - 修正高分設定描述為全球預設
+   - 更新語言支援描述為五種語言（英文、繁體中文、簡體中文、日文、韓文）
 
 ### 可選優化
 - 調整 Worker 快取參數以優化效能

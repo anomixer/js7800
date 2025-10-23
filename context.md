@@ -178,19 +178,43 @@ POST https://js7800-leaderboard-worker.johantw.workers.dev/?sid=REDACTED&d=REDAC
 
 #### Global Leaderboard i18n ✅
 - **新增**: `site/leaderboard/src/js/i18n-leaderboard.js`
-- **功能**: 
+- **功能**:
   - 從 localStorage 讀取主模擬器語系設定
   - 自動偵測瀏覽器語言
-  - 支援 EN / ZH-TW / ZH-CN
+  - 支援 EN / ZH-TW / ZH-CN / JA / KO
 - **整合**: 所有 UI 文字都已翻譯
   - 頁面標題、區塊標題
   - 遊戲選單、表格欄位
   - 按鈕提示、動態文字
 
+#### 主模擬器語系支援 ✅
+- **檔案**: `src/js/common/i18n.js`
+- **新增**: JA (日本語) 和 KO (한국어) 語系物件
+- **功能**:
+  - 翻譯所有 UI 文字、設定選項、說明等
+  - 更新語言選擇設定，包含日文和韓文選項
+  - 更新語系偵測邏輯，支援瀏覽器自動偵測 JA 和 KO
+- **檔案**: `site/src/js/settings-dialog.js`
+- **更新**: 在語言選單中新增日文和韓文選項
+
+#### 模擬器幫助翻譯支援 ✅
+- **檔案**: `site/src/js/help-dialog.js`
+- **修改**: getUrlForLocale() 函數支援 JA 和 KO 語系載入對應 HTML
+- **功能**: 幫助對話框現在正確載入日文和韓文版本的說明頁面
+- **檔案**: `site/src/js/about-tab.js`
+- **修改**: 添加 JA 和 KO 語系的內容翻譯，包括作者、描述和致謝
+
+#### README 檔案修正 ✅
+- **檔案**: `README.md`, `README.ja.md`, `README.ko.md`, `README.zh-TW.md`, `README.zh-CN.md`
+- **修改**: 刪除過時的 UI 改善描述
+- **添加**: NODE_OPTIONS=--openssl-legacy-provider 到本地建置步驟
+- **修正**: 高分設定描述為全球預設
+- **更新**: 語言支援描述為五種語言（英文、繁體中文、簡體中文、日文、韓文）
+
 #### 主模擬器首頁文字更新 ✅
 - **檔案**: `src/js/common/i18n.js`
 - **變更**: "view current keyboard mappings" → "change keyboard mappings & languages"
-- **影響**: 三種語言（EN / ZH-TW / ZH-CN）
+- **影響**: 五種語言（EN / ZH-TW / ZH-CN / JA / KO）
 
 ### 早期問題（已解決）
 ### 問題（已解決）

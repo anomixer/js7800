@@ -1,4 +1,4 @@
-[English](README.md) | **繁體中文** | [简体中文](README.zh-CN.md)
+[English](README.md) | **繁體中文** | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
 
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 [![Actions Status](https://github.com/raz0red/js7800/workflows/Build/badge.svg)](https://github.com/raz0red/js7800/actions)
@@ -25,13 +25,12 @@ https://raz0red.github.io/js7800/
 
 ### 修改內容
 
-*   **多語言支援**: UI 現已支援英文、繁體中文和簡體中文。
+*   **多語言支援**: UI 現已支援英文、繁體中文、簡體中文、日文和韓文。
 *   **自動語言偵測**: 首次載入時，應用程式將嘗試匹配瀏覽器的偏好語言。語言也可以在「設定」選單中手動變更。
-*   **全球排行榜多語言支援**: 全球排行榜頁面也支援相同的三種語言，並自動與主模擬器的語言設定同步。
-*   **預設使用本地高分**: 高分儲存的預設值已變更為「本地」，以避免因全球排行榜無法存取而產生的網路錯誤。
+*   **全球排行榜多語言支援**: 全球排行榜頁面也支援相同的五種語言，並自動與主模擬器的語言設定同步。
+*   **預設使用全球高分**: 高分儲存的預設值已設為「全球（世界排行榜）」，以透過 Cloudflare Workers 代理與原始排行榜系統無縫同步。
 *   **已翻譯文件**: README 和內部說明檔案皆已翻譯。
 *   **全球排行榜同步**: 實現 Cloudflare Workers 整合，為分支部署啟用全球高分同步功能。
-*   **UI 改進**: 修正全球排行榜頁面的重複按鈕圖示，並改善錯誤訊息，加入有用的提示。
 
 ### 如何在本地執行
 
@@ -42,6 +41,7 @@ https://raz0red.github.io/js7800/
 
 2.  **建置網站:**
     ```sh
+    set NODE_OPTIONS=--openssl-legacy-provider
     npm run build
     ```
 

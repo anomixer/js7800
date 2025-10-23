@@ -17,7 +17,7 @@ function AboutTab() {
   this.played = false;
 
   var that = this;
-  this.fClick = function(e) {
+  this.fClick = function (e) {
     that.showv();
     e.preventDefault();
   }
@@ -25,7 +25,7 @@ function AboutTab() {
 
 AboutTab.prototype = Object.create(Tab.prototype);
 addProps(AboutTab.prototype, {
-  hidev: function() {
+  hidev: function () {
     this.iframe.setAttribute('src', '');
     this.logoEl.style.display = 'inline-block';
     this.vEl.style.display = 'none';
@@ -62,7 +62,7 @@ addProps(AboutTab.prototype, {
     this.top.removeEventListener("click", this.fClick);
     this.hidev();
   },
-  onTabHide: function() {
+  onTabHide: function () {
     if (this.played) {
       this.onHide();
     }
@@ -80,24 +80,28 @@ addProps(AboutTab.prototype, {
     var header = document.createElement('div');
     about.appendChild(header);
 
-    var by = (function(){
+    var by = (function () {
       var loc = I18n.getLocale();
       if (loc === 'zh-TW') return '作者 raz0red';
       if (loc === 'zh-CN') return '作者 raz0red';
+      if (loc === 'ja') return '作者 raz0red';
+      if (loc === 'ko') return '작성자 raz0red';
       return 'by raz0red';
     })();
-    var desc = (function(){
+    var desc = (function () {
       var loc = I18n.getLocale();
       if (loc === 'zh-TW') return 'JS7800 是以 JavaScript 強化移植的 <a href="https://gstanton.github.io/ProSystem1_3/" target="_blank">ProSystem Atari 7800 模擬器</a> 專案，最初由 Greg Stanton 開發。';
       if (loc === 'zh-CN') return 'JS7800 是以 JavaScript 强化移植的 <a href="https://gstanton.github.io/ProSystem1_3/" target="_blank">ProSystem Atari 7800 模拟器</a> 项目，最初由 Greg Stanton 开发。';
+      if (loc === 'ja') return 'JS7800 は Greg Stanton が開発した <a href="https://gstanton.github.io/ProSystem1_3/" target="_blank">ProSystem Atari 7800 エミュレーター</a> を JavaScript で強化移植したプロジェクトです。';
+      if (loc === 'ko') return 'JS7800은 Greg Stanton이 개발한 <a href="https://gstanton.github.io/ProSystem1_3/" target="_blank">ProSystem Atari 7800 에뮬레이터</a>를 JavaScript로 강화 이식한 프로젝트입니다.';
       return 'JS7800 is an enhanced JavaScript port of the <a href="https://gstanton.github.io/ProSystem1_3/" target="_blank">ProSystem Atari 7800 emulator</a> that was originally developed by Greg Stanton';
     })();
 
     header.innerHTML =
       '<p class=\"center\">\n' +
-        '<span class=\"about-label\">' + by + '</span><a href=\"https://github.com/raz0red/js7800\" target=\"_blank\"><img\n' +
-          'class=\"about-logo\" src=\"images/github-logo.svg\" draggable="false" alt=\"GitHub: JS7800 by raz0red\"\n' +
-          'title=\"GitHub: JS7800 by raz0red\"></a>\n' +
+      '<span class=\"about-label\">' + by + '</span><a href=\"https://github.com/raz0red/js7800\" target=\"_blank\"><img\n' +
+      'class=\"about-logo\" src=\"images/github-logo.svg\" draggable="false" alt=\"GitHub: JS7800 by raz0red\"\n' +
+      'title=\"GitHub: JS7800 by raz0red\"></a>\n' +
       '</p>\n' +
       '<p class=\"center\">' + desc + '</p>';
     var outer = document.createElement('div');
@@ -128,10 +132,12 @@ addProps(AboutTab.prototype, {
 
     var footer = document.createElement('div');
     about.appendChild(footer);
-    var credits = (function(){
+    var credits = (function () {
       var loc = I18n.getLocale();
       if (loc === 'zh-TW') return 'Atari 7800 控制器插圖由 Mark Davis（<a href="https://vectogram.us/" target="_blank">Vect-O-Gram</a>）製作<br>MD5 支援由 Joseph Myers（<a href="http://www.myersdaily.org/joseph/javascript/md5-text.html" target="_blank">MD5.js</a>）開發<br>Zip 支援由 Gildas Lormeau（<a href="http://gildas-lormeau.github.io/zip.js" target="_blank">Zip.js</a>）開發<br>YM2151 支援移植自 <a href="http://retropc.net/cisc/sound/" target="_blank">FM Sound Generator</a>（作者 <a href="http://www2.tokai.or.jp/mrnkmzu/" target="_blank">Kuma</a>）';
       if (loc === 'zh-CN') return 'Atari 7800 控制器插图由 Mark Davis（<a href="https://vectogram.us/" target="_blank">Vect-O-Gram</a>）制作<br>MD5 支持由 Joseph Myers（<a href="http://www.myersdaily.org/joseph/javascript/md5-text.html" target="_blank">MD5.js</a>）开发<br>Zip 支持由 Gildas Lormeau（<a href="http://gildas-lormeau.github.io/zip.js" target="_blank">Zip.js</a>）开发<br>YM2151 支持移植自 <a href="http://retropc.net/cisc/sound/" target="_blank">FM Sound Generator</a>（作者 <a href="http://www2.tokai.or.jp/mrnkmzu/" target="_blank">Kuma</a>）';
+      if (loc === 'ja') return 'Atari 7800 コントローラーイラストは Mark Davis（<a href="https://vectogram.us/" target="_blank">Vect-O-Gram</a>）が作成<br>MD5 サポートは Joseph Myers（<a href="http://www.myersdaily.org/joseph/javascript/md5-text.html" target="_blank">MD5.js</a>）が開発<br>Zip サポートは Gildas Lormeau（<a href="http://gildas-lormeau.github.io/zip.js" target="_blank">Zip.js</a>）が開発<br>YM2151 サポートは <a href="http://retropc.net/cisc/sound/" target="_blank">FM Sound Generator</a> から移植（作者 <a href="http://www2.tokai.or.jp/mrnkmzu/" target="_blank">Kuma</a>）';
+      if (loc === 'ko') return 'Atari 7800 컨트롤러 일러스트레이션은 Mark Davis（<a href="https://vectogram.us/" target="_blank">Vect-O-Gram</a>）가 제작<br>MD5 지원은 Joseph Myers（<a href="http://www.myersdaily.org/joseph/javascript/md5-text.html" target="_blank">MD5.js</a>）가 개발<br>Zip 지원은 Gildas Lormeau（<a href="http://gildas-lormeau.github.io/zip.js" target="_blank">Zip.js</a>）가 개발<br>YM2151 지원은 <a href="http://retropc.net/cisc/sound/" target="_blank">FM Sound Generator</a>에서 이식（작성자 <a href="http://www2.tokai.or.jp/mrnkmzu/" target="_blank">Kuma</a>）';
       return 'Atari 7800 controller illustration was created by Mark Davis (<a href="https://vectogram.us/" target="_blank">Vect-O-Gram</a>)<br>MD5 support was developed by Joseph Myers (<a href="http://www.myersdaily.org/joseph/javascript/md5-text.html" target="_blank">MD5.js</a>)<br>Zip support was developed by Gildas Lormeau (<a href="http://gildas-lormeau.github.io/zip.js" target="_blank">Zip.js</a>)<br>YM2151 support was ported from <a href="http://retropc.net/cisc/sound/" target="_blank">FM Sound Generator</a> by <a href="http://www2.tokai.or.jp/mrnkmzu/" target="_blank">Kuma</a>';
     })();
     footer.innerHTML = '<p class=\"center\">' + credits + '</p>';

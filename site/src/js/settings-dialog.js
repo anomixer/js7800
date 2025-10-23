@@ -465,22 +465,22 @@ addProps(ConsoleControlsGamepad.prototype, {
 // Display tab
 
 var displayTab = new Tab(I18n.t('settings.tab.display'));
-addProps(displayTab, {  
+addProps(displayTab, {
   filterSwitch: null,
   sizeSelect: null,
   arSelect: null,
   palSelect: null,
   fsSelect: null,
-  onShow: function () {    
+  onShow: function () {
     var vid = js7800.Video;
     this.vid = vid;
     this.filterSwitch.setValue(vid.isFilterEnabled());
     this.sizeSelect.setValue(vid.getScreenSize().toString());
     this.arSelect.setValue(vid.getScreenRatio().toString());
     this.fsSelect.setValue(vid.getFullscreenMode().toString());
-    this.palSelect.setValue(js7800.Region.getPaletteIndex().toString());   
+    this.palSelect.setValue(js7800.Region.getPaletteIndex().toString());
   },
-  onOk: function () {    
+  onOk: function () {
     this.vid.setFilterEnabled(this.filterSwitch.getValue());
     this.vid.setScreenSize(parseFloat(this.sizeSelect.getValue()));
     this.vid.setScreenRatio(parseFloat(this.arSelect.getValue()));
@@ -488,7 +488,7 @@ addProps(displayTab, {
     js7800.Region.setPaletteIndex(parseInt(this.palSelect.getValue()));
     this.vid.initPalette8();
   },
-  onDefaults: function () {      
+  onDefaults: function () {
     this.filterSwitch.setValue(this.vid.getFilterEnabledDefault());
     this.sizeSelect.setValue(this.vid.getScreenSizeDefault().toString());
     this.arSelect.setValue(this.vid.getScreenRatioDefault().toString());
@@ -507,30 +507,30 @@ addProps(displayTab, {
     grid.addCell(new ContentCell(this.sizeSelect));
     grid.addCell(new LabelCell(I18n.t('settings.display.aspectRatio')));
     this.arSelect = new Select({
-      [I18n.t('settings.display.ar_pp')] : "1",
-      [I18n.t('settings.display.ar_7800')] : "0.857",
-      [I18n.t('settings.display.ar_16x9')] : "1.334",
-      [I18n.t('settings.display.ar_ultra')] : "1.778"
+      [I18n.t('settings.display.ar_pp')]: "1",
+      [I18n.t('settings.display.ar_7800')]: "0.857",
+      [I18n.t('settings.display.ar_16x9')]: "1.334",
+      [I18n.t('settings.display.ar_ultra')]: "1.778"
     });
-    grid.addCell(new ContentCell(this.arSelect));    
+    grid.addCell(new ContentCell(this.arSelect));
     grid.addCell(new LabelCell(I18n.t('settings.display.fullscreen')));
-    this.fsSelect =  new Select({
-      [I18n.t('settings.display.fs_fill')] : "0",
-      [I18n.t('settings.display.fs_integer')] : "1"
+    this.fsSelect = new Select({
+      [I18n.t('settings.display.fs_fill')]: "0",
+      [I18n.t('settings.display.fs_integer')]: "1"
     });
     grid.addCell(new ContentCell(this.fsSelect));
     grid.addCell(new LabelCell(I18n.t('settings.display.palette')));
     // TODO: This is a very hacky way to support option groups,
     // Create a better solution (nested groups)
     this.palSelect = new Select({
-      [I18n.t('settings.misc.palDefault')]: "0", 
+      [I18n.t('settings.misc.palDefault')]: "0",
       "OptGroup1": I18n.t('settings.misc.palDark'),
-      [I18n.t('settings.misc.palCoolDark')]: "1", 
-      [I18n.t('settings.misc.palWarmDark')]: "2",             
+      [I18n.t('settings.misc.palCoolDark')]: "1",
+      [I18n.t('settings.misc.palWarmDark')]: "2",
       [I18n.t('settings.misc.palHotDark')]: "3",
       "OptGroup2": I18n.t('settings.misc.palLight'),
-      [I18n.t('settings.misc.palCoolLight')]: "4", 
-      [I18n.t('settings.misc.palWarmLight')]: "5", 
+      [I18n.t('settings.misc.palCoolLight')]: "4",
+      [I18n.t('settings.misc.palWarmLight')]: "5",
       [I18n.t('settings.misc.palHotLight')]: "6"
     });
     grid.addCell(new ContentCell(this.palSelect));
@@ -550,19 +550,19 @@ addProps(hsTab, {
   locationSelect: null,
   fallbackSwitch: null,
   desc: null,
-  onShow: function () {    
+  onShow: function () {
     this.updateDesc();
     this.enableSwitch.setValue(HighScore.getEnabled());
     this.locationSelect.setValue(HighScore.getGlobal() ? "1" : "0");
     this.fallbackSwitch.setValue(HighScore.isLocalFallback());
     this.enableSwitch.onClick();
   },
-  onOk: function () {    
+  onOk: function () {
     HighScore.setEnabled(this.enableSwitch.getValue());
     HighScore.setGlobal(this.locationSelect.getValue() == "1");
     HighScore.setLocalFallback(this.fallbackSwitch.getValue());
   },
-  onDefaults: function () {    
+  onDefaults: function () {
     this.enableSwitch.setValue(HighScore.getEnabledDefault());
     this.locationSelect.setValue(HighScore.getGlobalDefault() ? "1" : "0");
     this.fallbackSwitch.setValue(HighScore.getLocalFallbackDefault());
@@ -570,8 +570,8 @@ addProps(hsTab, {
   },
   updateDesc() {
     var descText =
-    '<div class="tabcontent__title">' + I18n.t('settings.highscores.title') + '</div>\n' +
-    '<p class="center">' + I18n.t('settings.highscores.desc') + '</p>'; 
+      '<div class="tabcontent__title">' + I18n.t('settings.highscores.title') + '</div>\n' +
+      '<p class="center">' + I18n.t('settings.highscores.desc') + '</p>';
 
     if (HighScore.getDigest()) {
       descText +=
@@ -584,18 +584,18 @@ addProps(hsTab, {
     this.desc = document.createElement("div");
     rootEl.appendChild(this.desc);
     this.updateDesc();
-  
+
     var grid = new Grid();
     grid.addCell(new LabelCell(I18n.t('settings.highscores.saveScores')));
     this.enableSwitch = new ToggleSwitch(I18n.t('settings.misc.toggleFilter'));
     grid.addCell(new ContentCell(this.enableSwitch));
 
     var locationLabel = new LabelCell(I18n.t('settings.highscores.saveLocation'));
-    grid.addCell(locationLabel);    
+    grid.addCell(locationLabel);
     this.locationSelect = new Select({
-      [I18n.t('settings.highscores.local')]: "0", 
+      [I18n.t('settings.highscores.local')]: "0",
       [I18n.t('settings.highscores.global')]: "1"
-    });    
+    });
 
     this.locationSelect.setWidth(17);
     var locationContent = new ContentCell(this.locationSelect);
@@ -609,14 +609,14 @@ addProps(hsTab, {
 
     rootEl.appendChild(grid.createElement());
 
-    this.enableSwitch.onClick = function() {
+    this.enableSwitch.onClick = function () {
       var v = this.getValue();
       locationLabel.setVisible(v);
       locationContent.setVisible(v);
       that.locationSelect.onChange();
-    }    
+    }
 
-    this.locationSelect.onChange = function() {
+    this.locationSelect.onChange = function () {
       var v = (this.getValue() == "1") && that.enableSwitch.getValue();
       fallbackLabel.setVisible(v);
       fallbackContent.setVisible(v);
@@ -720,20 +720,20 @@ addProps(advancedTab, {
   xmSelect: null,
   vsyncSwitch: null,
   skipSelect: null,
-  onShow: function () {    
+  onShow: function () {
     this.xmSelect.setValue(Cartridge.GetXmMode().toString());
-    this.vsyncSwitch.setValue(js7800.Main.isVsyncEnabled()); 
-    this.skipSelect.setValue(js7800.Main.getSkipLevel().toString());   
+    this.vsyncSwitch.setValue(js7800.Main.isVsyncEnabled());
+    this.skipSelect.setValue(js7800.Main.getSkipLevel().toString());
   },
-  onOk: function () {    
+  onOk: function () {
     Cartridge.SetXmMode(parseInt(this.xmSelect.getValue()));
     js7800.Main.setVsyncEnabled(this.vsyncSwitch.getValue());
-    js7800.Main.setSkipLevel(parseInt(this.skipSelect.getValue()));   
+    js7800.Main.setSkipLevel(parseInt(this.skipSelect.getValue()));
   },
-  onDefaults: function () {    
+  onDefaults: function () {
     this.xmSelect.setValue(Cartridge.GetXmModeDefault().toString());
     this.vsyncSwitch.setValue(js7800.Main.getVsyncEnabledDefault());
-    this.skipSelect.setValue(js7800.Main.getSkipLevelDefault().toString());   
+    this.skipSelect.setValue(js7800.Main.getSkipLevelDefault().toString());
   },
   createTabContent: function (rootEl) {
     var desc = document.createElement("div");
@@ -744,25 +744,25 @@ addProps(advancedTab, {
 
     var grid = new Grid();
     var xmLabel = new LabelCell(I18n.t('settings.advanced.xm'));
-    grid.addCell(xmLabel);    
+    grid.addCell(xmLabel);
     this.xmSelect = new Select({
-      [I18n.t('settings.advanced.xm_auto')]: "2", 
+      [I18n.t('settings.advanced.xm_auto')]: "2",
       [I18n.t('settings.advanced.xm_enabled')]: "1",
       [I18n.t('settings.advanced.xm_disabled')]: "0"
     });
     var xmContent = new ContentCell(this.xmSelect);
     grid.addCell(xmContent);
     grid.addCell(new LabelCell(I18n.t('settings.advanced.frameSkip')));
-    this.skipSelect =  new Select({
-      [I18n.t('settings.advanced.none')] : "0",
-      [I18n.t('settings.advanced.low')] : "1",
-      [I18n.t('settings.advanced.medium')] : "2",
-      [I18n.t('settings.advanced.high')] : "3"
+    this.skipSelect = new Select({
+      [I18n.t('settings.advanced.none')]: "0",
+      [I18n.t('settings.advanced.low')]: "1",
+      [I18n.t('settings.advanced.medium')]: "2",
+      [I18n.t('settings.advanced.high')]: "3"
     });
     grid.addCell(new ContentCell(this.skipSelect));
     grid.addCell(new LabelCell(I18n.t('settings.advanced.vsync')));
     this.vsyncSwitch = new ToggleSwitch(I18n.t('settings.advanced.vsyncLabel'));
-    grid.addCell(new ContentCell(this.vsyncSwitch));    
+    grid.addCell(new ContentCell(this.vsyncSwitch));
     rootEl.appendChild(grid.createElement());
   }
 });
@@ -782,7 +782,7 @@ addProps(languageTab, {
       I18n.setLocale(val, true);
     }
   },
-  onDefaults: function () {},
+  onDefaults: function () { },
   createTabContent: function (rootEl) {
     var desc = document.createElement("div");
     desc.innerHTML =
@@ -795,7 +795,9 @@ addProps(languageTab, {
     this.langSelect = new Select({
       [I18n.t('settings.language.en')]: 'en',
       [I18n.t('settings.language.zhTW')]: 'zh-TW',
-      [I18n.t('settings.language.zhCN')]: 'zh-CN'
+      [I18n.t('settings.language.zhCN')]: 'zh-CN',
+      [I18n.t('settings.language.ja')]: 'ja',
+      [I18n.t('settings.language.ko')]: 'ko'
     });
     grid.addCell(new ContentCell(this.langSelect));
     rootEl.appendChild(grid.createElement());
@@ -829,7 +831,7 @@ addProps(SettingsDialog.prototype, {
     TabbedDialog.prototype.onOk.call(this);
     Storage.savePrefs();
     if (I18n.needsReload()) {
-      setTimeout(function(){ window.location.reload(); }, 0);
+      setTimeout(function () { window.location.reload(); }, 0);
     }
   }
 });
@@ -843,4 +845,3 @@ Events.addListener(new Events.Listener("siteInit",
 ));
 
 export { SettingsDialog }
-

@@ -19,28 +19,28 @@ function HelpTab(title, urlBase) {
   this.urlBase = urlBase;
 }
 HelpTab.prototype = Object.create(Tab.prototype);
-addProps(HelpTab.prototype, {  
+addProps(HelpTab.prototype, {
   root: null,
   parent: null,
   loaded: false,
-  getUrlForLocale: function() {
+  getUrlForLocale: function () {
     var base = this.urlBase; // e.g., help/overview.html
     var idx = base.lastIndexOf('.');
     var prefix = base.substring(0, idx);
     var ext = base.substring(idx);
     var loc = I18n.getLocale();
-    if (loc === 'zh-TW' || loc === 'zh-CN') {
+    if (loc === 'zh-TW' || loc === 'zh-CN' || loc === 'ja' || loc === 'ko') {
       return [prefix + '-' + loc + ext, base]; // try locale first, then fallback
     }
     return [base];
   },
-  onTabShow: function() {
-    if (!this.loaded) {      
+  onTabShow: function () {
+    if (!this.loaded) {
       var that = this;
       var urls = this.getUrlForLocale();
       var i = 0;
-      
-      var failure = function(msg) {
+
+      var failure = function (msg) {
         if (i + 1 < urls.length) {
           i++;
           tryUrl();
@@ -52,13 +52,13 @@ addProps(HelpTab.prototype, {
         }
         Events.fireEvent("showError", outMsg);
       }
-      
-      var tryUrl = function() {
+
+      var tryUrl = function () {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', urls[i]);
         xhr.onload = function () {
           if (xhr.status == 200) {
-            that.loaded = true; 
+            that.loaded = true;
             that.parent.classList.remove('loader-container');
             that.parent.style.display = 'none';
             that.parent.innerHTML = xhr.responseText;
@@ -67,17 +67,17 @@ addProps(HelpTab.prototype, {
             failure(xhr.status + ": " + xhr.statusText);
           }
         }
-        xhr.onerror = function() { failure(); }
-        setTimeout(function() { xhr.send(); }, 500);
+        xhr.onerror = function () { failure(); }
+        setTimeout(function () { xhr.send(); }, 500);
       }
       tryUrl();
     }
-  },  
-  createTabContent: function (rootEl) { 
+  },
+  createTabContent: function (rootEl) {
     this.root = rootEl;
     var parent = document.createElement("div");
     this.parent = parent;
-    parent.className = "loader-container";    
+    parent.className = "loader-container";
     var loader = document.createElement("div");
     loader.className = "loader";
     parent.appendChild(loader);

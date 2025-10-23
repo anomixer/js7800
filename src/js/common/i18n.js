@@ -8,9 +8,9 @@ const locales = {
   en: {
     common: { ok: "OK", cancel: "Cancel", defaults: "Defaults", defaultsTitle: "Reset to Defaults", close: "Close", settings: "Settings", help: "Help", loading: "Loading...", loadedCartList: "Succesfully loaded cartridge list." },
     cbar: { pause: "Pause", resume: "Resume", soundOff: "Sound Off", soundOn: "Sound On", restart: "Restart", selectText: "SELECT", selectTooltip: "Select", resetText: "RESET", resetTooltip: "Reset", leftDiff: "Left difficulty switch", rightDiff: "Right difficulty switch", leaderboard: "Leaderboard", help: "Help / Info", settings: "Settings", fullscreen: "Fullscreen", exitFullscreen: "Exit Fullscreen" },
-    site: { 
-      desc_settings: "Click<IMG/> <SPAN/> to change keyboard mappings & languages.", 
-      desc_help: "Click<IMG/> <SPAN/> for detailed usage instructions.", 
+    site: {
+      desc_settings: "Click<IMG/> <SPAN/> to change keyboard mappings & languages.",
+      desc_help: "Click<IMG/> <SPAN/> for detailed usage instructions.",
       desc_load: "Load a cartridge using the drop-down menu or buttons below (you can also drag and drop a local file or remote file link onto the emulator).",
       cart_select: "Select Atari 7800 Cartridge...",
       cart_local: "Select Local File",
@@ -25,7 +25,7 @@ const locales = {
       keyboard: { title: "Keyboard Mappings", tip1: "Click on the <b class=\"callout\">red box</b> near a control to select it for mapping.", tip2: "Once selected, press the <b class=\"callout\">key</b> you would like to map to the control.", controller1: "Controller 1", controller2: "Controller 2" },
       highscores: { title: "High Score Settings", desc: "The following settings control high score persistence.", pending: "Changes will not take effect until the next game is loaded.", saveScores: "Save scores:", saveLocation: "Save location:", local: "Local (this device only)", global: "Global (worldwide leaderboard)", localFallback: "Local fallback:", localFallbackLabel: "Local Fallback" },
       advanced: { title: "Advanced", desc: "The following settings provide the ability to configure advanced features.", xm: "Expansion module (XM):", xm_auto: "(Automatic)", xm_enabled: "Enabled", xm_disabled: "Disabled", frameSkip: "Frame skipping:", none: "(None)", low: "Low", medium: "Medium (50%)", high: "High", vsync: "Vertical sync:", vsyncLabel: "Vertical Sync" },
-      language: { title: "Language", label: "Language:", en: "English", zhTW: "繁體中文", zhCN: "简体中文", noteReload: "Language change will reload the page." },
+      language: { title: "Language", label: "Language:", en: "English", zhTW: "繁體中文", zhCN: "简体中文", ja: "日本語", ko: "한국어", noteReload: "Language change will reload the page." },
       misc: {
         noneConnect: "None (connect and press button)",
         unknown: "(Unknown)",
@@ -50,7 +50,8 @@ const locales = {
   "zh-TW": {
     common: { ok: "確定", cancel: "取消", defaults: "預設值", defaultsTitle: "重設為預設值", close: "關閉", settings: "設定", help: "說明", loading: "載入中...", loadedCartList: "已成功載入卡帶清單。" },
     cbar: { pause: "暫停", resume: "繼續", soundOff: "關閉聲音", soundOn: "開啟聲音", restart: "重新啟動", selectText: "SELECT", selectTooltip: "選擇", resetText: "RESET", resetTooltip: "重設", leftDiff: "左難度切換", rightDiff: "右難度切換", leaderboard: "排行榜", help: "說明 / 資訊", settings: "設定", fullscreen: "全螢幕", exitFullscreen: "離開全螢幕" },
-    site: { desc_settings: "點擊<IMG/> <SPAN/> 以變更鍵盤對應與語言。", desc_help: "點擊<IMG/> <SPAN/> 以取得詳細使用說明。", desc_load: "使用下拉選單或下方按鈕載入卡帶（也可拖曳本機檔案或遠端連結到模擬器）。",
+    site: {
+      desc_settings: "點擊<IMG/> <SPAN/> 以變更鍵盤對應與語言。", desc_help: "點擊<IMG/> <SPAN/> 以取得詳細使用說明。", desc_load: "使用下拉選單或下方按鈕載入卡帶（也可拖曳本機檔案或遠端連結到模擬器）。",
       cart_select: "選擇 Atari 7800 卡帶...",
       cart_local: "選擇本機檔案",
       cart_remote: "選擇遠端檔案",
@@ -64,7 +65,7 @@ const locales = {
       keyboard: { title: "鍵盤對應", tip1: "點選控制項旁的<b class=\"callout\">紅框</b>以選取要設定的對應。", tip2: "選取後，按下要對應的<b class=\"callout\">按鍵</b>。", controller1: "控制器 1", controller2: "控制器 2" },
       highscores: { title: "高分設定", desc: "以下設定用於控制高分紀錄保存。", pending: "變更將在下次載入遊戲後生效。", saveScores: "儲存分數:", saveLocation: "儲存位置:", local: "本機（僅此裝置）", global: "全域（世界排行榜）", localFallback: "本機備援:", localFallbackLabel: "本機備援" },
       advanced: { title: "進階", desc: "以下設定可調整進階功能。", xm: "擴充模組（XM）:", xm_auto: "（自動）", xm_enabled: "啟用", xm_disabled: "停用", frameSkip: "跳幀:", none: "（無）", low: "低", medium: "中（50%）", high: "高", vsync: "垂直同步:", vsyncLabel: "垂直同步" },
-      language: { title: "語言", label: "語言:", en: "English", zhTW: "繁體中文", zhCN: "简体中文", noteReload: "切換語言將重新載入頁面。" },
+      language: { title: "語言", label: "語言:", en: "English", zhTW: "繁體中文", zhCN: "简体中文", ja: "日本語", ko: "한국어", noteReload: "切換語言將重新載入頁面。" },
       misc: {
         noneConnect: "無 (請連接並按鈕)",
         unknown: "（未知）",
@@ -89,7 +90,8 @@ const locales = {
   "zh-CN": {
     common: { ok: "确定", cancel: "取消", defaults: "默认值", defaultsTitle: "重置为默认值", close: "关闭", settings: "设置", help: "帮助", loading: "加载中...", loadedCartList: "已成功载入卡带清单。" },
     cbar: { pause: "暂停", resume: "继续", soundOff: "关闭声音", soundOn: "打开声音", restart: "重新启动", selectText: "SELECT", selectTooltip: "选择", resetText: "RESET", resetTooltip: "重置", leftDiff: "左难度切换", rightDiff: "右难度切换", leaderboard: "排行榜", help: "帮助 / 信息", settings: "设置", fullscreen: "全屏", exitFullscreen: "退出全屏" },
-    site: { desc_settings: "点击<IMG/> <SPAN/> 以变更键位映射与语言。", desc_help: "点击<IMG/> <SPAN/> 查看详细使用说明。", desc_load: "使用下拉菜单或下方按钮载入卡带（也可拖拽本地文件或远程链接到模拟器）。",
+    site: {
+      desc_settings: "点击<IMG/> <SPAN/> 以变更键位映射与语言。", desc_help: "点击<IMG/> <SPAN/> 查看详细使用说明。", desc_load: "使用下拉菜单或下方按钮载入卡带（也可拖拽本地文件或远程链接到模拟器）。",
       cart_select: "选择 Atari 7800 卡带...",
       cart_local: "选择本地文件",
       cart_remote: "选择远程文件",
@@ -103,7 +105,7 @@ const locales = {
       keyboard: { title: "键盘映射", tip1: "点击控制项旁的<b class=\"callout\">红框</b>以选择要设置的映射。", tip2: "选择后，按下要映射的<b class=\"callout\">按键</b>。", controller1: "控制器 1", controller2: "控制器 2" },
       highscores: { title: "高分设置", desc: "以下设置用于控制高分记录保存。", pending: "更改将在下次载入游戏后生效。", saveScores: "保存分数:", saveLocation: "保存位置:", local: "本机（仅此设备）", global: "全局（世界排行榜）", localFallback: "本机回退:", localFallbackLabel: "本机回退" },
       advanced: { title: "高级", desc: "以下设置可调整高级功能。", xm: "扩展模块（XM）:", xm_auto: "（自动）", xm_enabled: "启用", xm_disabled: "停用", frameSkip: "跳帧:", none: "（无）", low: "低", medium: "中（50%）", high: "高", vsync: "垂直同步:", vsyncLabel: "垂直同步" },
-      language: { title: "语言", label: "语言:", en: "English", zhTW: "繁體中文", zhCN: "简体中文", noteReload: "切换语言将重新加载页面。" },
+      language: { title: "语言", label: "语言:", en: "English", zhTW: "繁體中文", zhCN: "简体中文", ja: "日本語", ko: "한국어", noteReload: "切换语言将重新加载页面。" },
       misc: {
         noneConnect: "无 (请连接并按键)",
         unknown: "（未知）",
@@ -124,6 +126,90 @@ const locales = {
       }
     },
     help: { title: "帮助", tabs: { about: "关于", overview: "总览", carts: "卡带", cbar: "控制栏", settings: "设置对话框", highscores: "高分" } }
+  },
+  "ja": {
+    common: { ok: "OK", cancel: "キャンセル", defaults: "デフォルト", defaultsTitle: "デフォルトにリセット", close: "閉じる", settings: "設定", help: "ヘルプ", loading: "読み込み中...", loadedCartList: "カートリッジリストを正常に読み込みました。" },
+    cbar: { pause: "一時停止", resume: "再開", soundOff: "音声オフ", soundOn: "音声オン", restart: "再起動", selectText: "SELECT", selectTooltip: "選択", resetText: "RESET", resetTooltip: "リセット", leftDiff: "左難易度スイッチ", rightDiff: "右難易度スイッチ", leaderboard: "リーダーボード", help: "ヘルプ / 情報", settings: "設定", fullscreen: "フルスクリーン", exitFullscreen: "フルスクリーン終了" },
+    site: {
+      desc_settings: "<IMG/> <SPAN/> をクリックしてキーボードマッピングと言語を変更します。",
+      desc_help: "<IMG/> <SPAN/> をクリックして詳細な使用説明を表示します。",
+      desc_load: "ドロップダウンメニューまたは下のボタンを使用してカートリッジを読み込みます（ローカルファイルやリモートファイルリンクをエミュレーターにドラッグアンドドロップすることもできます）。",
+      cart_select: "Atari 7800 カートリッジを選択...",
+      cart_local: "ローカルファイルを選択",
+      cart_remote: "リモートファイルを選択",
+      cart_prompt: "リモートカートリッジファイルまたはカートリッジリストのURLを入力"
+    },
+    settings: {
+      title: "設定",
+      tab: { display: "表示", keyboard: "キーボード", gamepads: "ゲームパッド", highscores: "ハイスコア", advanced: "詳細", language: "言語" },
+      display: { title: "表示設定", desc: "以下の設定は画面表示を制御するために使用されます。", screenSize: "画面サイズ:", screenSizes: { "2x": "2", "2.25x": "2.25", "2.5x": "2.5", "2.75x": "2.75", "3x": "3", "3.25x": "3.25", "3.5x": "3.5", "3.75x": "3.75", "4x": "4" }, aspectRatio: "アスペクト比:", ar_pp: "ピクセルパーフェクト (1:1 PAR)", ar_7800: "Atari 7800 (6:7 PAR)", ar_16x9: "ワイドスクリーン (16:9)", ar_ultra: "ウルトラワイドスクリーン (2.37:1)", fullscreen: "フルスクリーン:", fs_fill: "画面を埋める", fs_integer: "整数スケーリング（高さ）", palette: "パレット:", filter: "フィルターを適用:" },
+      gamepads: { title: "ゲームパッド互換性", desc1: "このページでは接続されたゲームパッドの<b class=\"callout\">互換性をテスト</b>できます。", gamepad: "ゲームパッド:", mapping: "マッピング:", consoleButtons: "コンソールボタン" },
+      keyboard: { title: "キーボードマッピング", tip1: "マッピングするコントロールの近くの<b class=\"callout\">赤いボックス</b>をクリックします。", tip2: "選択したら、マッピングする<b class=\"callout\">キー</b>を押します。", controller1: "コントローラー 1", controller2: "コントローラー 2" },
+      highscores: { title: "ハイスコア設定", desc: "以下の設定はハイスコアの保存を制御します。", pending: "変更は次のゲームが読み込まれるまで有効になりません。", saveScores: "スコアを保存:", saveLocation: "保存場所:", local: "ローカル（このデバイスのみ）", global: "グローバル（世界ランキング）", localFallback: "ローカルフォールバック:", localFallbackLabel: "ローカルフォールバック" },
+      advanced: { title: "詳細", desc: "以下の設定は詳細機能を設定できます。", xm: "拡張モジュール (XM):", xm_auto: "（自動）", xm_enabled: "有効", xm_disabled: "無効", frameSkip: "フレームスキップ:", none: "（なし）", low: "低", medium: "中（50%）", high: "高", vsync: "垂直同期:", vsyncLabel: "垂直同期" },
+      language: { title: "言語", label: "言語:", en: "English", zhTW: "繁體中文", zhCN: "简体中文", ja: "日本語", ko: "한국어", noteReload: "言語変更はページを再読み込みします。" },
+      misc: {
+        noneConnect: "なし (接続してボタンを押す)",
+        unknown: "（不明）",
+        pause: "一時停止",
+        select: "選択",
+        reset: "リセット",
+        palDefault: "ProSystem デフォルト",
+        palDark: "ダーク",
+        palCoolDark: "クール（ダーク）",
+        palWarmDark: "ウォーム（ダーク）",
+        palHotDark: "ホット（ダーク）",
+        palLight: "ライト",
+        palCoolLight: "クール（ライト）",
+        palWarmLight: "ウォーム（ライト）",
+        palHotLight: "ホット（ライト）",
+        toggleFilter: "フィルター切り替え",
+        gamepadTest: "ゲームパッドを接続し、マッピングが正しいかテストします（ボタン、Dパッドなど）。"
+      }
+    },
+    help: { title: "ヘルプ", tabs: { about: "について", overview: "概要", carts: "カートリッジ", cbar: "コントロールバー", settings: "設定ダイアログ", highscores: "ハイスコア" } }
+  },
+  "ko": {
+    common: { ok: "확인", cancel: "취소", defaults: "기본값", defaultsTitle: "기본값으로 재설정", close: "닫기", settings: "설정", help: "도움말", loading: "로딩 중...", loadedCartList: "카트리지 목록을 성공적으로 로드했습니다." },
+    cbar: { pause: "일시정지", resume: "재개", soundOff: "소리 끄기", soundOn: "소리 켜기", restart: "재시작", selectText: "SELECT", selectTooltip: "선택", resetText: "RESET", resetTooltip: "리셋", leftDiff: "왼쪽 난이도 스위치", rightDiff: "오른쪽 난이도 스위치", leaderboard: "리더보드", help: "도움말 / 정보", settings: "설정", fullscreen: "전체화면", exitFullscreen: "전체화면 종료" },
+    site: {
+      desc_settings: "<IMG/> <SPAN/>을 클릭하여 키보드 매핑과 언어를 변경합니다.",
+      desc_help: "<IMG/> <SPAN/>을 클릭하여 자세한 사용 지침을 확인합니다.",
+      desc_load: "드롭다운 메뉴 또는 아래 버튼을 사용하여 카트리지를 로드합니다 (로컬 파일이나 원격 파일 링크를 에뮬레이터에 드래그 앤 드롭할 수도 있습니다).",
+      cart_select: "Atari 7800 카트리지 선택...",
+      cart_local: "로컬 파일 선택",
+      cart_remote: "원격 파일 선택",
+      cart_prompt: "원격 카트리지 파일 또는 카트리지 목록의 URL을 입력"
+    },
+    settings: {
+      title: "설정",
+      tab: { display: "디스플레이", keyboard: "키보드", gamepads: "게임패드", highscores: "하이스코어", advanced: "고급", language: "언어" },
+      display: { title: "디스플레이 설정", desc: "다음 설정은 화면 디스플레이를 제어하는 데 사용됩니다.", screenSize: "화면 크기:", screenSizes: { "2x": "2", "2.25x": "2.25", "2.5x": "2.5", "2.75x": "2.75", "3x": "3", "3.25x": "3.25", "3.5x": "3.5", "3.75x": "3.75", "4x": "4" }, aspectRatio: "화면 비율:", ar_pp: "픽셀 퍼펙트 (1:1 PAR)", ar_7800: "Atari 7800 (6:7 PAR)", ar_16x9: "와이드스크린 (16:9)", ar_ultra: "울트라 와이드스크린 (2.37:1)", fullscreen: "전체화면:", fs_fill: "화면 채우기", fs_integer: "정수 스케일링 (높이)", palette: "팔레트:", filter: "필터 적용:" },
+      gamepads: { title: "게임패드 호환성", desc1: "이 페이지는 연결된 게임패드의 <b class=\"callout\">호환성을 테스트</b>할 수 있습니다.", gamepad: "게임패드:", mapping: "매핑:", consoleButtons: "콘솔 버튼" },
+      keyboard: { title: "키보드 매핑", tip1: "매핑할 컨트롤 근처의 <b class=\"callout\">빨간 상자</b>를 클릭합니다.", tip2: "선택한 후 매핑할 <b class=\"callout\">키</b>를 누릅니다.", controller1: "컨트롤러 1", controller2: "컨트롤러 2" },
+      highscores: { title: "하이스코어 설정", desc: "다음 설정은 하이스코어 지속성을 제어합니다.", pending: "변경사항은 다음 게임이 로드될 때까지 적용되지 않습니다.", saveScores: "점수 저장:", saveLocation: "저장 위치:", local: "로컬 (이 장치만)", global: "글로벌 (전 세계 리더보드)", localFallback: "로컬 폴백:", localFallbackLabel: "로컬 폴백" },
+      advanced: { title: "고급", desc: "다음 설정은 고급 기능을 구성할 수 있습니다.", xm: "확장 모듈 (XM):", xm_auto: "（자동）", xm_enabled: "활성화", xm_disabled: "비활성화", frameSkip: "프레임 스킵:", none: "（없음）", low: "낮음", medium: "중간 (50%)", high: "높음", vsync: "수직 동기화:", vsyncLabel: "수직 동기화" },
+      language: { title: "언어", label: "언어:", en: "English", zhTW: "繁體中文", zhCN: "简体中文", ja: "日本語", ko: "한국어", noteReload: "언어 변경은 페이지를 다시 로드합니다." },
+      misc: {
+        noneConnect: "없음 (연결하고 버튼 누름)",
+        unknown: "（알 수 없음）",
+        pause: "일시정지",
+        select: "선택",
+        reset: "리셋",
+        palDefault: "ProSystem 기본값",
+        palDark: "다크",
+        palCoolDark: "쿨 (다크)",
+        palWarmDark: "웜 (다크)",
+        palHotDark: "핫 (다크)",
+        palLight: "라이트",
+        palCoolLight: "쿨 (라이트)",
+        palWarmLight: "웜 (라이트)",
+        palHotLight: "핫 (라이트)",
+        toggleFilter: "필터 토글",
+        gamepadTest: "게임패드를 연결하고 매핑이 올바른지 테스트합니다 (버튼, D패드 등)."
+      }
+    },
+    help: { title: "도움말", tabs: { about: "정보", overview: "개요", carts: "카트리지", cbar: "컨트롤 바", settings: "설정 대화상자", highscores: "하이스코어" } }
   }
 };
 
@@ -141,7 +227,7 @@ function t(key) {
 
 function setLocale(locale, reloadAfter = false) {
   current = locale;
-  try { window.localStorage.setItem(LOCALE_KEY, locale); } catch (e) {}
+  try { window.localStorage.setItem(LOCALE_KEY, locale); } catch (e) { }
   pendingReload = pendingReload || reloadAfter;
 }
 
@@ -155,14 +241,18 @@ function init() {
       current = stored;
       return;
     }
-  } catch (e) {}
+  } catch (e) { }
 
   // 2. If no saved setting, detect from browser language.
   const lang = navigator.language.toLowerCase();
-  if (lang === 'zh-tw') {
+  if (lang === 'zh-tw' || lang === 'zh-hant') {
     current = 'zh-TW';
   } else if (lang.startsWith('zh')) {
     current = 'zh-CN';
+  } else if (lang === 'ja') {
+    current = 'ja';
+  } else if (lang === 'ko') {
+    current = 'ko';
   } else {
     current = 'en'; // Default for everything else
   }
