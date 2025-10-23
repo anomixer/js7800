@@ -4,6 +4,7 @@ import restartImgSrc from '../images/restart.svg'
 import gamepadImgSrc from '../images/gamepad-square.svg'
 import * as Message from '../../../src/js/common/message-common.js'
 import * as Util from '../../../src/js/common/util-common.js'
+import * as I18n from './i18n-leaderboard.js'
 
 const WORKER_URL = "https://js7800-leaderboard-worker.johantw.workers.dev";
 
@@ -42,16 +43,18 @@ function read(url, fSuccess, fFailure) {
   xhr.onload = function () {
     try {
       if (xhr.status >= 300 || xhr.status < 200) {
-        throw xhr.status + ": " + xhr.statusText;
+        // Convert HTTP error to user-friendly message
+        throw 'Error during read attempt: ' + url + '<br>(See console log for details)<br><br>Hint: Try refresh this page later.';
       } else {
         fSuccess(JSON.parse(xhr.responseText));
       }
     } catch (e) {
+      console.error('HTTP ' + xhr.status + ': ' + xhr.statusText);
       fFailure(e);
     }
   };
   xhr.onerror = function() {
-    fFailure('Error during read attempt: ' + url + "<br>(See console log for details)");
+    fFailure('Error during read attempt: ' + url + "<br>(See console log for details)<br><br>Hint: Try refresh this page later.");
   }
   xhr.send();
 }
@@ -78,7 +81,7 @@ function updateTopPlayers(scores, isLimit10) {
     var points = document.createElement('div');
     points.className = 'infobox-entry-normal';    
     points.appendChild(document.createTextNode(
-      (isLimit10 ? row.topScores : row.total) + " points"));
+      (isLimit10 ? row.topScores : row.total) + " " + I18n.t('points')));
     flex.appendChild(points);
     entry.appendChild(flex);
     el.appendChild(entry);
@@ -158,7 +161,7 @@ function updateMostCompetitive(games) {
       var scores = document.createElement('div');
       scores.className = 'infobox-entry-normal';
       scores.appendChild(document.createTextNode(
-        row.count + " scores " + " / " + row.players + " players"));    
+        row.count + " " + I18n.t('scores') + " / " + row.players + " " + I18n.t('players')));    
   
       entry.appendChild(game);
       entry.appendChild(diff);
@@ -211,7 +214,7 @@ function updateScoresTable(filter) {
     var row = document.createElement("tr");
     td = document.createElement("td");
     td.className =  'noscores';
-    td.appendChild(document.createTextNode("No scores currently exist for this game."));
+    td.appendChild(document.createTextNode(I18n.t('noScores')));
     td.setAttribute("colspan", "5");
     row.appendChild(td);
     newBody.appendChild(row);
@@ -265,7 +268,7 @@ function updateSettingsList() {
   }
 
   var option = document.createElement("option");
-  option.text = '(All)';
+  option.text = I18n.t('allSettings');
   option.value = 'all'
   filterSelectEl.add(option);
 
@@ -384,6 +387,29 @@ function loadGamesList() {
 }
 
 function start() {
+  // Initialize i18n to sync with main emulator locale
+  I18n.init();
+  
+  // Update static UI text based on locale
+  document.getElementById('header-title').innerHTML = I18n.t('title');
+  document.getElementById('page-description').textContent = I18n.t('description');
+  document.getElementById('top-players-title').innerHTML = I18n.t('topPlayersAll');
+  document.getElementById('latest-scores-title').textContent = I18n.t('latestScores');
+  document.getElementById('top-players-most-title').innerHTML = I18n.t('topPlayersMost');
+  document.getElementById('most-competitive-title').textContent = I18n.t('mostCompetitive');
+  document.getElementById('game-label').textContent = I18n.t('game');
+  document.getElementById('settings-label').textContent = I18n.t('settings');
+  document.getElementById('th-settings').textContent = I18n.t('settings').replace('：', '').replace(':', '');
+  document.getElementById('th-player').textContent = I18n.t('player');
+  document.getElementById('th-score').textContent = I18n.t('score');
+  document.getElementById('th-date').textContent = I18n.t('date');
+  
+  // Set tooltips for buttons
+  var restartImg = document.querySelector('#restart-button img');
+  if (restartImg) restartImg.setAttribute('title', I18n.t('refresh'));
+  var playImg = document.querySelector('#play-button img');
+  if (playImg) playImg.setAttribute('title', I18n.t('play'));
+  
   Message.init('leaderboard-content');  
   topPlayers10El = document.getElementById('top-players-top-10');
   topPlayersEl = document.getElementById('top-players');
@@ -397,29 +423,19 @@ function start() {
   tableBodyEl = document.createElement('tbody');  
   scoresTableTableEl.appendChild(tableBodyEl);
 
-  // Restart button
+  // Restart button - HTML already has the image, just set onclick
   var restartEl = document.getElementById("restart-button");
   restartEl.onclick = function() {
     loadScores(currentDigest, currentFilter)
   }; 
-  var img = document.createElement("img");  
-  img.className = "button-image";
-  img.src = restartImgSrc;
-  img.setAttribute("title", "Refresh");
-  restartEl.appendChild(img);
 
-  // Play button
+  // Play button - HTML already has the image, just set onclick
   playEl = document.getElementById("play-button");
   playEl.onclick = function() {
     if (currentCart) {
-      window.open('../?cart=' + currentCart, '_blank' /*, 'noopener'*/); 
+      window.open('../?cart=' + currentCart, '_blank'); 
     }
   }
-  var img = document.createElement("img");  
-  img.className = "button-image";
-  img.setAttribute("title", "Play");
-  img.src = gamepadImgSrc;
-  playEl.appendChild(img);
 
   filterSelectEl.onchange = function() {      
     pushHistory(currentDigest, this.value);

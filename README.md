@@ -27,9 +27,11 @@ This is a fork of the original [raz0red/js7800](https://github.com/raz0red/js780
 
 *   **Multi-language Support**: The UI now supports English, Traditional Chinese (繁體中文), and Simplified Chinese (简体中文).
 *   **Automatic Language Detection**: On first load, the application will attempt to match the browser's preferred language. The language can also be changed manually in the Settings menu.
+*   **Global Leaderboard Multi-language Support**: The Global Leaderboard page also supports the same three languages and automatically syncs with the main emulator's language setting.
 *   **Default to Local High Scores**: The default high score storage has been changed to "Local" to prevent network errors, as the global leaderboard is now accessible through a Cloudflare Workers proxy.
 *   **Translated Documentation**: The README and internal help files have been translated.
 *   **Global Leaderboard Synchronization**: Implemented Cloudflare Workers integration to enable global high score synchronization for forked deployments.
+*   **UI Improvements**: Fixed duplicate button icons on the Global Leaderboard page and improved error messages with helpful hints.
 
 ### How to Run Locally
 

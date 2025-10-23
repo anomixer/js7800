@@ -523,23 +523,23 @@
 
 <body>
   <div class="header">
-    <span class="header__label"><a href="https://raz0red.github.io/js7800/" target="_blank"><strong>JS7800</strong></a> Global Leaderboard</span>
+    <span class="header__label"><a href="https://raz0red.github.io/js7800/" target="_blank"><strong>JS7800</strong></a> <span id="header-title">Global Leaderboard</span></span>
     <a href="https://github.com/anomixer/js7800" target="_blank"><img class="header__logo" src="../images/github-logo.svg" alt="GitHub: JS7800 by anomixer" title="GitHub: JS7800 by anomixer"></a>
   </div>
   <div id="leaderboard-content" class="content">
     <div class="content-inner">
-      <div class="description">
+      <div class="description" id="page-description">
         Select a game in the drop-down menu below to view current high scores.
       </div>
 
       <!-- 左側面板 -->
       <div id="left">
         <div id="top-players-box" class="infobox">
-          <div class="infobox-title">Top Players<br>(All games)</div>
+          <div class="infobox-title" id="top-players-title">Top Players<br>(All games)</div>
           <div id="top-players"></div>
         </div>
         <div id="recent-scores-box" class="infobox">
-          <div class="infobox-title">Latest High Scores</div>
+          <div class="infobox-title" id="latest-scores-title">Latest High Scores</div>
           <div id="recent-scores"></div>
         </div>
       </div>
@@ -551,11 +551,11 @@
             <div class="controls-left"></div>
             <div class="controls-center">
               <div class="game-select-inner">
-                <div class="game-select-label">Game:</div>
+                <div class="game-select-label" id="game-label">Game:</div>
                 <div class="game-select">
                   <select id="games-select-select"></select>
                 </div>
-                <div class="game-select-label">Settings:</div>
+                <div class="game-select-label" id="settings-label">Settings:</div>
                 <div class="game-select">
                   <select id="games-select-filter"></select>
                 </div>
@@ -574,10 +574,10 @@
               <table id="scores-table-table" class="scores-table-table">
                 <thead>
                   <tr>
-                    <th>Settings</th>
-                    <th colspan="2">Player</th>
-                    <th>Score</th>
-                    <th>Date</th>
+                    <th id="th-settings">Settings</th>
+                    <th colspan="2" id="th-player">Player</th>
+                    <th id="th-score">Score</th>
+                    <th id="th-date">Date</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -592,11 +592,11 @@
       <!-- 右側面板 -->
       <div id="right">
         <div id="top-players-top-10-box" class="infobox">
-          <div class="infobox-title">Top Players<br>(Most competitive modes)</div>
+          <div class="infobox-title" id="top-players-most-title">Top Players<br>(Most competitive modes)</div>
           <div id="top-players-top-10"></div>
         </div>
         <div id="most-competitive-box" class="infobox">
-          <div class="infobox-title">Most Competitive Modes</div>
+          <div class="infobox-title" id="most-competitive-title">Most Competitive Modes</div>
           <div id="most-competitive"></div>
         </div>
       </div>

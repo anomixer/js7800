@@ -152,7 +152,47 @@ POST https://js7800-leaderboard-worker.johantw.workers.dev/?sid=REDACTED&d=REDAC
   (log) [POST] ✅ Proxy response status: 200 OK
 ```
 
-## 排行榜頁面修復 ✅
+## 排行榜頁面修復與改進 ✅
+
+### UI 改進 (2025-10-23)
+
+#### 問題 1: 按鈕重複顯示 ✅
+- **問題**: Play 和 Refresh 按鈕各出現兩個圖示
+- **原因**: HTML 已有 img 標籤，JS 又重複添加
+- **解決**: 移除 `leaderboard.js` 中的重複圖片創建代碼
+- **檔案**: `site/leaderboard/src/js/leaderboard.js`
+
+#### 問題 2: 錯誤訊息改善 ✅
+- **問題**: 503 錯誤只顯示 "503: " 不夠友善
+- **改善**: 顯示完整 URL 和提示訊息
+- **格式**:
+  ```
+  Error during read attempt: [URL]
+  (See console log for details)
+  
+  Hint: Try refresh this page later.
+  ```
+- **檔案**: `site/leaderboard/src/js/leaderboard.js`
+
+### 多語系支援 (2025-10-23)
+
+#### Global Leaderboard i18n ✅
+- **新增**: `site/leaderboard/src/js/i18n-leaderboard.js`
+- **功能**: 
+  - 從 localStorage 讀取主模擬器語系設定
+  - 自動偵測瀏覽器語言
+  - 支援 EN / ZH-TW / ZH-CN
+- **整合**: 所有 UI 文字都已翻譯
+  - 頁面標題、區塊標題
+  - 遊戲選單、表格欄位
+  - 按鈕提示、動態文字
+
+#### 主模擬器首頁文字更新 ✅
+- **檔案**: `src/js/common/i18n.js`
+- **變更**: "view current keyboard mappings" → "change keyboard mappings & languages"
+- **影響**: 三種語言（EN / ZH-TW / ZH-CN）
+
+### 早期問題（已解決）
 ### 問題（已解決）
 - leaderboard.js 編譯後，`leaderboard.start()` 沒有被正確呼叫
 - 原因: 某些改動導致 UMD export 出現問題
