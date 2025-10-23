@@ -1,4 +1,4 @@
-**English** | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
+**English** | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Deutsch](README.de.md) | [Español](README.es.md) | [Français](README.fr.md) | [Italiano](README.it.md) | [Português](README.pt.md) | [Русский](README.ru.md)
 
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 [![Actions Status](https://github.com/raz0red/js7800/workflows/Build/badge.svg)](https://github.com/raz0red/js7800/actions)
@@ -25,7 +25,7 @@ https://raz0red.github.io/js7800/
 
 ### 修正内容
 
-*   **多言語サポート**: UI が英語、繁体字中国語（繁體中文）、簡体字中国語（简体中文）、日本語、韓国語をサポートするようになりました。
+*   **多言語サポート**: UI が英語、繁体字中国語（繁體中文）、簡体字中国語（简体中文）、日本語、韓国語、ドイツ語（Deutsch）、スペイン語（Español）、フランス語（Français）、イタリア語（Italiano）、ポルトガル語（Português）、ロシア語（Русский）をサポートするようになりました。
 *   **自動言語検出**: 初回ロード時にブラウザの優先言語に自動的に一致しようとします。言語は設定メニューで手動変更することもできます。
 *   **グローバルリーダーボード多言語サポート**: グローバルリーダーボードページも同じ言語をサポートし、メインモジュレーターの言語設定と自動的に同期します。
 *   **デフォルトでグローバルハイスコア**: デフォルトのハイスコアストレージが「グローバル（世界ランキング）」に設定され、Cloudflare Workers プロキシ経由で元のリーダーボードシステムとシームレスに同期されます。

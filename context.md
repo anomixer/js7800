@@ -189,27 +189,71 @@ POST https://js7800-leaderboard-worker.johantw.workers.dev/?sid=REDACTED&d=REDAC
 
 #### 主模擬器語系支援 ✅
 - **檔案**: `src/js/common/i18n.js`
-- **新增**: JA (日本語) 和 KO (한국어) 語系物件
+- **新增**: 六種新語言 - DE (Deutsch), ES (Español), FR (Français), IT (Italiano), PT (Português), RU (Русский)
 - **功能**:
   - 翻譯所有 UI 文字、設定選項、說明等
-  - 更新語言選擇設定，包含日文和韓文選項
-  - 更新語系偵測邏輯，支援瀏覽器自動偵測 JA 和 KO
+  - 更新語言選擇設定，包含所有新語言選項
+  - 更新語系偵測邏輯，支援瀏覽器自動偵測所有新語言
 - **檔案**: `site/src/js/settings-dialog.js`
-- **更新**: 在語言選單中新增日文和韓文選項
+- **更新**: 在語言選單中新增所有六種新語言選項
+
+#### 排行榜語系支援 ✅
+- **檔案**: `site/leaderboard/src/js/i18n-leaderboard.js`
+- **新增**: 六種新語言的完整翻譯
+- **功能**: 排行榜頁面與主模擬器語系完全同步
 
 #### 模擬器幫助翻譯支援 ✅
 - **檔案**: `site/src/js/help-dialog.js`
-- **修改**: getUrlForLocale() 函數支援 JA 和 KO 語系載入對應 HTML
-- **功能**: 幫助對話框現在正確載入日文和韓文版本的說明頁面
+- **修改**: getUrlForLocale() 函數支援所有新語言載入對應 HTML
+- **功能**: 幫助對話框現在正確載入所有新語言版本的說明頁面
+
+**新建立的 Help 檔案**:
+- DE: overview-de.html, carts-de.html, cbar-de.html, settings-de.html, highscores-de.html
+- ES: overview-es.html, carts-es.html, cbar-es.html, settings-es.html, highscores-es.html
+- FR: overview-fr.html, carts-fr.html, cbar-fr.html, settings-fr.html, highscores-fr.html
+- IT: overview-it.html, carts-it.html, cbar-it.html, settings-it.html, highscores-it.html
+- PT: overview-pt.html, carts-pt.html, cbar-pt.html, settings-pt.html, highscores-pt.html
+- RU: overview-ru.html, carts-ru.html, cbar-ru.html, settings-ru.html, highscores-ru.html
+
+#### About 頁面翻譯支援 ✅
 - **檔案**: `site/src/js/about-tab.js`
-- **修改**: 添加 JA 和 KO 語系的內容翻譯，包括作者、描述和致謝
+- **新增**: 六種新語言的完整翻譯
+- **功能**:
+  - 作者標籤翻譯 (`by raz0red` → 對應語言的 `von raz0red`, `por raz0red`, 等)
+  - 專案描述翻譯 (完整的專案介紹翻譯成六種語言)
+  - 貢獻者致謝翻譯 (所有技術貢獻者資訊翻譯)
+- **支援語言**:
+  - DE: 完整的德語翻譯
+  - ES: 完整的西班牙語翻譯
+  - FR: 完整的法語翻譯
+  - IT: 完整的義大利語翻譯
+  - PT: 完整的葡萄牙語翻譯
+  - RU: 完整的俄語翻譯
 
 #### README 檔案修正 ✅
 - **檔案**: `README.md`, `README.ja.md`, `README.ko.md`, `README.zh-TW.md`, `README.zh-CN.md`
-- **修改**: 刪除過時的 UI 改善描述
-- **添加**: NODE_OPTIONS=--openssl-legacy-provider 到本地建置步驟
-- **修正**: 高分設定描述為全球預設
-- **更新**: 語言支援描述為五種語言（英文、繁體中文、簡體中文、日文、韓文）
+- **更新**: 語言支援描述為十一種語言（英文、繁體中文、簡體中文、日文、韓文、德文、西班牙文、法文、義大利文、葡萄牙文、俄文）
+
+#### README 多語言完整支援 ✅
+**新建立的 README 文件**:
+- `README.de.md` - 德語完整文檔
+- `README.es.md` - 西班牙語完整文檔
+- `README.fr.md` - 法語完整文檔
+- `README.it.md` - 義大利語完整文檔
+- `README.pt.md` - 葡萄牙語完整文檔
+- `README.ru.md` - 俄語完整文檔
+
+**更新的語言導航**:
+- 所有 11 種語言的 README 文件都包含完整的語言導航列
+- 每個 README 文件都正確連結到其他 10 種語言版本
+- 語言連結格式統一且完整
+
+**文檔內容**:
+- 每個新語言 README 都包含完整的專案介紹翻譯
+- 詳細的 Fork 資訊和修改內容說明
+- 本地執行和部署步驟
+- 全球排行榜同步技術細節
+- 功能特點和文檔連結
 
 #### 主模擬器首頁文字更新 ✅
 - **檔案**: `src/js/common/i18n.js`

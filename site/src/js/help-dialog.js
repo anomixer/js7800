@@ -29,7 +29,7 @@ addProps(HelpTab.prototype, {
     var prefix = base.substring(0, idx);
     var ext = base.substring(idx);
     var loc = I18n.getLocale();
-    if (loc === 'zh-TW' || loc === 'zh-CN' || loc === 'ja' || loc === 'ko') {
+    if (loc === 'zh-TW' || loc === 'zh-CN' || loc === 'ja' || loc === 'ko' || loc === 'de' || loc === 'es' || loc === 'fr' || loc === 'it' || loc === 'pt' || loc === 'ru') {
       return [prefix + '-' + loc + ext, base]; // try locale first, then fallback
     }
     return [base];

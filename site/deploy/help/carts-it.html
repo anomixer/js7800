@@ -1,0 +1,220 @@
+<div class="docs">
+    <div class="tabcontent__title">Caricamento Cartucce</div>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="this.blur();">Salta alla sezione <span
+                class="down-arrow">&#x25BC;</span></button>
+        <div class="dropdown-content">
+            <div onclick="window.location.href='#cartridge-menu'">Menu Cartucce</div>
+            <div onclick="window.location.href='#sel-local-file'">Seleziona File Locali</div>
+            <div onclick="window.location.href='#sel-remote-file'">Seleziona File Remoti</div>
+            <div onclick="window.location.href='#drag-and-drop-files'">Trascina e Rilascia File</div>
+            <div onclick="window.location.href='#drag-and-drop-links'">Trascina e Rilascia Link</div>
+            <div onclick="window.location.href='#request-params'">Parametri Richiesta</div>
+        </div>
+    </div>
+    <p>
+        I diversi modi in cui le cartucce possono essere caricate in JS7800 sono dettagliati nel resto di questa scheda.
+        JS7800 dovrebbe essere compatibile con la stragrande maggioranza delle ROM di cartucce disponibili per Atari
+        7800 (sia
+        versioni retail originali che homebrew).
+    </p>
+    <p>
+        Le ROM di cartucce Atari 7800 hanno tipicamente estensione file <span class="fixed">.bin</span> o
+        <span class="fixed">.a78</span>. L'estensione <span class="fixed">.a78</span> è preferita poiché
+        contiene informazioni di intestazione che forniscono all'emulatore informazioni su come la cartuccia particolare
+        dovrebbe essere interpretata. Vale anche la pena notare che JS7800 supporta ROM di cartucce contenute in
+        file <span class="fixed">.zip</span>.
+    </p>
+    <a name="cartridge-menu"></a>
+    <div class="docs-section-title">Menu a Discesa Cartucce</div>
+    <p>
+        Il menu "a Discesa Cartucce" (evidenziato in rosso sotto) contiene una lista di cartucce Atari 7800 da
+        selezionare.
+    </p>
+    <div class="docs-center">
+        <div class="docs-relative-inline-block">
+            <div class="docs-loading-controls-focus docs-loading-controls-select-focus"></div>
+            <div class="docs-loading-controls-select-text">Seleziona Cartuccia Atari 7800...</div>
+            <img class="docs-loading-controls-image" src="help/images/cartloading.png"></img>
+        </div>
+    </div>
+    <p>
+        Per default, la lista cartucce è popolata con una selezione di eccellenti titoli homebrew. Per caricare una
+        cartuccia,
+        seleziona semplicemente l'elemento appropriato nel menu.
+    </p>
+    <p>
+        Liste cartucce personalizzate sono anche supportate. Per più informazioni su creazione e caricamento di liste
+        cartucce personalizzate, fai riferimento alla
+        <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">pagina GitHub Liste
+            Cartucce</a>.
+    </p>
+    <a name="sel-local-file"></a>
+    <div class="docs-section-title">Seleziona File Locali</div>
+    <p>
+        Il pulsante "Seleziona File Locali" (evidenziato in rosso sotto), è usato per selezionare e caricare un file ROM
+        cartuccia
+        Atari 7800 che si trova sul dispositivo locale.
+    </p>
+    <div class="docs-center">
+        <div class="docs-relative-inline-block">
+            <div class="docs-loading-controls-focus docs-loading-controls-file-focus"></div>
+            <div class="docs-loading-controls-select-text">Seleziona Cartuccia Atari 7800...</div>
+            <img class="docs-loading-controls-image" src="help/images/cartloading.png"></img>
+        </div>
+    </div>
+    <p>
+        Una volta premuto il pulsante, un selettore file sarà mostrato che permette
+        la selezione di un file locale. Per default, il selettore file limita i file mostrati a
+        estensioni <span class="fixed">.a78</span>, <span class="fixed">.bin</span>, <span class="fixed">.zip</span>,
+        e <span class="fixed">.json</span>.
+    </p>
+    <p>
+        Il selettore file locale può anche essere usato per selezionare un file "lista cartucce" (estensione file <span
+            class="fixed">.json</span>).
+        Selezionare un file "lista cartucce" aggiornerà il contenuto del
+        <a href="#cartridge-menu">Menu a Discesa Cartucce</a>. Per più informazioni su liste cartucce, fai riferimento
+        alla
+        <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">pagina GitHub Liste
+            Cartucce</a>.
+    </p>
+    <a name="sel-remote-file"></a>
+    <div class="docs-section-title">Seleziona File Remoti</div>
+    <p>
+        Il pulsante "Seleziona File Remoti" (evidenziato in rosso sotto), è usato per specificare l'URL di una ROM
+        cartuccia Atari 7800 remota.
+    </p>
+    <div class="docs-center">
+        <div class="docs-relative-inline-block">
+            <div class="docs-loading-controls-focus docs-loading-controls-remote-focus"></div>
+            <div class="docs-loading-controls-select-text">Seleziona Cartuccia Atari 7800...</div>
+            <img class="docs-loading-controls-image" src="help/images/cartloading.png"></img>
+        </div>
+    </div>
+    <p>
+        Una volta premuto il pulsante, una finestra di input sarà mostrata che permette di specificare l'URL
+        a un file ROM remoto. Per esempio, inserire la seguente URL causerà il caricamento del gioco homebrew, "bonQ":
+    <div class="fixed-block">http://raz0red.github.io/js7800/roms/bonq.a78</div>
+    </p>
+    <p>
+        Il selettore file remoto può anche essere usato per selezionare un file "lista cartucce" remoto
+        (estensione file <span class="fixed">.json</span>). Selezionare un file "lista cartucce" aggiornerà il
+        contenuto del <a href="#cartridge-menu">Menu a Discesa Cartucce</a>. Per più informazioni
+        su liste cartucce, fai riferimento alla
+        <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">pagina GitHub Liste
+            Cartucce</a>.
+    </p>
+    <a name="drag-and-drop-files"></a>
+    <div class="docs-section-title">Trascina e Rilascia File</div>
+    <p>
+        Trascinare e rilasciare ROM cartucce Atari 7800 locali può essere usato come alternativa a selezionare
+        file tramite il browser file locale (vedi <a href="#sel-local-file">Seleziona File Locali</a>).
+    </p>
+    <div class="docs-center">
+        <img class="docs-centered-image" src="help/images/dragfile.gif"></img>
+    </div>
+    <p>
+        Come dimostrato sopra, file ROM locali possono essere caricati semplicemente trascinandoli e rilasciandoli
+        sull'emulatore
+        da Esplora File su Windows o Finder su Mac.
+    </p>
+    <p>
+        In aggiunta a file ROM cartucce, file "lista cartucce" (estensione file <span class="fixed">.json</span>)
+        possono anche essere
+        trascinati e rilasciati sull'emulatore. Trascinare e rilasciare un file "lista cartucce" causerà l'aggiornamento
+        del contenuto del
+        <a href="#cartridge-menu">Menu a Discesa Cartucce</a>. Per più informazioni
+        su liste cartucce, fai riferimento alla <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists"
+            target="_blank">pagina GitHub Liste Cartucce</a>.
+    </p>
+    <a name="drag-and-drop-links"></a>
+    <div class="docs-section-title">Trascina e Rilascia Link</div>
+    <p>
+        Trascinare e rilasciare link che puntano a ROM cartucce Atari 7800 remote può essere usato come alternativa a
+        specificare
+        URL tramite il selettore file remoto (vedi <a href="#sel-remote-file">Seleziona File Remoti</a>).
+    </p>
+    <div class="docs-center">
+        <img class="docs-centered-image" src="help/images/draglink.gif"></img>
+    </div>
+    <p>
+        Come dimostrato sopra, ROM possono essere caricate semplicemente trascinando e rilasciando link file remoti
+        sull'emulatore.
+        Nell'esempio specifico sopra, un link è trascinato dal
+        <a href="https://atariage.com/forums/forum/52-atari-7800-programming/" target="_blank">Forum Programmazione
+            Atari 7800 di AtariAge</a>,
+        un'ottima fonte per titoli homebrew in sviluppo e completati. Vale anche la pena notare che alcuni link
+        sul forum AtariAge richiedono che il trascinamento sia eseguito tramite il link "conteggio download"
+        versus il link del titolo del gioco (come mostrato sopra).
+    </p>
+    <p>
+        In aggiunta a link file ROM cartucce, link file "lista cartucce" possono anche essere
+        trascinati e rilasciati sull'emulatore. Trascinare e rilasciare un link file "lista cartucce" causerà
+        l'aggiornamento del contenuto del
+        <a href="#cartridge-menu">Menu a Discesa Cartucce</a>. Per più informazioni
+        su liste cartucce, fai riferimento alla
+        <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">pagina GitHub Liste
+            Cartucce</a>.
+    </p>
+    <a name="request-params"></a>
+    <div class="docs-section-title">Parametri Richiesta</div>
+    <p>
+        JS7800 supporta il seguente insieme di parametri richiesta. I parametri richiesta possono essere aggiunti
+        all'URL di JS7800
+        per controllare varie opzioni dell'emulatore. Per esempio, il parametro richiesta <span
+            class="fixed">cart</span>
+        può essere usato per forzare il caricamento di una cartuccia specifica quando JS7800 è inizialmente mostrato.
+    </p>
+    <div class="dialog-grid docs-grid">
+        <div class="dialog-cell-label">
+            cart
+        </div>
+        <div class="dialog-cell-value">
+            Il parametro richiesta <span class="fixed">cart</span> può essere usato per caricare una cartuccia specifica
+            quando
+            la pagina emulatore è inizialmente caricata. La seguente URL causerà il caricamento del gioco homebrew,
+            "bonQ":
+            <p>
+            <div class="fixed-block">
+                https://raz0red.github.io/js7800/?cart=http://raz0red.github.io/js7800/roms/bonq.a78
+            </div>
+            </p>
+        </div>
+        <div class="dialog-cell-label">
+            cartlist
+        </div>
+        <div class="dialog-cell-value">
+            Il parametro richiesta <span class="fixed">cartlist</span> può essere usato per caricare una lista cartucce
+            nel
+            <a href="#cartridge-menu">Menu a Discesa Cartucce</a> quando JS7800 è inizialmente caricato.
+            La seguente URL causerà il popolamento di una lista demo homebrew nel menu a discesa cartucce:
+            <p>
+            <div class="fixed-block">
+                https://raz0red.github.io/js7800/?cartlist=http://raz0red.github.io/js7800/roms/romlist-homebrew-demos.json
+            </div>
+            </p>
+            Per più informazioni su liste cartucce, fai riferimento alla
+            <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">pagina GitHub Liste
+                Cartucce</a>.
+        </div>
+    </div>
+    <p>
+        Parametri richiesta multipli possono essere combinati per impostare più di un'opzione quando JS7800 è caricato.
+        La seguente URL caricherà un gioco specifico, "bonQ", e una lista cartucce contenente demo homebrew:
+    </p>
+    <p>
+    <div class="fixed-block">
+        https://raz0red.github.io/js7800/?cart=http://raz0red.github.io/js7800/roms/bonq.a78&cartlist=http://raz0red.github.io/js7800/roms/romlist-homebrew-demos.json
+    </div>
+    </p>
+    <p>
+        Dato che aggiungere parametri richiesta tipicamente risulterà in URL lunghi, l'uso del servizio accorciamento
+        URL di GitHub,
+        <a href="https://git.io/">git.io</a>, è raccomandato. La seguente URL è la versione accorciata dell'esempio
+        sopra, contenente entrambi
+        parametri richiesta <span class="fixed">cart</span> e <span class="fixed">cartlist</span>:
+    </p>
+    <p>
+    <div class="fixed-block">https://git.io/JfcmO</div>
+    </p>
+</div>

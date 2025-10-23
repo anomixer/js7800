@@ -403,3 +403,121 @@ points.appendChild(document.createTextNode(
 - npm 和 git 操作由開發者自行處理
 - 修改完成後需執行 `npm run build` 重新編譯
 - 所有修改都已保持與原作者程式碼風格一致
+
+---
+
+## 新增多語系支援 (2025-10-23)
+
+### 新增語系
+新增六種新語言：德語 (DE)、西班牙語 (ES)、法語 (FR)、義大利語 (IT)、葡萄牙語 (PT)、俄語 (RU)。
+
+#### 主模擬器語系支援
+**檔案**: `src/js/common/i18n.js`
+- 新增六種語言的完整翻譯物件
+- 更新語言選擇選項包含新語言
+- 更新瀏覽器語系偵測邏輯支援新語言
+
+#### 排行榜語系支援
+**檔案**: `site/leaderboard/src/js/i18n-leaderboard.js`
+- 新增六種語言的翻譯
+- 更新語系偵測邏輯
+
+#### 設定對話框更新
+**檔案**: `site/src/js/settings-dialog.js`
+- 在語言選單中新增六種新語言選項
+
+#### 說明檔案翻譯
+**檔案**: `site/src/js/help-dialog.js`
+- 更新 help 文件載入邏輯支援新語言
+
+**新建立檔案**:
+- `site/deploy/help/overview-de.html`
+- `site/deploy/help/carts-de.html`
+- 以及其他 help 頁面 (cbar, settings, highscores) 的新語言版本
+
+#### 文檔更新
+**檔案**: `README.md`
+- 更新多語言支援描述為十一種語言
+- 更新全球排行榜支援描述
+
+### 驗證
+✅ 所有新語言在主模擬器 UI 正確顯示
+✅ 排行榜頁面語言同步
+✅ 設定頁面語言選項包含所有新語言
+✅ 瀏覽器自動偵測支援新語言
+✅ Help 文件正確載入對應語言版本
+
+### 總計支援語言
+1. English (EN)
+2. 繁體中文 (ZH-TW)
+3. 简体中文 (ZH-CN)
+4. 日本語 (JA)
+5. 한국어 (KO)
+6. Deutsch (DE)
+7. Español (ES)
+8. Français (FR)
+9. Italiano (IT)
+10. Português (PT)
+11. Русский (RU)
+
+---
+
+## README 文件多語言支援 (2025-10-23)
+
+### 創建新語言的 README 文件 ✅
+
+#### 完成工作
+成功為所有六種新語言創建了完整的 README 文件：
+
+**新建立的 README 文件**:
+- `README.de.md` - 德語版本
+- `README.es.md` - 西班牙語版本
+- `README.fr.md` - 法語版本
+- `README.it.md` - 義大利語版本
+- `README.pt.md` - 葡萄牙語版本
+- `README.ru.md` - 俄語版本
+
+#### 語言連結更新
+更新了所有現有 README 文件的語言導航列：
+
+**更新的檔案**:
+- `README.md` (主文件)
+- `README.ja.md` (日文)
+- `README.ko.md` (韓文)
+- `README.zh-TW.md` (繁體中文)
+- `README.zh-CN.md` (簡體中文)
+- 所有新語言的 README 文件
+
+**語言連結格式**:
+```
+**English** | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Deutsch](README.de.md) | [Español](README.es.md) | [Français](README.fr.md) | [Italiano](README.it.md) | [Português](README.pt.md) | [Русский](README.ru.md)
+```
+
+#### README 內容
+每個新語言的 README 都包含：
+- 完整的專案介紹（翻譯成對應語言）
+- 詳細的 Fork 資訊和修改內容
+- 本地執行步驟
+- 全球排行榜同步說明
+- 功能特點清單
+- 文檔連結
+
+### 驗證結果 ✅
+✅ 所有 11 種語言的 README 文件都存在且正確連結
+✅ 每個 README 文件都包含完整的語言導航
+✅ 專案描述和功能說明都已翻譯
+✅ 技術細節和部署說明完整
+
+### 最終語言支援
+**總計 11 種語言的完整文檔**:
+1. **English** (README.md)
+2. **繁體中文** (README.zh-TW.md)
+3. **简体中文** (README.zh-CN.md)
+4. **日本語** (README.ja.md)
+5. **한국어** (README.ko.md)
+6. **Deutsch** (README.de.md) ✅ 新增
+7. **Español** (README.es.md) ✅ 新增
+8. **Français** (README.fr.md) ✅ 新增
+9. **Italiano** (README.it.md) ✅ 新增
+10. **Português** (README.pt.md) ✅ 新增
+11. **Русский** (README.ru.md) ✅ 新增

@@ -25,7 +25,7 @@ const locales = {
       keyboard: { title: "Keyboard Mappings", tip1: "Click on the <b class=\"callout\">red box</b> near a control to select it for mapping.", tip2: "Once selected, press the <b class=\"callout\">key</b> you would like to map to the control.", controller1: "Controller 1", controller2: "Controller 2" },
       highscores: { title: "High Score Settings", desc: "The following settings control high score persistence.", pending: "Changes will not take effect until the next game is loaded.", saveScores: "Save scores:", saveLocation: "Save location:", local: "Local (this device only)", global: "Global (worldwide leaderboard)", localFallback: "Local fallback:", localFallbackLabel: "Local Fallback" },
       advanced: { title: "Advanced", desc: "The following settings provide the ability to configure advanced features.", xm: "Expansion module (XM):", xm_auto: "(Automatic)", xm_enabled: "Enabled", xm_disabled: "Disabled", frameSkip: "Frame skipping:", none: "(None)", low: "Low", medium: "Medium (50%)", high: "High", vsync: "Vertical sync:", vsyncLabel: "Vertical Sync" },
-      language: { title: "Language", label: "Language:", en: "English", zhTW: "繁體中文", zhCN: "简体中文", ja: "日本語", ko: "한국어", noteReload: "Language change will reload the page." },
+      language: { title: "Language", label: "Language:", en: "English", zhTW: "繁體中文", zhCN: "简体中文", ja: "日本語", ko: "한국어", de: "Deutsch", es: "Español", fr: "Français", it: "Italiano", pt: "Português", ru: "Русский", noteReload: "Language change will reload the page." },
       misc: {
         noneConnect: "None (connect and press button)",
         unknown: "(Unknown)",
@@ -210,6 +210,258 @@ const locales = {
       }
     },
     help: { title: "도움말", tabs: { about: "정보", overview: "개요", carts: "카트리지", cbar: "컨트롤 바", settings: "설정 대화상자", highscores: "하이스코어" } }
+  },
+  "de": {
+    common: { ok: "OK", cancel: "Abbrechen", defaults: "Standard", defaultsTitle: "Auf Standard zurücksetzen", close: "Schließen", settings: "Einstellungen", help: "Hilfe", loading: "Laden...", loadedCartList: "Kartuschenliste erfolgreich geladen。" },
+    cbar: { pause: "Pause", resume: "Fortsetzen", soundOff: "Ton aus", soundOn: "Ton an", restart: "Neustart", selectText: "SELECT", selectTooltip: "Auswählen", resetText: "RESET", resetTooltip: "Zurücksetzen", leftDiff: "Linker Schwierigkeitsgrad-Schalter", rightDiff: "Rechter Schwierigkeitsgrad-Schalter", leaderboard: "Bestenliste", help: "Hilfe / Info", settings: "Einstellungen", fullscreen: "Vollbild", exitFullscreen: "Vollbild beenden" },
+    site: {
+      desc_settings: "Klicken Sie auf <IMG/> <SPAN/>, um Tastenzuordnung und Sprache zu ändern。",
+      desc_help: "Klicken Sie auf <IMG/> <SPAN/>, um detaillierte Anweisungen zu erhalten。",
+      desc_load: "Laden Sie eine Kartusche über das Dropdown-Menü oder die Schaltflächen unten (Sie können auch eine lokale Datei oder einen Remote-Link auf den Emulator ziehen und ablegen)。",
+      cart_select: "Atari 7800 Kartusche auswählen...",
+      cart_local: "Lokale Datei auswählen",
+      cart_remote: "Remote-Datei auswählen",
+      cart_prompt: "Geben Sie die URL einer Remote-Kartusche oder -Liste ein"
+    },
+    settings: {
+      title: "Einstellungen",
+      tab: { display: "Anzeige", keyboard: "Tastatur", gamepads: "Gamepads", highscores: "Highscores", advanced: "Erweitert", language: "Sprache" },
+      display: { title: "Anzeigeeinstellungen", desc: "Die folgenden Einstellungen steuern die Bildschirmanzeige。", screenSize: "Bildschirmgröße:", screenSizes: { "2x": "2", "2.25x": "2.25", "2.5x": "2.5", "2.75x": "2.75", "3x": "3", "3.25x": "3.25", "3.5x": "3.5", "3.75x": "3.75", "4x": "4" }, aspectRatio: "Seitenverhältnis:", ar_pp: "Pixelgenau (1:1 PAR)", ar_7800: "Atari 7800 (6:7 PAR)", ar_16x9: "Breitbild (16:9)", ar_ultra: "Ultra-Breitbild (2.37:1)", fullscreen: "Vollbild:", fs_fill: "Bildschirm füllen", fs_integer: "Ganzzahlige Skalierung (Höhe)", palette: "Palette:", filter: "Filter anwenden:" },
+      gamepads: { title: "Gamepad-Kompatibilität", desc1: "Diese Seite bietet die Möglichkeit, die <b class=\"callout\">Kompatibilität</b> mit angeschlossenen Gamepads zu testen。", gamepad: "Gamepad:", mapping: "Zuordnung:", consoleButtons: "Konsolen-Tasten" },
+      keyboard: { title: "Tastaturzuordnung", tip1: "Klicken Sie auf das <b class=\"callout\">rote Kästchen</b> neben einer Steuerung, um sie für die Zuordnung auszuwählen。", tip2: "Sobald ausgewählt, drücken Sie die <b class=\"callout\">Taste</b>, die Sie der Steuerung zuordnen möchten。", controller1: "Controller 1", controller2: "Controller 2" },
+      highscores: { title: "Highscore-Einstellungen", desc: "Die folgenden Einstellungen steuern die Highscore-Persistenz。", pending: "Änderungen treten erst nach dem Laden des nächsten Spiels in Kraft。", saveScores: "Scores speichern:", saveLocation: "Speicherort:", local: "Lokal (nur dieses Gerät)", global: "Global (weltweite Bestenliste)", localFallback: "Lokales Fallback:", localFallbackLabel: "Lokales Fallback" },
+      advanced: { title: "Erweitert", desc: "Die folgenden Einstellungen ermöglichen die Konfiguration erweiterter Funktionen。", xm: "Erweiterungsmodul (XM):", xm_auto: "(Automatisch)", xm_enabled: "Aktiviert", xm_disabled: "Deaktiviert", frameSkip: "Frame-Überspringen:", none: "(Kein)", low: "Niedrig", medium: "Mittel (50%)", high: "Hoch", vsync: "Vertikale Synchronisation:", vsyncLabel: "Vertikale Synchronisation" },
+      language: { title: "Sprache", label: "Sprache:", en: "English", zhTW: "繁體中文", zhCN: "简体中文", ja: "日本語", ko: "한국어", de: "Deutsch", es: "Español", fr: "Français", it: "Italiano", pt: "Português", ru: "Русский", noteReload: "Sprachänderung lädt die Seite neu。" },
+      misc: {
+        noneConnect: "Kein (verbinden und Taste drücken)",
+        unknown: "(Unbekannt)",
+        pause: "PAUSE",
+        select: "SELECT",
+        reset: "RESET",
+        palDefault: "ProSystem Standard",
+        palDark: "Dunkel",
+        palCoolDark: "Kühl (Dunkel)",
+        palWarmDark: "Warm (Dunkel)",
+        palHotDark: "Heiß (Dunkel)",
+        palLight: "Hell",
+        palCoolLight: "Kühl (Hell)",
+        palWarmLight: "Warm (Hell)",
+        palHotLight: "Heiß (Hell)",
+        toggleFilter: "Filter umschalten",
+        gamepadTest: "Verbinden Sie Gamepads und testen Sie, ob sie korrekt zugeordnet sind (durch Drücken von Tasten, D-Pad usw)。"
+      }
+    },
+    help: { title: "Hilfe", tabs: { about: "Über", overview: "Übersicht", carts: "Kartuschen", cbar: "Steuerleiste", settings: "Einstellungsdialog", highscores: "Highscores" } }
+  },
+  "es": {
+    common: { ok: "OK", cancel: "Cancelar", defaults: "Predeterminado", defaultsTitle: "Restablecer a predeterminado", close: "Cerrar", settings: "Configuración", help: "Ayuda", loading: "Cargando...", loadedCartList: "Lista de cartuchos cargada exitosamente。" },
+    cbar: { pause: "Pausa", resume: "Reanudar", soundOff: "Sonido apagado", soundOn: "Sonido encendido", restart: "Reiniciar", selectText: "SELECT", selectTooltip: "Seleccionar", resetText: "RESET", resetTooltip: "Restablecer", leftDiff: "Interruptor de dificultad izquierda", rightDiff: "Interruptor de dificultad derecha", leaderboard: "Tabla de líderes", help: "Ayuda / Info", settings: "Configuración", fullscreen: "Pantalla completa", exitFullscreen: "Salir de pantalla completa" },
+    site: {
+      desc_settings: "Haga clic en <IMG/> <SPAN/> para cambiar asignaciones de teclado e idiomas。",
+      desc_help: "Haga clic en <IMG/> <SPAN/> para instrucciones detalladas de uso。",
+      desc_load: "Cargue un cartucho usando el menú desplegable o los botones a continuación (también puede arrastrar y soltar un archivo local o enlace remoto en el emulador)。",
+      cart_select: "Seleccionar cartucho Atari 7800...",
+      cart_local: "Seleccionar archivo local",
+      cart_remote: "Seleccionar archivo remoto",
+      cart_prompt: "Ingrese la URL de un archivo de cartucho remoto o lista de cartuchos"
+    },
+    settings: {
+      title: "Configuración",
+      tab: { display: "Pantalla", keyboard: "Teclado", gamepads: "Gamepads", highscores: "Puntuaciones altas", advanced: "Avanzado", language: "Idioma" },
+      display: { title: "Configuración de pantalla", desc: "Las siguientes configuraciones controlan la pantalla。", screenSize: "Tamaño de pantalla:", screenSizes: { "2x": "2", "2.25x": "2.25", "2.5x": "2.5", "2.75x": "2.75", "3x": "3", "3.25x": "3.25", "3.5x": "3.5", "3.75x": "3.75", "4x": "4" }, aspectRatio: "Relación de aspecto:", ar_pp: "Pixel perfecto (1:1 PAR)", ar_7800: "Atari 7800 (6:7 PAR)", ar_16x9: "Pantalla ancha (16:9)", ar_ultra: "Pantalla ultra ancha (2.37:1)", fullscreen: "Pantalla completa:", fs_fill: "Llenar pantalla", fs_integer: "Escalado entero (altura)", palette: "Paleta:", filter: "Aplicar filtro:" },
+      gamepads: { title: "Compatibilidad de gamepads", desc1: "Esta página proporciona la capacidad de <b class=\"callout\">probar compatibilidad</b> con gamepads conectados。", gamepad: "Gamepad:", mapping: "Asignación:", consoleButtons: "Botones de consola" },
+      keyboard: { title: "Asignaciones de teclado", tip1: "Haga clic en el <b class=\"callout\">cuadro rojo</b> cerca de un control para seleccionarlo para asignación。", tip2: "Una vez seleccionado, presione la <b class=\"callout\">tecla</b> que desea asignar al control。", controller1: "Controlador 1", controller2: "Controlador 2" },
+      highscores: { title: "Configuración de puntuaciones altas", desc: "Las siguientes configuraciones controlan la persistencia de puntuaciones altas。", pending: "Los cambios no surtirán efecto hasta que se cargue el siguiente juego。", saveScores: "Guardar puntuaciones:", saveLocation: "Ubicación de guardado:", local: "Local (solo este dispositivo)", global: "Global (tabla de líderes mundial)", localFallback: "Fallback local:", localFallbackLabel: "Fallback local" },
+      advanced: { title: "Avanzado", desc: "Las siguientes configuraciones permiten configurar funciones avanzadas。", xm: "Módulo de expansión (XM):", xm_auto: "(Automático)", xm_enabled: "Habilitado", xm_disabled: "Deshabilitado", frameSkip: "Saltar frames:", none: "(Ninguno)", low: "Bajo", medium: "Medio (50%)", high: "Alto", vsync: "Sincronización vertical:", vsyncLabel: "Sincronización vertical" },
+      language: { title: "Idioma", label: "Idioma:", en: "English", zhTW: "繁體中文", zhCN: "简体中文", ja: "日本語", ko: "한국어", de: "Deutsch", es: "Español", fr: "Français", it: "Italiano", pt: "Português", ru: "Русский", noteReload: "El cambio de idioma recargará la página。" },
+      misc: {
+        noneConnect: "Ninguno (conectar y presionar botón)",
+        unknown: "(Desconocido)",
+        pause: "PAUSA",
+        select: "SELECT",
+        reset: "RESET",
+        palDefault: "Predeterminado ProSystem",
+        palDark: "Oscuro",
+        palCoolDark: "Frío (Oscuro)",
+        palWarmDark: "Cálido (Oscuro)",
+        palHotDark: "Caliente (Oscuro)",
+        palLight: "Claro",
+        palCoolLight: "Frío (Claro)",
+        palWarmLight: "Cálido (Claro)",
+        palHotLight: "Caliente (Claro)",
+        toggleFilter: "Alternar filtro",
+        gamepadTest: "Conecte gamepads y pruebe si están asignados correctamente (presionando botones, D-pad, etc)。"
+      }
+    },
+    help: { title: "Ayuda", tabs: { about: "Acerca de", overview: "Resumen", carts: "Cartuchos", cbar: "Barra de controles", settings: "Diálogo de configuración", highscores: "Puntuaciones altas" } }
+  },
+  "fr": {
+    common: { ok: "OK", cancel: "Annuler", defaults: "Par défaut", defaultsTitle: "Réinitialiser aux paramètres par défaut", close: "Fermer", settings: "Paramètres", help: "Aide", loading: "Chargement...", loadedCartList: "Liste de cartouches chargée avec succès。" },
+    cbar: { pause: "Pause", resume: "Reprendre", soundOff: "Son désactivé", soundOn: "Son activé", restart: "Redémarrer", selectText: "SELECT", selectTooltip: "Sélectionner", resetText: "RESET", resetTooltip: "Réinitialiser", leftDiff: "Interrupteur de difficulté gauche", rightDiff: "Interrupteur de difficulté droite", leaderboard: "Classement", help: "Aide / Info", settings: "Paramètres", fullscreen: "Plein écran", exitFullscreen: "Quitter le plein écran" },
+    site: {
+      desc_settings: "Cliquez sur <IMG/> <SPAN/> pour changer les mappages clavier et langues。",
+      desc_help: "Cliquez sur <IMG/> <SPAN/> pour des instructions d'utilisation détaillées。",
+      desc_load: "Chargez une cartouche en utilisant le menu déroulant ou les boutons ci-dessous (vous pouvez aussi glisser-déposer un fichier local ou un lien distant sur l'émulateur)。",
+      cart_select: "Sélectionner cartouche Atari 7800...",
+      cart_local: "Sélectionner fichier local",
+      cart_remote: "Sélectionner fichier distant",
+      cart_prompt: "Entrez l'URL d'un fichier de cartouche distant ou d'une liste de cartouches"
+    },
+    settings: {
+      title: "Paramètres",
+      tab: { display: "Affichage", keyboard: "Clavier", gamepads: "Gamepads", highscores: "Scores élevés", advanced: "Avancé", language: "Langue" },
+      display: { title: "Paramètres d'affichage", desc: "Les paramètres suivants contrôlent l'affichage de l'écran。", screenSize: "Taille d'écran:", screenSizes: { "2x": "2", "2.25x": "2.25", "2.5x": "2.5", "2.75x": "2.75", "3x": "3", "3.25x": "3.25", "3.5x": "3.5", "3.75x": "3.75", "4x": "4" }, aspectRatio: "Rapport d'aspect:", ar_pp: "Pixel parfait (1:1 PAR)", ar_7800: "Atari 7800 (6:7 PAR)", ar_16x9: "Écran large (16:9)", ar_ultra: "Écran ultra large (2.37:1)", fullscreen: "Plein écran:", fs_fill: "Remplir l'écran", fs_integer: "Mise à l'échelle entière (hauteur)", palette: "Palette:", filter: "Appliquer filtre:" },
+      gamepads: { title: "Compatibilité gamepads", desc1: "Cette page fournit la possibilité de <b class=\"callout\">tester la compatibilité</b> avec les gamepads connectés。", gamepad: "Gamepad:", mapping: "Mappage:", consoleButtons: "Boutons de console" },
+      keyboard: { title: "Mappages clavier", tip1: "Cliquez sur la <b class=\"callout\">case rouge</b> près d'un contrôle pour le sélectionner pour le mappage。", tip2: "Une fois sélectionné, appuyez sur la <b class=\"callout\">touche</b> que vous souhaitez mapper au contrôle。", controller1: "Contrôleur 1", controller2: "Contrôleur 2" },
+      highscores: { title: "Paramètres de scores élevés", desc: "Les paramètres suivants contrôlent la persistance des scores élevés。", pending: "Les changements ne prendront effet qu'après le chargement du prochain jeu。", saveScores: "Sauvegarder scores:", saveLocation: "Emplacement de sauvegarde:", local: "Local (ce périphérique seulement)", global: "Global (classement mondial)", localFallback: "Fallback local:", localFallbackLabel: "Fallback local" },
+      advanced: { title: "Avancé", desc: "Les paramètres suivants permettent de configurer des fonctionnalités avancées。", xm: "Module d'extension (XM):", xm_auto: "(Automatique)", xm_enabled: "Activé", xm_disabled: "Désactivé", frameSkip: "Sauter des images:", none: "(Aucun)", low: "Bas", medium: "Moyen (50%)", high: "Élevé", vsync: "Synchronisation verticale:", vsyncLabel: "Synchronisation verticale" },
+      language: { title: "Langue", label: "Langue:", en: "English", zhTW: "繁體中文", zhCN: "简体中文", ja: "日本語", ko: "한국어", de: "Deutsch", es: "Español", fr: "Français", it: "Italiano", pt: "Português", ru: "Русский", noteReload: "Le changement de langue rechargera la page。" },
+      misc: {
+        noneConnect: "Aucun (connecter et appuyer sur un bouton)",
+        unknown: "(Inconnu)",
+        pause: "PAUSE",
+        select: "SELECT",
+        reset: "RESET",
+        palDefault: "Par défaut ProSystem",
+        palDark: "Sombre",
+        palCoolDark: "Froid (Sombre)",
+        palWarmDark: "Chaud (Sombre)",
+        palHotDark: "Chaud (Sombre)",
+        palLight: "Clair",
+        palCoolLight: "Froid (Clair)",
+        palWarmLight: "Chaud (Clair)",
+        palHotLight: "Chaud (Clair)",
+        toggleFilter: "Basculer filtre",
+        gamepadTest: "Connectez des gamepads et testez s'ils sont mappés correctement (en appuyant sur des boutons, D-pad, etc)。"
+      }
+    },
+    help: { title: "Aide", tabs: { about: "À propos", overview: "Aperçu", carts: "Cartouches", cbar: "Barre de contrôles", settings: "Dialogue paramètres", highscores: "Scores élevés" } }
+  },
+  "it": {
+    common: { ok: "OK", cancel: "Annulla", defaults: "Predefinito", defaultsTitle: "Ripristina predefinito", close: "Chiudi", settings: "Impostazioni", help: "Aiuto", loading: "Caricamento...", loadedCartList: "Elenco cartucce caricato con successo。" },
+    cbar: { pause: "Pausa", resume: "Riprendi", soundOff: "Suono spento", soundOn: "Suono acceso", restart: "Riavvia", selectText: "SELECT", selectTooltip: "Seleziona", resetText: "RESET", resetTooltip: "Ripristina", leftDiff: "Interruttore difficoltà sinistra", rightDiff: "Interruttore difficoltà destra", leaderboard: "Classifica", help: "Aiuto / Info", settings: "Impostazioni", fullscreen: "Schermo intero", exitFullscreen: "Esci da schermo intero" },
+    site: {
+      desc_settings: "Fare clic su <IMG/> <SPAN/> per cambiare mappature tastiera e lingue。",
+      desc_help: "Fare clic su <IMG/> <SPAN/> per istruzioni d'uso dettagliate。",
+      desc_load: "Carica una cartuccia usando il menu a discesa o i pulsanti qui sotto (puoi anche trascinare e rilasciare un file locale o un link remoto sull'emulatore)。",
+      cart_select: "Seleziona cartuccia Atari 7800...",
+      cart_local: "Seleziona file locale",
+      cart_remote: "Seleziona file remoto",
+      cart_prompt: "Inserisci l'URL di un file cartuccia remoto o elenco cartucce"
+    },
+    settings: {
+      title: "Impostazioni",
+      tab: { display: "Schermo", keyboard: "Tastiera", gamepads: "Gamepads", highscores: "Punteggi alti", advanced: "Avanzato", language: "Lingua" },
+      display: { title: "Impostazioni schermo", desc: "Le seguenti impostazioni controllano lo schermo。", screenSize: "Dimensione schermo:", screenSizes: { "2x": "2", "2.25x": "2.25", "2.5x": "2.5", "2.75x": "2.75", "3x": "3", "3.25x": "3.25", "3.5x": "3.5", "3.75x": "3.75", "4x": "4" }, aspectRatio: "Rapporto aspetto:", ar_pp: "Pixel perfetto (1:1 PAR)", ar_7800: "Atari 7800 (6:7 PAR)", ar_16x9: "Schermo largo (16:9)", ar_ultra: "Schermo ultra largo (2.37:1)", fullscreen: "Schermo intero:", fs_fill: "Riempi schermo", fs_integer: "Scalatura intera (altezza)", palette: "Tavolozza:", filter: "Applica filtro:" },
+      gamepads: { title: "Compatibilità gamepads", desc1: "Questa pagina fornisce la capacità di <b class=\"callout\">testare compatibilità</b> con gamepads connessi。", gamepad: "Gamepad:", mapping: "Mappatura:", consoleButtons: "Pulsanti console" },
+      keyboard: { title: "Mappature tastiera", tip1: "Fare clic sulla <b class=\"callout\">casella rossa</b> vicino a un controllo per selezionarlo per la mappatura。", tip2: "Una volta selezionato, premere il <b class=\"callout\">tasto</b> che si desidera mappare al controllo。", controller1: "Controller 1", controller2: "Controller 2" },
+      highscores: { title: "Impostazioni punteggi alti", desc: "Le seguenti impostazioni controllano la persistenza dei punteggi alti。", pending: "Le modifiche avranno effetto solo dopo il caricamento del prossimo gioco。", saveScores: "Salva punteggi:", saveLocation: "Posizione salvataggio:", local: "Locale (solo questo dispositivo)", global: "Globale (classifica mondiale)", localFallback: "Fallback locale:", localFallbackLabel: "Fallback locale" },
+      advanced: { title: "Avanzato", desc: "Le seguenti impostazioni permettono di configurare funzionalità avanzate。", xm: "Modulo espansione (XM):", xm_auto: "(Automatico)", xm_enabled: "Abilitato", xm_disabled: "Disabilitato", frameSkip: "Salta frame:", none: "(Nessuno)", low: "Basso", medium: "Medio (50%)", high: "Alto", vsync: "Sincronizzazione verticale:", vsyncLabel: "Sincronizzazione verticale" },
+      language: { title: "Lingua", label: "Lingua:", en: "English", zhTW: "繁體中文", zhCN: "简体中文", ja: "日本語", ko: "한국어", de: "Deutsch", es: "Español", fr: "Français", it: "Italiano", pt: "Português", ru: "Русский", noteReload: "Il cambio lingua ricaricherà la pagina。" },
+      misc: {
+        noneConnect: "Nessuno (connetti e premi pulsante)",
+        unknown: "(Sconosciuto)",
+        pause: "PAUSA",
+        select: "SELECT",
+        reset: "RESET",
+        palDefault: "Predefinito ProSystem",
+        palDark: "Scuro",
+        palCoolDark: "Freddo (Scuro)",
+        palWarmDark: "Caldo (Scuro)",
+        palHotDark: "Caldo (Scuro)",
+        palLight: "Chiaro",
+        palCoolLight: "Freddo (Chiaro)",
+        palWarmLight: "Caldo (Chiaro)",
+        palHotLight: "Caldo (Chiaro)",
+        toggleFilter: "Alterna filtro",
+        gamepadTest: "Connetti gamepads e testa se sono mappati correttamente (premendo pulsanti, D-pad, ecc)。"
+      }
+    },
+    help: { title: "Aiuto", tabs: { about: "Informazioni", overview: "Panoramica", carts: "Cartucce", cbar: "Barra controlli", settings: "Dialogo impostazioni", highscores: "Punteggi alti" } }
+  },
+  "pt": {
+    common: { ok: "OK", cancel: "Cancelar", defaults: "Padrão", defaultsTitle: "Redefinir para padrão", close: "Fechar", settings: "Configurações", help: "Ajuda", loading: "Carregando...", loadedCartList: "Lista de cartuchos carregada com sucesso。" },
+    cbar: { pause: "Pausa", resume: "Retomar", soundOff: "Som desligado", soundOn: "Som ligado", restart: "Reiniciar", selectText: "SELECT", selectTooltip: "Selecionar", resetText: "RESET", resetTooltip: "Redefinir", leftDiff: "Interruptor de dificuldade esquerda", rightDiff: "Interruptor de dificuldade direita", leaderboard: "Tabela de líderes", help: "Ajuda / Info", settings: "Configurações", fullscreen: "Tela cheia", exitFullscreen: "Sair da tela cheia" },
+    site: {
+      desc_settings: "Clique em <IMG/> <SPAN/> para alterar mapeamentos de teclado e idiomas。",
+      desc_help: "Clique em <IMG/> <SPAN/> para instruções detalhadas de uso。",
+      desc_load: "Carregue um cartucho usando o menu suspenso ou os botões abaixo (você também pode arrastar e soltar um arquivo local ou link remoto no emulador)。",
+      cart_select: "Selecionar cartucho Atari 7800...",
+      cart_local: "Selecionar arquivo local",
+      cart_remote: "Selecionar arquivo remoto",
+      cart_prompt: "Digite a URL de um arquivo de cartucho remoto ou lista de cartuchos"
+    },
+    settings: {
+      title: "Configurações",
+      tab: { display: "Tela", keyboard: "Teclado", gamepads: "Gamepads", highscores: "Pontuações altas", advanced: "Avançado", language: "Idioma" },
+      display: { title: "Configurações de tela", desc: "As seguintes configurações controlam a tela。", screenSize: "Tamanho da tela:", screenSizes: { "2x": "2", "2.25x": "2.25", "2.5x": "2.5", "2.75x": "2.75", "3x": "3", "3.25x": "3.25", "3.5x": "3.5", "3.75x": "3.75", "4x": "4" }, aspectRatio: "Proporção de aspecto:", ar_pp: "Pixel perfeito (1:1 PAR)", ar_7800: "Atari 7800 (6:7 PAR)", ar_16x9: "Tela larga (16:9)", ar_ultra: "Tela ultra larga (2.37:1)", fullscreen: "Tela cheia:", fs_fill: "Preencher tela", fs_integer: "Escalagem inteira (altura)", palette: "Paleta:", filter: "Aplicar filtro:" },
+      gamepads: { title: "Compatibilidade de gamepads", desc1: "Esta página fornece a capacidade de <b class=\"callout\">testar compatibilidade</b> com gamepads conectados。", gamepad: "Gamepad:", mapping: "Mapeamento:", consoleButtons: "Botões do console" },
+      keyboard: { title: "Mapeamentos de teclado", tip1: "Clique na <b class=\"callout\">caixa vermelha</b> perto de um controle para selecioná-lo para mapeamento。", tip2: "Uma vez selecionado, pressione a <b class=\"callout\">tecla</b> que você deseja mapear para o controle。", controller1: "Controlador 1", controller2: "Controlador 2" },
+      highscores: { title: "Configurações de pontuações altas", desc: "As seguintes configurações controlam a persistência de pontuações altas。", pending: "As mudanças só entrarão em vigor após o carregamento do próximo jogo。", saveScores: "Salvar pontuações:", saveLocation: "Local de salvamento:", local: "Local (apenas este dispositivo)", global: "Global (tabela de líderes mundial)", localFallback: "Fallback local:", localFallbackLabel: "Fallback local" },
+      advanced: { title: "Avançado", desc: "As seguintes configurações permitem configurar recursos avançados。", xm: "Módulo de expansão (XM):", xm_auto: "(Automático)", xm_enabled: "Habilitado", xm_disabled: "Desabilitado", frameSkip: "Pular frames:", none: "(Nenhum)", low: "Baixo", medium: "Médio (50%)", high: "Alto", vsync: "Sincronização vertical:", vsyncLabel: "Sincronização vertical" },
+      language: { title: "Idioma", label: "Idioma:", en: "English", zhTW: "繁體中文", zhCN: "简体中文", ja: "日本語", ko: "한국어", de: "Deutsch", es: "Español", fr: "Français", it: "Italiano", pt: "Português", ru: "Русский", noteReload: "A mudança de idioma recarregará a página。" },
+      misc: {
+        noneConnect: "Nenhum (conectar e pressionar botão)",
+        unknown: "(Desconhecido)",
+        pause: "PAUSA",
+        select: "SELECT",
+        reset: "RESET",
+        palDefault: "Padrão ProSystem",
+        palDark: "Escuro",
+        palCoolDark: "Frio (Escuro)",
+        palWarmDark: "Quente (Escuro)",
+        palHotDark: "Quente (Escuro)",
+        palLight: "Claro",
+        palCoolLight: "Frio (Claro)",
+        palWarmLight: "Quente (Claro)",
+        palHotLight: "Quente (Claro)",
+        toggleFilter: "Alternar filtro",
+        gamepadTest: "Conecte gamepads e teste se eles estão mapeados corretamente (pressionando botões, D-pad, etc)。"
+      }
+    },
+    help: { title: "Ajuda", tabs: { about: "Sobre", overview: "Visão geral", carts: "Cartuchos", cbar: "Barra de controles", settings: "Diálogo de configurações", highscores: "Pontuações altas" } }
+  },
+  "ru": {
+    common: { ok: "OK", cancel: "Отмена", defaults: "По умолчанию", defaultsTitle: "Сбросить к умолчанию", close: "Закрыть", settings: "Настройки", help: "Помощь", loading: "Загрузка...", loadedCartList: "Список картриджей успешно загружен。" },
+    cbar: { pause: "Пауза", resume: "Возобновить", soundOff: "Звук выключен", soundOn: "Звук включен", restart: "Перезапустить", selectText: "SELECT", selectTooltip: "Выбрать", resetText: "RESET", resetTooltip: "Сбросить", leftDiff: "Левый переключатель сложности", rightDiff: "Правый переключатель сложности", leaderboard: "Таблица лидеров", help: "Помощь / Инфо", settings: "Настройки", fullscreen: "Полноэкранный", exitFullscreen: "Выйти из полноэкранного" },
+    site: {
+      desc_settings: "Нажмите <IMG/> <SPAN/>, чтобы изменить сопоставления клавиш и языки。",
+      desc_help: "Нажмите <IMG/> <SPAN/>, чтобы получить подробные инструкции по использованию。",
+      desc_load: "Загрузите картридж, используя раскрывающееся меню или кнопки ниже (вы также можете перетащить локальный файл или удаленную ссылку на эмулятор)。",
+      cart_select: "Выбрать картридж Atari 7800...",
+      cart_local: "Выбрать локальный файл",
+      cart_remote: "Выбрать удаленный файл",
+      cart_prompt: "Введите URL удаленного файла картриджа или списка картриджей"
+    },
+    settings: {
+      title: "Настройки",
+      tab: { display: "Экран", keyboard: "Клавиатура", gamepads: "Геймпады", highscores: "Высокие очки", advanced: "Расширенный", language: "Язык" },
+      display: { title: "Настройки экрана", desc: "Следующие настройки контролируют экран。", screenSize: "Размер экрана:", screenSizes: { "2x": "2", "2.25x": "2.25", "2.5x": "2.5", "2.75x": "2.75", "3x": "3", "3.25x": "3.25", "3.5x": "3.5", "3.75x": "3.75", "4x": "4" }, aspectRatio: "Соотношение сторон:", ar_pp: "Идеальный пиксель (1:1 PAR)", ar_7800: "Atari 7800 (6:7 PAR)", ar_16x9: "Широкоэкранный (16:9)", ar_ultra: "Ультраширокоэкранный (2.37:1)", fullscreen: "Полноэкранный:", fs_fill: "Заполнить экран", fs_integer: "Целочисленное масштабирование (высота)", palette: "Палетка:", filter: "Применить фильтр:" },
+      gamepads: { title: "Совместимость геймпадов", desc1: "Эта страница предоставляет возможность <b class=\"callout\">протестировать совместимость</b> с подключенными геймпадами。", gamepad: "Геймпад:", mapping: "Сопоставление:", consoleButtons: "Кнопки консоли" },
+      keyboard: { title: "Сопоставления клавиатуры", tip1: "Нажмите на <b class=\"callout\">красный квадрат</b> рядом с элементом управления, чтобы выбрать его для сопоставления。", tip2: "После выбора нажмите <b class=\"callout\">клавишу</b>, которую вы хотите сопоставить с элементом управления。", controller1: "Контроллер 1", controller2: "Контроллер 2" },
+      highscores: { title: "Настройки высоких очков", desc: "Следующие настройки контролируют сохранение высоких очков。", pending: "Изменения вступят в силу только после загрузки следующей игры。", saveScores: "Сохранить очки:", saveLocation: "Местоположение сохранения:", local: "Локально (только это устройство)", global: "Глобально (мировая таблица лидеров)", localFallback: "Локальный резерв:", localFallbackLabel: "Локальный резерв" },
+      advanced: { title: "Расширенный", desc: "Следующие настройки позволяют настроить расширенные функции。", xm: "Модуль расширения (XM):", xm_auto: "(Автоматически)", xm_enabled: "Включен", xm_disabled: "Отключен", frameSkip: "Пропуск кадров:", none: "(Нет)", low: "Низкий", medium: "Средний (50%)", high: "Высокий", vsync: "Вертикальная синхронизация:", vsyncLabel: "Вертикальная синхронизация" },
+      language: { title: "Язык", label: "Язык:", en: "English", zhTW: "繁體中文", zhCN: "简体中文", ja: "日本語", ko: "한국어", de: "Deutsch", es: "Español", fr: "Français", it: "Italiano", pt: "Português", ru: "Русский", noteReload: "Изменение языка перезагрузит страницу。" },
+      misc: {
+        noneConnect: "Нет (подключить и нажать кнопку)",
+        unknown: "(Неизвестно)",
+        pause: "ПАУЗА",
+        select: "SELECT",
+        reset: "RESET",
+        palDefault: "По умолчанию ProSystem",
+        palDark: "Темный",
+        palCoolDark: "Холодный (Темный)",
+        palWarmDark: "Теплый (Темный)",
+        palHotDark: "Горячий (Темный)",
+        palLight: "Светлый",
+        palCoolLight: "Холодный (Светлый)",
+        palWarmLight: "Теплый (Светлый)",
+        palHotLight: "Горячий (Светлый)",
+        toggleFilter: "Переключить фильтр",
+        gamepadTest: "Подключите геймпады и протестируйте, правильно ли они сопоставлены (нажимая кнопки, D-pad и т.д)。"
+      }
+    },
+    help: { title: "Помощь", tabs: { about: "О программе", overview: "Обзор", carts: "Картриджи", cbar: "Панель управления", settings: "Диалог настроек", highscores: "Высокие очки" } }
   }
 };
 
@@ -253,6 +505,18 @@ function init() {
     current = 'ja';
   } else if (lang === 'ko') {
     current = 'ko';
+  } else if (lang === 'de') {
+    current = 'de';
+  } else if (lang.startsWith('es')) {
+    current = 'es';
+  } else if (lang.startsWith('fr')) {
+    current = 'fr';
+  } else if (lang.startsWith('it')) {
+    current = 'it';
+  } else if (lang.startsWith('pt')) {
+    current = 'pt';
+  } else if (lang.startsWith('ru')) {
+    current = 'ru';
   } else {
     current = 'en'; // Default for everything else
   }

@@ -1,4 +1,4 @@
-**English** | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
+**English** | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Deutsch](README.de.md) | [Español](README.es.md) | [Français](README.fr.md) | [Italiano](README.it.md) | [Português](README.pt.md) | [Русский](README.ru.md)
 
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 [![Actions Status](https://github.com/raz0red/js7800/workflows/Build/badge.svg)](https://github.com/raz0red/js7800/actions)
@@ -25,7 +25,7 @@ https://raz0red.github.io/js7800/
 
 ### 수정 사항
 
-*   **다국어 지원**: UI가 영어，번체 중국어(繁體中文)，간체 중국어(简体中文)，일본어，한국어를 지원하도록 되었습니다.
+*   **다국어 지원**: UI가 영어，번체 중국어(繁體中文)，간체 중국어(简体中文)，일본어，한국어，독일어(Deutsch)，스페인어(Español)，프랑스어(Français)，이탈리아어(Italiano)，포르투갈어(Português)，러시아어(Русский)를 지원하도록 되었습니다.
 *   **자동 언어 감지**: 첫 로드 시 브라우저의 기본 언어와 자동으로 일치하려고 시도합니다. 언어는 설정 메뉴에서 수동으로 변경할 수도 있습니다.
 *   **글로벌 리더보드 다국어 지원**: 글로벌 리더보드 페이지도 동일한 언어를 지원하며 메인 에뮬레이터의 언어 설정과 자동으로 동기화됩니다.
 *   **기본적으로 글로벌 하이스코어**: 기본 하이스코어 저장소가 "글로벌 (전 세계 리더보드)"로 설정되어 Cloudflare Workers 프록시를 통해 원본 리더보드 시스템과 원활하게 동기화됩니다.

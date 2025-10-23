@@ -1,4 +1,4 @@
-**English** | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
+**English** | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Deutsch](README.de.md) | [Español](README.es.md) | [Français](README.fr.md) | [Italiano](README.it.md) | [Português](README.pt.md) | [Русский](README.ru.md)
 
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 [![Actions Status](https://github.com/raz0red/js7800/workflows/Build/badge.svg)](https://github.com/raz0red/js7800/actions)
@@ -25,9 +25,9 @@ This is a fork of the original [raz0red/js7800](https://github.com/raz0red/js780
 
 ### Modifications
 
-*   **Multi-language Support**: The UI now supports English, Traditional Chinese (繁體中文), Simplified Chinese (简体中文), Japanese (日本語), and Korean (한국어).
+*   **Multi-language Support**: The UI now supports English, Traditional Chinese (繁體中文), Simplified Chinese (简体中文), Japanese (日本語), Korean (한국어), German (Deutsch), Spanish (Español), French (Français), Italian (Italiano), Portuguese (Português), and Russian (Русский).
 *   **Automatic Language Detection**: On first load, the application will attempt to match the browser's preferred language. The language can also be changed manually in the Settings menu.
-*   **Global Leaderboard Multi-language Support**: The Global Leaderboard page also supports the same five languages and automatically syncs with the main emulator's language setting.
+*   **Global Leaderboard Multi-language Support**: The Global Leaderboard page also supports the same eleven languages and automatically syncs with the main emulator's language setting.
 *   **Global High Scores by Default**: The default high score storage has been set to "Global (worldwide leaderboard)" to enable seamless synchronization with the original leaderboard system via Cloudflare Workers proxy.
 *   **Translated Documentation**: The README and internal help files have been translated.
 *   **Global Leaderboard Synchronization**: Implemented Cloudflare Workers integration to enable global high score synchronization for forked deployments.

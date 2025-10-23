@@ -110,6 +110,132 @@ const translations = {
     players: "플레이어",
     refresh: "새로고침",
     play: "플레이"
+  },
+  "de": {
+    title: "Globale Bestenliste",
+    description: "Wählen Sie ein Spiel aus dem Dropdown-Menü unten aus, um die aktuellen Highscores anzuzeigen.",
+    topPlayers: "Top-Spieler",
+    topPlayersAll: "Top-Spieler<br>(Alle Spiele)",
+    topPlayersMost: "Top-Spieler<br>(Wettbewerbsintensivste Modi)",
+    latestScores: "Neueste Highscores",
+    mostCompetitive: "Wettbewerbsintensivste Modi",
+    game: "Spiel:",
+    settings: "Einstellungen:",
+    allSettings: "(Alle)",
+    player: "Spieler",
+    score: "Punkte",
+    date: "Datum",
+    noScores: "Für dieses Spiel gibt es derzeit keine Scores.",
+    points: "Punkte",
+    scores: "Scores",
+    players: "Spieler",
+    refresh: "Aktualisieren",
+    play: "Spielen"
+  },
+  "es": {
+    title: "Tabla de Líderes Global",
+    description: "Seleccione un juego en el menú desplegable a continuación para ver las puntuaciones altas actuales.",
+    topPlayers: "Mejores Jugadores",
+    topPlayersAll: "Mejores Jugadores<br>(Todos los juegos)",
+    topPlayersMost: "Mejores Jugadores<br>(Modos más competitivos)",
+    latestScores: "Puntuaciones Altas Recientes",
+    mostCompetitive: "Modos Más Competitivos",
+    game: "Juego:",
+    settings: "Configuración:",
+    allSettings: "(Todo)",
+    player: "Jugador",
+    score: "Puntuación",
+    date: "Fecha",
+    noScores: "Actualmente no existen puntuaciones para este juego.",
+    points: "puntos",
+    scores: "puntuaciones",
+    players: "jugadores",
+    refresh: "Actualizar",
+    play: "Jugar"
+  },
+  "fr": {
+    title: "Classement Global",
+    description: "Sélectionnez un jeu dans le menu déroulant ci-dessous pour voir les scores actuels.",
+    topPlayers: "Meilleurs Joueurs",
+    topPlayersAll: "Meilleurs Joueurs<br>(Tous les jeux)",
+    topPlayersMost: "Meilleurs Joueurs<br>(Modes les plus compétitifs)",
+    latestScores: "Scores Élevés Récents",
+    mostCompetitive: "Modes Les Plus Compétitifs",
+    game: "Jeu:",
+    settings: "Paramètres:",
+    allSettings: "(Tout)",
+    player: "Joueur",
+    score: "Score",
+    date: "Date",
+    noScores: "Aucun score n'existe actuellement pour ce jeu.",
+    points: "points",
+    scores: "scores",
+    players: "joueurs",
+    refresh: "Actualiser",
+    play: "Jouer"
+  },
+  "it": {
+    title: "Classifica Globale",
+    description: "Seleziona un gioco dal menu a discesa qui sotto per vedere i punteggi attuali.",
+    topPlayers: "Migliori Giocatori",
+    topPlayersAll: "Migliori Giocatori<br>(Tutti i giochi)",
+    topPlayersMost: "Migliori Giocatori<br>(Modalità più competitive)",
+    latestScores: "Punteggi Alti Recenti",
+    mostCompetitive: "Modalità Più Competitive",
+    game: "Gioco:",
+    settings: "Impostazioni:",
+    allSettings: "(Tutto)",
+    player: "Giocatore",
+    score: "Punteggio",
+    date: "Data",
+    noScores: "Attualmente non esistono punteggi per questo gioco.",
+    points: "punti",
+    scores: "punteggi",
+    players: "giocatori",
+    refresh: "Aggiorna",
+    play: "Gioca"
+  },
+  "pt": {
+    title: "Tabela de Líderes Global",
+    description: "Selecione um jogo no menu suspenso abaixo para ver as pontuações altas atuais.",
+    topPlayers: "Melhores Jogadores",
+    topPlayersAll: "Melhores Jogadores<br>(Todos os jogos)",
+    topPlayersMost: "Melhores Jogadores<br>(Modos mais competitivos)",
+    latestScores: "Pontuações Altas Recentes",
+    mostCompetitive: "Modos Mais Competitivos",
+    game: "Jogo:",
+    settings: "Configurações:",
+    allSettings: "(Tudo)",
+    player: "Jogador",
+    score: "Pontuação",
+    date: "Data",
+    noScores: "Atualmente não existem pontuações para este jogo.",
+    points: "pontos",
+    scores: "pontuações",
+    players: "jogadores",
+    refresh: "Atualizar",
+    play: "Jogar"
+  },
+  "ru": {
+    title: "Глобальная Таблица Лидеров",
+    description: "Выберите игру в выпадающем меню ниже, чтобы просмотреть текущие высокие баллы.",
+    topPlayers: "Лучшие Игроки",
+    topPlayersAll: "Лучшие Игроки<br>(Все игры)",
+    topPlayersMost: "Лучшие Игроки<br>(Наиболее конкурентные режимы)",
+    latestScores: "Последние Высокие Баллы",
+    mostCompetitive: "Наиболее Конкурентные Режимы",
+    game: "Игра:",
+    settings: "Настройки:",
+    allSettings: "(Все)",
+    player: "Игрок",
+    score: "Баллы",
+    date: "Дата",
+    noScores: "В настоящее время не существует баллов для этой игры.",
+    points: "баллы",
+    scores: "баллы",
+    players: "игроки",
+    refresh: "Обновить",
+    play: "Играть"
   }
 };
 
@@ -142,6 +268,18 @@ function init() {
     currentLocale = 'ja';
   } else if (lang === 'ko') {
     currentLocale = 'ko';
+  } else if (lang === 'de') {
+    currentLocale = 'de';
+  } else if (lang.startsWith('es')) {
+    currentLocale = 'es';
+  } else if (lang.startsWith('fr')) {
+    currentLocale = 'fr';
+  } else if (lang.startsWith('it')) {
+    currentLocale = 'it';
+  } else if (lang.startsWith('pt')) {
+    currentLocale = 'pt';
+  } else if (lang.startsWith('ru')) {
+    currentLocale = 'ru';
   } else {
     currentLocale = 'en';
   }

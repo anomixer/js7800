@@ -1,0 +1,209 @@
+<div class="docs">
+    <div class="tabcontent__title">Загрузка Картриджей</div>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="this.blur();">Перейти к разделу <span
+                class="down-arrow">&#x25BC;</span></button>
+        <div class="dropdown-content">
+            <div onclick="window.location.href='#cartridge-menu'">Меню Картриджей</div>
+            <div onclick="window.location.href='#sel-local-file'">Выбрать Локальные Файлы</div>
+            <div onclick="window.location.href='#sel-remote-file'">Выбрать Удаленные Файлы</div>
+            <div onclick="window.location.href='#drag-and-drop-files'">Перетащить Файлы</div>
+            <div onclick="window.location.href='#drag-and-drop-links'">Перетащить Ссылки</div>
+            <div onclick="window.location.href='#request-params'">Параметры Запроса</div>
+        </div>
+    </div>
+    <p>
+        Различные способы загрузки картриджей в JS7800 подробно описаны в остальной части этой вкладки.
+        JS7800 должен быть совместим с подавляющим большинством ROM картриджей, доступных для Atari 7800 (как
+        оригинальные розничные, так и homebrew релизы).
+    </p>
+    <p>
+        ROM картриджей Atari 7800 обычно имеют расширение файла <span class="fixed">.bin</span> или
+        <span class="fixed">.a78</span>. Расширение <span class="fixed">.a78</span> предпочтительно, поскольку
+        содержит заголовочную информацию, которая предоставляет эмулятору информацию о том, как конкретный картридж
+        должен интерпретироваться. Также стоит отметить, что JS7800 поддерживает ROM картриджей, содержащиеся в
+        файлах <span class="fixed">.zip</span>.
+    </p>
+    <a name="cartridge-menu"></a>
+    <div class="docs-section-title">Выпадающее Меню Картриджей</div>
+    <p>
+        Выпадающее меню "Картриджи" (выделено красным ниже) содержит список картриджей Atari 7800 для выбора.
+    </p>
+    <div class="docs-center">
+        <div class="docs-relative-inline-block">
+            <div class="docs-loading-controls-focus docs-loading-controls-select-focus"></div>
+            <div class="docs-loading-controls-select-text">Выбрать Картридж Atari 7800...</div>
+            <img class="docs-loading-controls-image" src="help/images/cartloading.png"></img>
+        </div>
+    </div>
+    <p>
+        По умолчанию список картриджей заполняется подборкой отличных homebrew тайтлов. Чтобы загрузить картридж,
+        просто выберите соответствующий элемент в меню.
+    </p>
+    <p>
+        Пользовательские "списки картриджей" также поддерживаются. Для дополнительной информации о создании и загрузке
+        пользовательских списков картриджей, обратитесь к
+        <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">странице GitHub Списки
+            Картриджей</a>.
+    </p>
+    <a name="sel-local-file"></a>
+    <div class="docs-section-title">Выбрать Локальные Файлы</div>
+    <p>
+        Кнопка "Выбрать Локальный Файл" (выделена красным ниже), используется для выбора и загрузки ROM файла картриджа
+        Atari 7800, который расположен на локальном устройстве.
+    </p>
+    <div class="docs-center">
+        <div class="docs-relative-inline-block">
+            <div class="docs-loading-controls-focus docs-loading-controls-file-focus"></div>
+            <div class="docs-loading-controls-select-text">Выбрать Картридж Atari 7800...</div>
+            <img class="docs-loading-controls-image" src="help/images/cartloading.png"></img>
+        </div>
+    </div>
+    <p>
+        После нажатия кнопки будет показан селектор файлов, который позволяет
+        выбрать локальный файл. По умолчанию селектор файлов ограничивает отображаемые файлы
+        расширениями <span class="fixed">.a78</span>, <span class="fixed">.bin</span>, <span class="fixed">.zip</span>,
+        и <span class="fixed">.json</span>.
+    </p>
+    <p>
+        Локальный селектор файлов также может быть использован для выбора файла "списка картриджей" (расширение файла
+        <span class="fixed">.json</span>).
+        Выбор файла "списка картриджей" обновит содержимое
+        <a href="#cartridge-menu">Выпадающего Меню Картриджей</a>. Для дополнительной информации о списках картриджей,
+        обратитесь к
+        <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">странице GitHub Списки
+            Картриджей</a>.
+    </p>
+    <a name="sel-remote-file"></a>
+    <div class="docs-section-title">Выбрать Удаленные Файлы</div>
+    <p>
+        Кнопка "Выбрать Удаленные Файлы" (выделена красным ниже), используется для указания URL удаленной
+        ROM картриджа Atari 7800.
+    </p>
+    <div class="docs-center">
+        <div class="docs-relative-inline-block">
+            <div class="docs-loading-controls-focus docs-loading-controls-remote-focus"></div>
+            <div class="docs-loading-controls-select-text">Выбрать Картридж Atari 7800...</div>
+            <img class="docs-loading-controls-image" src="help/images/cartloading.png"></img>
+        </div>
+    </div>
+    <p>
+        После нажатия кнопки будет показано диалоговое окно ввода, которое позволяет указать URL
+        к удаленному ROM файлу. Например, ввод следующего URL вызовет загрузку homebrew игры "bonQ":
+    <div class="fixed-block">http://raz0red.github.io/js7800/roms/bonq.a78</div>
+    </p>
+    <p>
+        Удаленный селектор файлов также может быть использован для выбора удаленного файла "списка картриджей"
+        (расширение файла <span class="fixed">.json</span>). Выбор файла "списка картриджей" обновит
+        содержимое <a href="#cartridge-menu">Выпадающего Меню Картриджей</a>. Для дополнительной информации
+        о списках картриджей, обратитесь к
+        <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">странице GitHub Списки
+            Картриджей</a>.
+    </p>
+    <a name="drag-and-drop-files"></a>
+    <div class="docs-section-title">Перетащить Файлы</div>
+    <p>
+        Перетаскивание локальных ROM картриджей Atari 7800 может быть использовано как альтернатива выбору
+        файлов через локальный браузер файлов (см. <a href="#sel-local-file">Выбрать Локальные Файлы</a>).
+    </p>
+    <div class="docs-center">
+        <img class="docs-centered-image" src="help/images/dragfile.gif"></img>
+    </div>
+    <p>
+        Как показано выше, локальные ROM файлы могут быть загружены просто перетаскиванием их на эмулятор
+        из Проводника в Windows или Finder на Mac.
+    </p>
+    <p>
+        В дополнение к ROM файлам картриджей, файлы "списка картриджей" (расширение файла <span
+            class="fixed">.json</span>) также могут быть
+        перетащены на эмулятор. Перетаскивание файла "списка картриджей" вызовет обновление содержимого
+        <a href="#cartridge-menu">Выпадающего Меню Картриджей</a>. Для дополнительной информации
+        о списках картриджей, обратитесь к <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists"
+            target="_blank">странице GitHub Списки Картриджей</a>.
+    </p>
+    <a name="drag-and-drop-links"></a>
+    <div class="docs-section-title">Перетащить Ссылки</div>
+    <p>
+        Перетаскивание ссылок, указывающих на удаленные ROM картриджей Atari 7800, может быть использовано как
+        альтернатива указанию
+        URL через удаленный селектор файлов (см. <a href="#sel-remote-file">Выбрать Удаленные Файлы</a>).
+    </p>
+    <div class="docs-center">
+        <img class="docs-centered-image" src="help/images/draglink.gif"></img>
+    </div>
+    <p>
+        Как показано выше, ROM могут быть загружены просто перетаскиванием ссылок удаленных файлов на эмулятор.
+        В конкретном примере выше, ссылка перетаскивается из
+        <a href="https://atariage.com/forums/forum/52-atari-7800-programming/" target="_blank">Форума Программирования
+            Atari 7800 AtariAge</a>,
+        отличного источника как для разрабатываемых, так и завершенных homebrew тайтлов. Также стоит отметить, что
+        некоторые ссылки
+        на форуме AtariAge требуют выполнения перетаскивания через ссылку "счетчик загрузок"
+        вместо ссылки названия игры (как показано выше).
+    </p>
+    <p>
+        В дополнение к ссылкам файлов ROM картриджей, ссылки файлов "списка картриджей" также могут быть
+        перетащены на эмулятор. Перетаскивание ссылки файла "списка картриджей" вызовет обновление содержимого
+        <a href="#cartridge-menu">Выпадающего Меню Картриджей</a>. Для дополнительной информации
+        о списках картриджей, обратитесь к
+        <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">странице GitHub Списки
+            Картриджей</a>.
+    </p>
+    <a name="request-params"></a>
+    <div class="docs-section-title">Параметры Запроса</div>
+    <p>
+        JS7800 поддерживает следующий набор параметров запроса. Параметры запроса могут быть добавлены к URL JS7800
+        для контроля различных опций эмулятора. Например, параметр запроса <span class="fixed">cart</span>
+        может быть использован для принудительной загрузки конкретного картриджа когда JS7800 изначально отображается.
+    </p>
+    <div class="dialog-grid docs-grid">
+        <div class="dialog-cell-label">
+            cart
+        </div>
+        <div class="dialog-cell-value">
+            Параметр запроса <span class="fixed">cart</span> может быть использован для загрузки конкретного картриджа
+            когда
+            страница эмулятора изначально загружается. Следующий URL вызовет загрузку homebrew игры "bonQ":
+            <p>
+            <div class="fixed-block">
+                https://raz0red.github.io/js7800/?cart=http://raz0red.github.io/js7800/roms/bonq.a78
+            </div>
+            </p>
+        </div>
+        <div class="dialog-cell-label">
+            cartlist
+        </div>
+        <div class="dialog-cell-value">
+            Параметр запроса <span class="fixed">cartlist</span> может быть использован для загрузки списка картриджей в
+            <a href="#cartridge-menu">Выпадающее Меню Картриджей</a> когда JS7800 изначально загружается.
+            Следующий URL вызовет заполнение списка homebrew демо в выпадающем меню картриджей:
+            <p>
+            <div class="fixed-block">
+                https://raz0red.github.io/js7800/?cartlist=http://raz0red.github.io/js7800/roms/romlist-homebrew-demos.json
+            </div>
+            </p>
+            Для дополнительной информации о списках картриджей, обратитесь к
+            <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">странице GitHub Списки
+                Картриджей</a>.
+        </div>
+    </div>
+    <p>
+        Множественные параметры запроса могут быть объединены для установки более одной опции когда JS7800 загружается.
+        Следующий URL загрузит конкретную игру "bonQ" и список картриджей содержащий homebrew демо:
+    </p>
+    <p>
+    <div class="fixed-block">
+        https://raz0red.github.io/js7800/?cart=http://raz0red.github.io/js7800/roms/bonq.a78&cartlist=http://raz0red.github.io/js7800/roms/romlist-homebrew-demos.json
+    </div>
+    </p>
+    <p>
+        Поскольку добавление параметров запроса обычно приводит к длинным URL, использование сервиса сокращения URL
+        GitHub,
+        <a href="https://git.io/">git.io</a>, рекомендуется. Следующий URL является сокращенной версией примера выше,
+        содержащей оба
+        параметра запроса <span class="fixed">cart</span> и <span class="fixed">cartlist</span>:
+    </p>
+    <p>
+    <div class="fixed-block">https://git.io/JfcmO</div>
+    </p>
+</div>

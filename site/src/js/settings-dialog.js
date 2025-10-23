@@ -797,7 +797,13 @@ addProps(languageTab, {
       [I18n.t('settings.language.zhTW')]: 'zh-TW',
       [I18n.t('settings.language.zhCN')]: 'zh-CN',
       [I18n.t('settings.language.ja')]: 'ja',
-      [I18n.t('settings.language.ko')]: 'ko'
+      [I18n.t('settings.language.ko')]: 'ko',
+      [I18n.t('settings.language.de')]: 'de',
+      [I18n.t('settings.language.es')]: 'es',
+      [I18n.t('settings.language.fr')]: 'fr',
+      [I18n.t('settings.language.it')]: 'it',
+      [I18n.t('settings.language.pt')]: 'pt',
+      [I18n.t('settings.language.ru')]: 'ru'
     });
     grid.addCell(new ContentCell(this.langSelect));
     rootEl.appendChild(grid.createElement());

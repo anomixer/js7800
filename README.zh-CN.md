@@ -1,4 +1,4 @@
-[English](README.md) | [繁體中文](README.zh-TW.md) | **简体中文**
+[English](README.md) | [繁體中文](README.zh-TW.md) | **简体中文** | [日本語](README.ja.md) | [한국어](README.ko.md) | [Deutsch](README.de.md) | [Español](README.es.md) | [Français](README.fr.md) | [Italiano](README.it.md) | [Português](README.pt.md) | [Русский](README.ru.md)
 
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 [![Actions Status](https://github.com/raz0red/js7800/workflows/Build/badge.svg)](https://github.com/raz0red/js7800/actions)
@@ -25,7 +25,7 @@ https://raz0red.github.io/js7800/
 
 ### 修改内容
 
-*   **多语言支持**: UI 现已支持英文、繁体中文、简体中文、日文和韩文。
+*   **多语言支持**: UI 现已支持英文、繁体中文、简体中文、日文、韩文、德文（Deutsch）、西班牙文（Español）、法文（Français）、义大利文（Italiano）、葡萄牙文（Português）和俄文（Русский）。
 *   **自动语言检测**: 首次加载时，应用程序将尝试匹配浏览器的偏好语言。语言也可以在"设定"菜单中手动变更。
 *   **全球排行榜多语言支持**: 全球排行榜页面也支持相同的五种语言，并自动与主模拟器的语言设定同步。
 *   **默认使用全球高分**: 高分存储的默认值已设为"全球（世界排行榜）"，以通过 Cloudflare Workers 代理与原始排行榜系统无缝同步。

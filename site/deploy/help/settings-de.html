@@ -1,0 +1,95 @@
+<div class="docs">
+    <div class="tabcontent__title">Einstellungsdialog</div>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="this.blur();">Zu Abschnitt springen <span
+                class="down-arrow">&#x25BC;</span></button>
+        <div class="dropdown-content">
+            <div onclick="window.location.href='#display-settings'">Anzeige</div>
+            <div onclick="window.location.href='#keyboard-settings'">Tastatur</div>
+            <div onclick="window.location.href='#gamepads-settings'">Gamepads</div>
+            <div onclick="window.location.href='#hs-settings'">Highscores</div>
+            <div onclick="window.location.href='#advanced-settings'">Erweitert</div>
+        </div>
+    </div>
+    <p>
+        Der "Einstellungen"-Dialog ermöglicht es, verschiedene Aspekte des JS7800-Emulators anzuzeigen und zu ändern.
+        Änderungen, die im Dialog vorgenommen werden, können durch Klicken des "OK"-Buttons persistent gemacht werden.
+        Durch Klicken des "Abbrechen"-Buttons werden ausstehende Änderungen verworfen. Der "Standard"-Button kann
+        verwendet werden, um alle Einstellungen auf ihre ursprünglichen Standardwerte zurückzusetzen.
+    </p>
+    <p>
+        Einstellungswerte persistieren über Sessions hinweg, es sei denn, Cookies sind explizit deaktiviert.
+    </p>
+    <a name="display-settings"></a>
+    <div class="docs-section-title">Anzeigeeinstellungen</div>
+    <p>
+        Der "Anzeige"-Einstellungs-Tab (unten dargestellt) wird verwendet, um zu steuern, wie der JS7800-Bildschirm
+        angezeigt wird.
+    </p>
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #1f1f1f" src="help/images/display.png"></img>
+    </div>
+    <p>
+        Jedes Feld im "Anzeige"-Einstellungs-Tab wird im Folgenden beschrieben.
+    </p>
+    <p>
+    <div class="dialog-grid docs-grid">
+        <div class="dialog-cell-label">
+            Bildschirmgröße
+        </div>
+        <div class="dialog-cell-value">
+            Die Bildschirmgröße-Einstellung steuert die Größe des JS7800-Bildschirms. Viele Größeneinstellungen sind
+            verfügbar, aber die Verwendung von ganzzahligen Werten (2x, 3x usw.) wird empfohlen. Dies unterstützt
+            scharfe Anzeige (Filter-Anwendung deaktiviert) ohne Bruchpixel.
+        </div>
+        <div class="dialog-cell-label">
+            Seitenverhältnis
+        </div>
+        <div class="dialog-cell-value">
+            Die Seitenverhältnis (AR)-Einstellung steuert das Verhältnis von Breite zu Höhe des Bildschirms.
+            Standardmäßig ist das 1:1 Pixel-Seitenverhältnis (PAR) ausgewählt, das scharfe Anzeige ohne Bruchpixel
+            unterstützt (Filter-Anwendung deaktiviert). Andere Seitenverhältnisse sind verfügbar, einschließlich der 6:7
+            PAR-Option, die versucht, das Verhältnis der originalen Atari 7800-Konsole nachzuahmen. Beachten Sie jedoch,
+            dass Seitenverhältnisse außer 1:1 PAR Bruchpixel verursachen, daher wird das Aktivieren der
+            "Filter-Anwendung"-Einstellung empfohlen.
+        </div>
+        <div class="dialog-cell-label">
+            Vollbild
+        </div>
+        <div class="dialog-cell-value">
+            Die Vollbild-Einstellung steuert, wie der Bildschirm im Vollbildmodus skaliert wird. Standardmäßig ist
+            "Bildschirm füllen" ausgewählt, wodurch der Bildschirm skaliert wird, um den gesamten Bildschirm zu füllen,
+            während das ausgewählte Seitenverhältnis beibehalten wird. Diese Option verbraucht den gesamten Bildschirm,
+            aber hat die höchste Wahrscheinlichkeit, Bruchpixel zu verursachen. Die "Filter-Anwendung"-Einstellung kann
+            aktiviert werden, um unerwünschte Artefakte zu entfernen, die durch Bruchpixel verursacht werden. Die andere
+            verfügbare Option, "Ganzzahlige Skalierung", skaliert den Bildschirm vertikal unter Verwendung ganzzahliger
+            Vielfacher der Atari 7800-Anzeigeauflösung. Die Kombination dieser Einstellung mit "1:1
+            Pixel-Seitenverhältnis" garantiert, dass keine Bruchpixel im Vollbildmodus vorhanden sind.
+        </div>
+        <div class="dialog-cell-label">
+            Palette
+        </div>
+        <div class="dialog-cell-value">
+            Die Palette-Einstellung steuert den Satz von Farben (Farbpalette), der für das Rendern jedes Frames
+            verwendet wird. Die "ProSystem Standard"-Palette ist die ursprüngliche Palette, die im ProSystem-Emulator
+            enthalten ist. Diese spezifische Palette besteht aus hellen, lebendigen Farben, die auf modernen Displays
+            bevorzugt werden könnten, repräsentiert aber nicht, was tatsächlich auf einem Atari 7800, der an einen
+            CRT-Display angeschlossen ist, erreichbar ist. Der zweite Palette-Set (Cool, Warm, Hot) versucht, die Farben
+            nachzuahmen, die tatsächlich erlebt werden, wenn eine Atari 7800-Konsole an einen CRT angeschlossen ist.
+            "Cool, Warm, Hot" repräsentiert verschiedene Stadien der Konsole und die Auswirkungen auf die Farben, wenn
+            sie von 15-30 Minuten kontinuierlich betrieben wird. Schließlich sind die "Cool, Warm, Hot"-Paletten in zwei
+            Gruppen basierend auf dem Gesamthelligkeitsniveau der Palette organisiert.
+        </div>
+        <div class="dialog-cell-label">
+            Filter anwenden
+        </div>
+        <div class="dialog-cell-value">
+            Diese Einstellung steuert, ob ein Filter auf die Anzeige angewendet wird. Der tatsächlich angewendete Filter
+            variiert je nach spezifischem Browser und Version (typischerweise bilinearer Filter). Das Anwenden eines
+            Filters führt zu einem leicht verschwommenen Aussehen des Bildschirms, entfernt aber den Großteil der
+            Artefakte, die durch Bruchpixel verursacht werden.
+        </div>
+    </div>
+    </p>
+    <!-- Continue with other sections similarly -->
+</div>
