@@ -1,0 +1,196 @@
+<div class="docs">
+    <div class="tabcontent__title">カートリッジの読み込み</div>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="this.blur();">セクションにジャンプ <span class="down-arrow">&#x25BC;</span></button>
+        <div class="dropdown-content">
+            <div onclick="window.location.href='#cartridge-menu'">カートリッジメニュー</div>
+            <div onclick="window.location.href='#sel-local-file'">ローカルファイルを選択</div>
+            <div onclick="window.location.href='#sel-remote-file'">リモートファイルを選択</div>
+            <div onclick="window.location.href='#drag-and-drop-files'">ファイルをドラッグアンドドロップ</div>
+            <div onclick="window.location.href='#drag-and-drop-links'">リンクをドラッグアンドドロップ</div>
+            <div onclick="window.location.href='#request-params'">リクエストパラメータ</div>
+        </div>
+    </div>
+    <p>
+        JS7800にカートリッジを読み込むさまざまな方法について、このタブの残りの部分で詳しく説明します。
+        JS7800はAtari 7800で利用可能なカートリッジROMの大部分（オリジナル小売版とホームブルー版の両方）と互換性があるはずです。
+    </p>
+    <p>
+        Atari 7800のカートリッジROMは通常<span class="fixed">.bin</span>または
+        <span class="fixed">.a78</span>のファイル拡張子があります。<span class="fixed">.a78</span>拡張子が推奨され、
+        特定のカードリッジがどのように解釈されるべきかについての情報をエミュレーターに提供するヘッダー情報が含まれています。
+        また、JS7800は<span class="fixed">.zip</span>ファイル内に含まれるカートリッジROMもサポートしていることに注意してください。
+    </p>
+    <a name="cartridge-menu"></a>
+    <div class="docs-section-title">カートリッジドロップダウンメニュー</div>
+    <p>
+        「カートリッジドロップダウン」メニュー（以下で赤くハイライト表示）には、選択するAtari 7800カートリッジのリストが含まれています。
+    </p>
+    <div class="docs-center">
+        <div class="docs-relative-inline-block">
+            <div class="docs-loading-controls-focus docs-loading-controls-select-focus"></div>
+            <div class="docs-loading-controls-select-text">Atari 7800 カートリッジを選択...</div>
+            <img class="docs-loading-controls-image" src="help/images/cartloading.png"></img>
+        </div>
+    </div>
+    <p>
+        デフォルトでは、カートリッジリストには優れたホームブルータイトルの選択が入力されます。カートリッジを読み込むには、
+        メニューで適切な項目を選択するだけです。
+    </p>
+    <p>
+        カスタム「カートリッジリスト」もサポートされています。カスタムカートリッジリストの作成と読み込みの詳細については、
+        <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">Cartridge List
+            GitHubページ</a>を参照してください。
+    </p>
+    <a name="sel-local-file"></a>
+    <div class="docs-section-title">ローカルファイルを選択</div>
+    <p>
+        「ローカルファイルを選択」ボタン（以下で赤くハイライト表示）は、ローカルデバイス上にあるAtari 7800カートリッジ
+        ROMファイルを選択して読み込むために使用されます。
+    </p>
+    <div class="docs-center">
+        <div class="docs-relative-inline-block">
+            <div class="docs-loading-controls-focus docs-loading-controls-file-focus"></div>
+            <div class="docs-loading-controls-select-text">Atari 7800 カートリッジを選択...</div>
+            <img class="docs-loading-controls-image" src="help/images/cartloading.png"></img>
+        </div>
+    </div>
+    <p>
+        ボタンを押すと、ローカルファイルを選択できるファイルチューザーが表示されます。デフォルトでは、ファイルチューザーは
+        <span class="fixed">.a78</span>、<span class="fixed">.bin</span>、<span class="fixed">.zip</span>、
+        <span class="fixed">.json</span>のファイル拡張子にファイルを制限します。
+    </p>
+    <p>
+        ローカルファイルチューザーは「カートリッジリスト」ファイル（<span class="fixed">.json</span>ファイル拡張子）も選択できます。
+        「カートリッジリスト」ファイルを選択すると、
+        <a href="#cartridge-menu">カートリッジドロップダウンメニュー</a>の内容が更新されます。カートリッジリストの詳細については、
+        <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">Cartridge List
+            GitHubページ</a>を参照してください。
+    </p>
+    <a name="sel-remote-file"></a>
+    <div class="docs-section-title">リモートファイルを選択</div>
+    <p>
+        「リモートファイルを選択」ボタン（以下で赤くハイライト表示）は、リモート
+        Atari 7800カートリッジROMのURLを指定するために使用されます。
+    </p>
+    <div class="docs-center">
+        <div class="docs-relative-inline-block">
+            <div class="docs-loading-controls-focus docs-loading-controls-remote-focus"></div>
+            <div class="docs-loading-controls-select-text">Atari 7800 カートリッジを選択...</div>
+            <img class="docs-loading-controls-image" src="help/images/cartloading.png"></img>
+        </div>
+    </div>
+    <p>
+        ボタンを押すと、リモートROMファイルのURLを指定できる入力ダイアログが表示されます。例えば、次のURLを入力すると、
+        ホームブルーゲーム「bonQ」が読み込まれます：
+    <div class="fixed-block">http://raz0red.github.io/js7800/roms/bonq.a78</div>
+    </p>
+    <p>
+        リモートファイルチューザーはリモート「カートリッジリスト」ファイル
+        （<span class="fixed">.json</span>ファイル拡張子）も選択できます。「カートリッジリスト」ファイルを選択すると、
+        <a href="#cartridge-menu">カートリッジドロップダウンメニュー</a>の内容が更新されます。カートリッジリストの詳細については、
+        <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">Cartridge List
+            GitHubページ</a>を参照してください。
+    </p>
+    <a name="drag-and-drop-files"></a>
+    <div class="docs-section-title">ファイルをドラッグアンドドロップ</div>
+    <p>
+        ローカルAtari 7800カートリッジROMをドラッグアンドドロップすることで、
+        ローカルファイルブラウザ経由でファイルを選択する代替手段として使用できます（<a href="#sel-local-file">ローカルファイルを選択</a>を参照）。
+    </p>
+    <div class="docs-center">
+        <img class="docs-centered-image" src="help/images/dragfile.gif"></img>
+    </div>
+    <p>
+        上記のように、ローカルROMファイルはWindowsのエクスプローラーやMacのFinderからエミュレーターに
+        ドラッグアンドドロップするだけで読み込むことができます。
+    </p>
+    <p>
+        カートリッジROMファイルに加えて、「カートリッジリスト」ファイル（<span class="fixed">.json</span>ファイル拡張子）も
+        エミュレーターにドラッグアンドドロップできます。「カートリッジリスト」ファイルをドラッグアンドドロップすると、
+        <a href="#cartridge-menu">カートリッジドロップダウンメニュー</a>の内容が更新されます。カートリッジリストの詳細については、
+        <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">Cartridge List
+            GitHubページ</a>を参照してください。
+    </p>
+    <a name="drag-and-drop-links"></a>
+    <div class="docs-section-title">リンクをドラッグアンドドロップ</div>
+    <p>
+        リモートAtari 7800カートリッジROMへのリンクをドラッグアンドドロップすることで、
+        リモートファイルチューザー経由でURLを指定する代替手段として使用できます（<a href="#sel-remote-file">リモートファイルを選択</a>を参照）。
+    </p>
+    <div class="docs-center">
+        <img class="docs-centered-image" src="help/images/draglink.gif"></img>
+    </div>
+    <p>
+        上記のように、ROMはリモートファイルリンクをエミュレーターにドラッグアンドドロップするだけで読み込むことができます。
+        上記の具体的な例では、
+        <a href="https://atariage.com/forums/forum/52-atari-7800-programming/" target="_blank">AtariAge Atari 7800
+            Programming Forum</a>から
+        リンクをドラッグしています。これは開発中と完成したホームブルータイトルの両方の優れたソースです。
+        また、AtariAgeフォーラムのリンクの中には、ゲームタイトルリンクではなく「ダウンロード数」リンク経由で
+        ドラッグする必要があるものがあることに注意してください（上記のように）。
+    </p>
+    <p>
+        カートリッジROMファイルリンクに加えて、「カートリッジリスト」ファイルリンクも
+        エミュレーターにドラッグアンドドロップできます。「カートリッジリスト」ファイルリンクをドラッグアンドドロップすると、
+        <a href="#cartridge-menu">カートリッジドロップダウンメニュー</a>の内容が更新されます。カートリッジリストの詳細については、
+        <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">Cartridge List
+            GitHubページ</a>を参照してください。
+    </p>
+    <a name="request-params"></a>
+    <div class="docs-section-title">リクエストパラメータ</div>
+    <p>
+        JS7800は以下のリクエストパラメータセットをサポートしています。リクエストパラメータをJS7800
+        URLに追加して、さまざまなエミュレーターオプションを制御できます。例えば、<span class="fixed">cart</span>リクエスト
+        パラメータを使用して、JS7800が最初に表示されたときに特定のカードリッジを強制的に読み込むことができます。
+    </p>
+    <div class="dialog-grid docs-grid">
+        <div class="dialog-cell-label">
+            cart
+        </div>
+        <div class="dialog-cell-value">
+            <span class="fixed">cart</span>リクエストパラメータは、
+            エミュレーターページが最初に読み込まれたときに特定のカードリッジを読み込むために使用できます。
+            次のURLはホームブルーゲーム「bonQ」を読み込みます：
+            <p>
+            <div class="fixed-block">
+                https://raz0red.github.io/js7800/?cart=http://raz0red.github.io/js7800/roms/bonq.a78
+            </div>
+            </p>
+        </div>
+        <div class="dialog-cell-label">
+            cartlist
+        </div>
+        <div class="dialog-cell-value">
+            <span class="fixed">cartlist</span>リクエストパラメータは、
+            <a href="#cartridge-menu">カートリッジドロップダウンメニュー</a>にカートリッジリストを読み込むために使用できます。
+            JS7800が最初に読み込まれたとき。次のURLはカートリッジドロップダウン
+            メニューにホームブルーデモのリストを入力します：
+            <p>
+            <div class="fixed-block">
+                https://raz0red.github.io/js7800/?cartlist=http://raz0red.github.io/js7800/roms/romlist-homebrew-demos.json
+            </div>
+            </p>
+            カートリッジリストの詳細については、
+            <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">Cartridge List
+                GitHubページ</a>を参照してください。
+        </div>
+    </div>
+    <p>
+        複数のリクエストパラメータを組み合わせて、JS7800が読み込まれたときに複数のオプションを設定できます。
+        次のURLは特定のゲーム「bonQ」とホームブルーデモを含むカートリッジリストを読み込みます：
+    </p>
+    <p>
+    <div class="fixed-block">
+        https://raz0red.github.io/js7800/?cart=http://raz0red.github.io/js7800/roms/bonq.a78&cartlist=http://raz0red.github.io/js7800/roms/romlist-homebrew-demos.json
+    </div>
+    </p>
+    <p>
+        リクエストパラメータを追加すると通常長いURLになるため、GitHub
+        URL短縮サービス<a href="https://git.io/">git.io</a>の使用をおすすめします。次のURLは上記の例の短縮バージョンで、
+        <span class="fixed">cart</span>と<span class="fixed">cartlist</span>リクエストパラメータの両方が含まれています：
+    </p>
+    <p>
+    <div class="fixed-block">https://git.io/JfcmO</div>
+    </p>
+</div>

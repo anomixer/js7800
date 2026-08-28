@@ -1,0 +1,108 @@
+<div class="docs">
+    <div class="tabcontent__title">Панель Управления</div>
+    <p>
+        "Панель управления", которая расположена непосредственно под экраном эмулятора JS7800, используется для
+        управления различными
+        аспектами эмуляции, включая доступ к диалогам настроек и справки.
+    </p>
+    <div class="docs-center">
+        <img class="docs-centered-image docs-controls-bar" src="help/images/cbar.png"></img>
+    </div>
+    <p>
+        Кнопки и элементы управления, составляющие панель управления, описаны ниже.
+    </p>
+    <div class="dialog-grid docs-grid">
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image"
+                onclick="this.src = 'help/images/' + (this.src.indexOf('pause') == -1 ? 'pause.svg' : 'play.svg');"
+                src="help/images/pause.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Приостанавливает эмуляцию текущего картриджа. После приостановки эту кнопку можно использовать для
+            возобновления эмуляции.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image"
+                onclick="this.src = 'help/images/' + (this.src.indexOf('off') == -1 ? 'volume-off.svg' : 'volume-high.svg');"
+                src="help/images/volume-high.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Переключает звуковой вывод включен/выключен.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image" src="help/images/restart.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Перезапускает текущий картридж. Это эквивалентно выполнению перезагрузки и чистого старта текущего
+            картриджа.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <button onclick="this.blur();" class="js7800__controls-button">SELECT</button>
+        </div>
+        <div class="dialog-cell-value">
+            Кнопка SELECT представляет физическую кнопку "SELECT", которая присутствует на консоли Atari 7800.
+            Поведение этой кнопки специфично для картриджа, но обычно используется для выбора текущих настроек игры
+            (уровни сложности и т.д.).
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <button onclick="this.blur();" class="js7800__controls-button">RESET</button>
+        </div>
+        <div class="dialog-cell-value">
+            Кнопка RESET представляет физическую кнопку "RESET", которая присутствует на консоли Atari 7800.
+            Поведение этой кнопки специфично для картриджа, но обычно используется для завершения текущей игры (если
+            она в процессе).
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <label class="js7800__controls-switch"><input type="checkbox"><span
+                    class="js7800__controls-switch-slider"></span></label>
+        </div>
+        <div class="dialog-cell-value">
+            Представляет физический левый переключатель сложности, который присутствует на консоли Atari 7800.
+            Поведение этого переключателя специфично для картриджа.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <label class="js7800__controls-switch"><input type="checkbox" checked><span
+                    class="js7800__controls-switch-slider"></span></label>
+        </div>
+        <div class="dialog-cell-value">
+            Представляет физический правый переключатель сложности, который присутствует на консоли Atari 7800.
+            Поведение этого переключателя специфично для картриджа.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image" src="help/images/medal.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Открывает страницу <a href="leaderboard" target="_blank">Глобальная таблица лидеров JS7800</a>. Эта страница
+            предоставляет возможность просматривать глобальные высокие баллы и лучших игроков. Начальный набор баллов,
+            отображаемых в
+            таблице лидеров, по умолчанию соответствует игре, которая в настоящее время запущена в JS7800 (если она
+            поддерживает
+            глобальные высокие баллы). Для получения дополнительной информации о глобальной таблице лидеров обратитесь к
+            вкладке "Высокие баллы"
+            слева. Необработанный дамп поддерживаемых игр и вариантов (идентифицированных по MD5-хэшу картриджа
+            без заголовка) можно найти
+            <a href="https://twitchasylum.com/x/gamelist.php" target="_blank">здесь</a>.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image" src="help/images/information-outline.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Отображает этот диалог "Справка".
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image" src="help/images/cogs.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Отображает диалог "Настройки". См. вкладку справки "Диалог настроек" слева для получения подробной
+            информации.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image"
+                onclick="this.src = 'help/images/' + (this.src.indexOf('exit') == -1 ? 'fullscreen-exit.svg' : 'fullscreen.svg');"
+                src="help/images/fullscreen.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Переключает между полноэкранным и неполноэкранным режимами.
+        </div>
+    </div>
+</div>

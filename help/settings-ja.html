@@ -1,0 +1,205 @@
+<div class="docs">
+    <div class="tabcontent__title">設定ダイアログ</div>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="this.blur();">セクションにジャンプ <span class="down-arrow">&#x25BC;</span></button>
+        <div class="dropdown-content">
+            <div onclick="window.location.href='#display-settings'">表示</div>
+            <div onclick="window.location.href='#keyboard-settings'">キーボード</div>
+            <div onclick="window.location.href='#gamepads-settings'">ゲームパッド</div>
+            <div onclick="window.location.href='#hs-settings'">ハイスコア</div>
+            <div onclick="window.location.href='#advanced-settings'">詳細</div>
+        </div>
+    </div>
+    <p>
+        「設定」ダイアログでは、JS7800エミュレーターのさまざまな側面を表示および変更できます。
+        ダイアログで行われた変更は「OK」ボタンをクリックすることで永続化できます。「キャンセル」ボタンをクリックすると、
+        行われた保留中の変更が破棄されます。「デフォルト」ボタンを使用して、すべての設定を元のデフォルト値に戻すことができます。
+    </p>
+    <p>
+        設定値は、Cookieが明示的に無効化されていない限り、セッション間で持続します。
+    </p>
+    <a name="display-settings"></a>
+    <div class="docs-section-title">表示設定</div>
+    <p>
+        「表示」設定タブ（以下に表示）は、JS7800画面の表示方法を制御するために使用されます。
+    </p>
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #1f1f1f" src="help/images/display.png"></img>
+    </div>
+    <p>
+        「表示」設定タブに存在する各フィールドについて以下で説明します。
+    </p>
+    <p>
+    <div class="dialog-grid docs-grid">
+        <div class="dialog-cell-label">
+            画面サイズ
+        </div>
+        <div class="dialog-cell-value">
+            画面サイズ設定はJS7800画面のサイズを制御します。多くのサイズ設定が利用可能ですが、
+            整数ベースの値（2x、3xなど）の使用をおすすめします。これは、端数ピクセルなしで鮮明な表示（フィルター適用無効）をサポートします。
+        </div>
+        <div class="dialog-cell-label">
+            アスペクト比
+        </div>
+        <div class="dialog-cell-value">
+            アスペクト比（AR）設定は画面の幅と高さの比率を制御します。デフォルトでは、
+            端数ピクセルなしで鮮明な表示（フィルター適用無効）をサポートする1:1ピクセルアスペクト比（PAR）が選択されます。
+            元のAtari 7800コンソールの比率を模倣しようとする6:7 PARオプションを含む他のアスペクト比も利用可能です。
+            ただし、1:1 PAR以外の比率は端数ピクセルが発生するため、表示のフィルタリング（フィルター適用）を推奨します。
+        </div>
+        <div class="dialog-cell-label">
+            フルスクリーン
+        </div>
+        <div class="dialog-cell-value">
+            フルスクリーン設定は、フルスクリーンモードでの画面のスケーリング方法を制御します。デフォルトでは、
+            「画面を埋める」が選択され、画面が選択されたアスペクト比を維持しながら画面全体を埋めるようにスケーリングされます。
+            このオプションは画面全体を消費しますが、端数ピクセルが発生する可能性が最も高くなります。
+            端数ピクセルによる不要なアーティファクトを除去するために、「フィルター適用」設定を有効にできます。
+            利用可能なもう一つのオプション「整数スケーリング」は、Atari 7800ディスプレイ解像度の整数倍を使用して画面を垂直方向にスケーリングします。
+            この設定と「1:1ピクセルアスペクト比」を組み合わせることで、フルスクリーンモードで端数ピクセルが存在しないことが保証されます。
+        </div>
+        <div class="dialog-cell-label">
+            パレット
+        </div>
+        <div class="dialog-cell-value">
+            パレット設定は、表示される各フレームのレンダリングに使用される色のセット（カラーパレット）を制御します。
+            「ProSystemデフォルト」パレットは、ProSystemエミュレーターに含まれる元のパレットです。
+            この特定のパレットは明るく鮮やかな色で構成されており、現代のディスプレイでは好まれるかもしれませんが、
+            Atari 7800をCRTディスプレイに接続した場合に実際に実現可能なものを表していません。
+            2番目のパレットセット（Cool、Warm、Hot）は、Atari 7800コンソールをCRTに接続した場合に実際に体験される色を再現しようとします。
+            「Cool、Warm、Hot」はコンソールのさまざまな段階を表し、電源投入から15〜30分間連続実行された場合の色への影響を表します。
+            最後に、「Cool、Warm、Hot」パレットはパレットの全体的な明るさレベルに基づいて2つのグループに整理されます。
+        </div>
+        <div class="dialog-cell-label">
+            フィルター適用
+        </div>
+        <div class="dialog-cell-value">
+            この設定は、表示にフィルターが適用されるかどうかを制御します。適用される実際のフィルターは、
+            特定のブラウザとバージョンによって異なります（通常はバイリニアフィルター）。フィルターを適用すると、
+            画面がわずかにぼやけた外観になりますが、端数ピクセルに起因するアーティファクトの大部分を除去します。
+        </div>
+    </div>
+    </p>
+    <a name="keyboard-settings"></a>
+    <div class="docs-section-title">キーボード</div>
+    <p>
+        「キーボードマッピング」タブ（以下に表示）は、JS7800のキーボードマッピング（バインディング）を表示および/または変更するために使用されます。
+    </p>
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #191919" src="help/images/keyboard.png"></img>
+    </div>
+    <p>
+        各赤いボックスは、コントローラー入力またはコンソールボタンに現在バインドされているキーを示します。
+        マッピングを変更するには、変更する入力の近くの赤いボックスをクリックするだけです。
+        クリックすると、コントローラー1のボタン1で上記のようにボックスが白くなります。
+        ボックスが白くなったら、次のキーを押すとその特定の入力にマッピングされます。
+    </p>
+    <a name="gamepads-settings"></a>
+    <div class="docs-section-title">ゲームパッド</div>
+    <p>
+        「ゲームパッド互換性」タブ（以下に表示）は、JS7800を実行しているデバイスに現在接続されているゲームパッド
+        （コントローラー）の互換性を判断するために使用されます。ゲームパッドタブには変更可能な設定は含まれていません。
+    </p>
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #191919" src="help/images/gamepads.png"></img>
+    </div>
+    <p>
+        JS7800は最大2つのゲームパッド（プレイヤー1とプレイヤー2用）をサポートします。各コントローラーの上にある情報ボックス
+        （上記のスクリーンショットに表示）は、接続されているコントローラーのタイプとブラウザが検出したマッピングモデルを示します。
+        マッピングが「standard」として検出されない限り、現在はゲームパッドがJS7800と互換性がある可能性は低いです。
+    </p>
+    <p>
+        ゲームパッドのタイプとマッピングモデルの検出に加えて、JS7800は接続されたゲームパッドの入力がJS7800にどのように変換されるかを示します。
+        ゲームパッドのさまざまなコントロール（Dパッド、アナログスティック、ボタン）を押すと、
+        白い点（上記のスクリーンショットに表示）が表示され、その特定の入力がどのJS7800コントロールにマッピングされているかを示します。
+    </p>
+    <p>
+        ほとんどの現代のゲームパッドはJS7800と互換性があるはずです。Xbox One、Xbox 360、PS4、PS3、Switch
+        コントローラーがテストされています。Dパッドと左アナログスティックはAtari 7800コントローラーのジョイスティック（またはDパッド）にマッピングされます。
+        「A」、「B」、「X」、「O」ボタンはAtari 7800コントローラーボタンにマッピングされます。
+        「Select」、「Back」、「Start」スタイルのボタンはAtari 7800コンソールの「SELECT」および「RESET」ボタンにマッピングされます。
+        最後に、ショルダーボタンはAtari 7800コンソールの「PAUSE」ボタンにマッピングされます。
+    </p>
+    <p>
+        また、Robotronスタイルのゲーム（RobotronとTiME Salvo）はコントローラー1でデュアルアナログスティックをサポートしていることも注目に値します
+        （左スティックで移動、右スティックで射撃）。
+    </p>
+    <a name="hs-settings"></a>
+    <div class="docs-section-title">ハイスコア設定</div>
+    <p>
+        「ハイスコア」設定タブ（以下に表示）は、互換性のあるカートリッジの高スコアの持続性を制御するために使用されます。
+        カートリッジが互換性があると見なされるためには、そのヘッダー（<span class="fixed">.a78</span>ファイル拡張子）で
+        High Score Cartridge（HSC）をサポートしていることを識別する必要があります。
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #222222" src="help/images/hssettings.png"></img>
+    </div>
+    <p>
+        JS7800内でのハイスコアの使用に関する詳細については、左側の「ハイスコア」ヘルプタブを参照してください。
+    </p>
+    <p>
+    <div class="dialog-grid docs-grid">
+        <div class="dialog-cell-label">
+            スコアを保存
+        </div>
+        <div class="dialog-cell-value">
+            スコアを保存スイッチは、互換性のあるカートリッジの高スコアが持続されるかどうかを制御します。
+        </div>
+        <div class="dialog-cell-label">
+            保存場所
+        </div>
+        <div class="dialog-cell-value">
+            保存場所プルダウンは、高スコアが読み取られ、持続される場所を選択するために使用されます。
+            ハイスコアはローカル（ローカルデバイスのみ）またはグローバル（中央ハイスコアサーバー上）に保持できます。
+        </div>
+        <div class="dialog-cell-label">
+            ローカルフォールバック
+        </div>
+        <div class="dialog-cell-value">
+            ローカルフォールバックスイッチは、グローバルハイスコアサーバーでサポートされていないゲームの高スコアを
+            ローカルに保存するかどうかを制御します。このオプションは、保存場所がグローバルに設定されている場合にのみ使用可能です
+            （上記の「保存場所」を参照）。
+        </div>
+    </div>
+    </p>
+    <a name="advanced-settings"></a>
+    <div class="docs-section-title">詳細設定</div>
+    <p>
+        「詳細」設定タブ（以下に表示）は、詳細機能の設定を制御するために使用されます。
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #222222" src="help/images/advanced.png"></img>
+    </div>
+    <p>
+        「詳細」設定タブに存在する各フィールドについて以下で説明します。
+    </p>
+    <p>
+    <div class="dialog-grid docs-grid">
+        <div class="dialog-cell-label">
+            拡張モジュール（XM）
+        </div>
+        <div class="dialog-cell-value">
+            拡張モジュール設定は、Atari 7800拡張モジュール（XM）が有効かどうかを制御します。
+            この設定には「（自動）」、「有効」、「無効」の3つの可能な値があります。
+            「（自動）」はカートリッジヘッダーとJS7800内部カートリッジデータベースに基づいて拡張モジュールを有効または無効にするかどうかを決定します。
+            Atari 7800拡張モジュール（XM）の詳細については、
+            <a href="http://www.atarimuseum.com/videogames/consoles/7800/expansion/" target="_blank">このページ</a>を参照してください。
+        </div>
+        <div class="dialog-cell-label">
+            フレームスキップ
+        </div>
+        <div class="dialog-cell-value">
+            フレームスキップ設定は、スキップする（レンダリングしない）フレームの量を制御します。
+            デフォルトでは、フレームスキップは無効（フレームはスキップされません）。フレームスキップは、
+            JS7800で経験されるパフォーマンス問題に対処する手段として利用できます。この設定は通常、
+            「垂直同期」設定の無効化（以下参照）と組み合わせられます。
+        </div>
+        <div class="dialog-cell-label">
+            垂直同期
+        </div>
+        <div class="dialog-cell-value">
+            垂直同期設定は、JS7800のフレームレートがモニターのリフレッシュレートと同期されるかどうかを制御します。
+            垂直同期は画面ティアリングなどの表示アーティファクトを除去しようとします。この設定は、
+            JS7800で経験されるパフォーマンス問題に対処する手段として無効化できます。
+        </div>
+    </div>
+    </p>
+</div>

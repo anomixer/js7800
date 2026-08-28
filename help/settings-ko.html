@@ -1,0 +1,207 @@
+<div class="docs">
+    <div class="tabcontent__title">설정 대화상자</div>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="this.blur();">섹션으로 이동 <span class="down-arrow">&#x25BC;</span></button>
+        <div class="dropdown-content">
+            <div onclick="window.location.href='#display-settings'">디스플레이</div>
+            <div onclick="window.location.href='#keyboard-settings'">키보드</div>
+            <div onclick="window.location.href='#gamepads-settings'">게임패드</div>
+            <div onclick="window.location.href='#hs-settings'">하이스코어</div>
+            <div onclick="window.location.href='#advanced-settings'">고급</div>
+        </div>
+    </div>
+    <p>
+        "설정" 대화상자를 사용하면 JS7800 에뮬레이터의 다양한 측면을 보고 수정할 수 있습니다.
+        대화상자에서 변경한 내용은 "확인" 버튼을 클릭하여 유지할 수 있습니다. "취소" 버튼을 클릭하면
+        보류 중인 변경 사항이 모두 삭제됩니다. "기본값" 버튼을 사용하여 모든 설정을 원래 기본값으로 되돌릴 수 있습니다.
+    </p>
+    <p>
+        설정 값은 쿠키가 명시적으로 비활성화되지 않은 한 세션 간에 유지됩니다.
+    </p>
+    <a name="display-settings"></a>
+    <div class="docs-section-title">디스플레이 설정</div>
+    <p>
+        "디스플레이" 설정 탭(아래에 표시)은 JS7800 화면의 표시 방법을 제어하는 데 사용됩니다.
+    </p>
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #1f1f1f" src="help/images/display.png"></img>
+    </div>
+    <p>
+        "디스플레이" 설정 탭에 있는 각 필드에 대해 아래에서 설명합니다.
+    </p>
+    <p>
+    <div class="dialog-grid docs-grid">
+        <div class="dialog-cell-label">
+            화면 크기
+        </div>
+        <div class="dialog-cell-value">
+            화면 크기 설정은 JS7800 화면의 크기를 제어합니다. 많은 크기 설정을 사용할 수 있지만
+            정수 기반 값(2x, 3x 등)을 사용하는 것이 좋습니다. 이는 부분 픽셀 없이 선명한 디스플레이(필터 적용 비활성화)를 지원합니다.
+        </div>
+        <div class="dialog-cell-label">
+            화면 비율
+        </div>
+        <div class="dialog-cell-value">
+            화면 비율(AR) 설정은 화면 너비와 높이의 비율을 제어합니다. 기본적으로
+            부분 픽셀 없이 선명한 디스플레이(필터 적용 비활성화)를 지원하는 1:1 픽셀 화면 비율(PAR)이 선택됩니다.
+            원래 Atari 7800 콘솔의 비율을 모방하려는 6:7 PAR 옵션을 포함한 다른 화면 비율을 사용할 수 있습니다.
+            그러나 1:1 PAR 이외의 비율은 부분 픽셀이 발생하므로 디스플레이 필터링(필터 적용)을 권장합니다.
+        </div>
+        <div class="dialog-cell-label">
+            전체화면
+        </div>
+        <div class="dialog-cell-value">
+            전체화면 설정은 전체화면 모드에서 화면이 스케일링되는 방식을 제어합니다. 기본적으로
+            "화면 채우기"가 선택되어 선택한 화면 비율을 유지하면서 화면 전체를 채우도록 화면이 스케일링됩니다.
+            이 옵션은 전체 화면을 사용하지만 부분 픽셀이 발생할 가능성이 가장 높습니다.
+            부분 픽셀으로 인한 원치 않는 아티팩트를 제거하려면 "필터 적용" 설정을 활성화할 수 있습니다.
+            사용 가능한 다른 옵션인 "정수 스케일링"은 Atari 7800 디스플레이 해상도의 정수 배를 사용하여 화면을 수직으로 스케일링합니다.
+            이 설정과 "1:1 픽셀 화면 비율"을 결합하면 전체화면 모드에서 부분 픽셀이 존재하지 않도록 보장됩니다.
+        </div>
+        <div class="dialog-cell-label">
+            팔레트
+        </div>
+        <div class="dialog-cell-value">
+            팔레트 설정은 표시되는 각 프레임 렌더링에 사용되는 색상 세트(컬러 팔레트)를 제어합니다.
+            "ProSystem 기본값" 팔레트는 ProSystem 에뮬레이터에 포함된 원래 팔레트입니다.
+            이 특정 팔레트는 밝고 생생한 색상으로 구성되어 있으며 최신 디스플레이에서는 선호될 수 있지만
+            Atari 7800을 CRT 디스플레이에 연결했을 때 실제로 달성할 수 있는 것을 나타내지 않습니다.
+            두 번째 팔레트 세트(Cool, Warm, Hot)는 Atari 7800 콘솔을 CRT에 연결했을 때 실제로 경험할 수 있는 색상을 재현하려고 합니다.
+            "Cool, Warm, Hot"는 콘솔의 다양한 단계를 나타내며 전원 켜기에서 15~30분 동안 지속적으로 실행되었을 때 색상에 미치는 영향을 나타냅니다.
+            마지막으로 "Cool, Warm, Hot" 팔레트는 팔레트의 전체 밝기 수준을 기반으로 두 그룹으로 구성됩니다.
+        </div>
+        <div class="dialog-cell-label">
+            필터 적용
+        </div>
+        <div class="dialog-cell-value">
+            이 설정은 디스플레이에 필터가 적용되는지 여부를 제어합니다. 적용되는 실제 필터는
+            특정 브라우저와 버전에 따라 다릅니다(일반적으로 쌍선형 필터). 필터를 적용하면
+            화면이 약간 흐릿하게 표시되지만 부분 픽셀에서 발생하는 아티팩트의 대부분을 제거합니다.
+        </div>
+    </div>
+    </p>
+    <a name="keyboard-settings"></a>
+    <div class="docs-section-title">키보드</div>
+    <p>
+        "키보드 매핑" 탭(아래에 표시)은 JS7800의 키보드 매핑(바인딩)을 보고/또는 수정하는 데 사용됩니다.
+    </p>
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #191919" src="help/images/keyboard.png"></img>
+    </div>
+    <p>
+        각 빨간색 상자는 컨트롤러 입력 또는 콘솔 버튼에 현재 바인딩된 키를 나타냅니다.
+        매핑을 수정하려면 변경할 입력 근처의 빨간색 상자를 클릭하기만 하면 됩니다.
+        클릭하면 컨트롤러 1의 버튼 1에서 위와 같이 상자가 흰색으로 바뀝니다.
+        상자가 흰색으로 바뀌면 다음에 누르는 키가 해당 특정 입력에 매핑됩니다.
+    </p>
+    <a name="gamepads-settings"></a>
+    <div class="docs-section-title">게임패드</div>
+    <p>
+        "게임패드 호환성" 탭(아래에 표시)은 JS7800를 실행하는 장치에 현재 연결된 게임패드
+        (컨트롤러)의 호환성을 결정하는 데 사용됩니다. 게임패드 탭에는 수정할 수 있는 설정이 포함되어 있지 않습니다.
+    </p>
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #191919" src="help/images/gamepads.png"></img>
+    </div>
+    <p>
+        JS7800는 최대 2개의 게임패드(플레이어 1과 플레이어 2용)를 지원합니다. 각 컨트롤러 위의 정보 상자
+        (위 스크린샷에 표시)는 연결된 컨트롤러의 유형과 브라우저가 감지한 매핑 모델을 나타냅니다.
+        매핑이 "표준"으로 감지되지 않으면 현재 게임패드가 JS7800과 호환될 가능성이 낮습니다.
+    </p>
+    <p>
+        게임패드의 유형과 매핑 모델 감지 외에도 JS7800는 연결된 게임패드의 입력이 JS7800에 어떻게 변환되는지 보여줍니다.
+        게임패드의 다양한 컨트롤(D패드, 아날로그 스틱, 버튼)을 누르면
+        흰색 점(위 스크린샷에 표시)이 나타나 해당 특정 입력이 어떤 JS7800 컨트롤에 매핑되는지 보여줍니다.
+    </p>
+    <p>
+        대부분의 최신 게임패드는 JS7800과 호환되어야 합니다. Xbox One, Xbox 360, PS4, PS3 및 Switch
+        컨트롤러가 테스트되었습니다. D패드와 왼쪽 아날로그 스틱은 Atari 7800 컨트롤러의 조이스틱(또는 D패드)에 매핑됩니다.
+        "A", "B", "X", "O" 버튼은 Atari 7800 컨트롤러 버튼에 매핑됩니다.
+        "Select", "Back", "Start" 스타일 버튼은 Atari 7800 콘솔의 "SELECT" 및 "RESET" 버튼에 매핑됩니다.
+        마지막으로 숄더 버튼은 Atari 7800 콘솔의 "PAUSE" 버튼에 매핑됩니다.
+    </p>
+    <p>
+        또한 Robotron 스타일 게임(Robotron 및 TiME Salvo)은 컨트롤러 1에서 듀얼 아날로그 스틱을 지원한다는 점도 주목할 가치가 있습니다
+        (이동을 위해 왼쪽 스틱, 발사를 위해 오른쪽 스틱).
+    </p>
+    <a name="hs-settings"></a>
+    <div class="docs-section-title">하이스코어 설정</div>
+    <p>
+        "하이스코어" 설정 탭(아래에 표시)은 호환 가능한 카트리지의 하이스코어 지속성을 제어하는 데 사용됩니다.
+        카트리지가 호환 가능한 것으로 간주되려면 헤더(<span class="fixed">.a78</span> 파일 확장자)에서
+        High Score Cartridge(HSC)를 지원한다고 식별해야 합니다.
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #222222" src="help/images/hssettings.png"></img>
+    </div>
+    <p>
+        JS7800 내 하이스코어 사용에 대한 자세한 내용은 왼쪽의 "하이스코어" 도움말 탭을 참조하십시오.
+    </p>
+    <p>
+    <div class="dialog-grid docs-grid">
+        <div class="dialog-cell-label">
+            점수 저장
+        </div>
+        <div class="dialog-cell-value">
+            점수 저장 스위치는 호환 가능한 카트리지의 하이스코어가 지속되는지 여부를 제어합니다.
+        </div>
+        <div class="dialog-cell-label">
+            저장 위치
+        </div>
+        <div class="dialog-cell-value">
+            저장 위치 풀다운은 하이스코어가
+            읽기 및 지속되는 위치를 선택하는 데 사용됩니다. 하이스코어는 로컬(로컬 장치만) 또는
+            글로벌(중앙 하이스코어 서버)로 유지할 수 있습니다.
+        </div>
+        <div class="dialog-cell-label">
+            로컬 폴백
+        </div>
+        <div class="dialog-cell-value">
+            로컬 폴백 스위치는 글로벌 하이스코어 서버에서 지원되지 않는 게임의 하이스코어를
+            로컬에 저장할지 여부를 제어합니다. 이 옵션은 저장 위치가 글로벌로 설정된 경우에만 사용할 수 있습니다
+            (위의 "저장 위치" 참조).
+        </div>
+    </div>
+    </p>
+    <a name="advanced-settings"></a>
+    <div class="docs-section-title">고급 설정</div>
+    <p>
+        "고급" 설정 탭(아래에 표시)은 고급 기능 구성을 제어하는 데 사용됩니다.
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #222222" src="help/images/advanced.png"></img>
+    </div>
+    <p>
+        "고급" 설정 탭에 있는 각 필드에 대해 아래에서 설명합니다.
+    </p>
+    <p>
+    <div class="dialog-grid docs-grid">
+        <div class="dialog-cell-label">
+            확장 모듈(XM)
+        </div>
+        <div class="dialog-cell-value">
+            확장 모듈 설정은 Atari 7800 확장 모듈(XM)이 활성화되는지 여부를 제어합니다.
+            이 설정에는 "(자동)", "활성화", "비활성화"의 세 가지 가능한 값이 있습니다.
+            "(자동)"은 카트리지 헤더와 JS7800 내부 카트리지
+            데이터베이스를 기반으로 확장 모듈을 활성화할지 비활성화할지 결정합니다.
+            Atari 7800 확장 모듈(XM)에 대한 자세한 내용은
+            <a href="http://www.atarimuseum.com/videogames/consoles/7800/expansion/" target="_blank">이 페이지</a>를 참조하십시오.
+        </div>
+        <div class="dialog-cell-label">
+            프레임 스킵
+        </div>
+        <div class="dialog-cell-value">
+            프레임 스킵 설정은 스킵할(렌더링하지 않을) 프레임의 양을 제어합니다.
+            기본적으로 프레임 스킵은 비활성화됩니다(프레임이 스킵되지 않음). 프레임 스킵은
+            JS7800에서 발생하는 성능 문제를 해결하는 수단으로 사용할 수 있습니다. 이 설정은 일반적으로
+            "수직 동기화" 설정 비활성화(아래 참조)와 결합됩니다.
+        </div>
+        <div class="dialog-cell-label">
+            수직 동기화
+        </div>
+        <div class="dialog-cell-value">
+            수직 동기화 설정은 JS7800의 프레임 속도가 모니터의
+            새로 고침 빈도와 동기화되는지 여부를 제어합니다. 수직 동기화는 화면 찢어짐 등의 디스플레이 아티팩트를 제거하려고 합니다.
+            이 설정은 JS7800에서 발생하는 성능 문제를 해결하는 수단으로 비활성화할 수 있습니다.
+        </div>
+    </div>
+    </p>
+</div>

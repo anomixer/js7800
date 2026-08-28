@@ -1,0 +1,85 @@
+<div class="docs">
+    <div class="tabcontent__title">Punteggi Alti</div>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="this.blur();">Salta alla sezione <span
+                class="down-arrow">&#x25BC;</span></button>
+        <div class="dropdown-content">
+            <div onclick="window.location.href='#global-leaderboard'">Classifica Globale</div>
+            <div onclick="window.location.href='#local-leaderboard'">Classifica Locale</div>
+        </div>
+    </div>
+    <p>
+        JS7800 supporta la persistenza dei punteggi alti sia globalmente che localmente per cartucce compatibili. Perché
+        una
+        cartuccia sia considerata compatibile, deve identificarsi come supportante la Cartuccia Punteggi Alti (HSC)
+        tramite la sua intestazione (estensione file <span class="fixed">.a78</span>). Per default, la persistenza
+        globale dei punteggi
+        alti è abilitata.
+    </p>
+    <div class="docs-center">
+        <img class="docs-centered-image" style="border-width: .5em;" src="help/images/highscore.png"></img>
+    </div>
+    <p>
+        Per default, il "Menu a Discesa Cartucce" (Vedi "Menu Cartucce" nella scheda "Cartucce" della guida a sinistra)
+        contiene
+        un set di giochi homebrew che supportano punteggi alti. Queste cartucce sono contenute in un
+        gruppo titolato, "Compatibili Punteggi Alti", vicino al fondo della lista del menu.
+    </p>
+    <p>
+        È anche importante notare che quando un punteggio alto è ottenuto, il gioco chiederà al giocatore di inserire un
+        set
+        di iniziali da associare al punteggio. L'inserimento delle iniziali è fatto tramite il controller Atari 7800
+        (mappature controller tastiera o gamepad) versus usando tasti tastiera direttamente. In aggiunta alle lettere,
+        diversi caratteri speciali sono anche presenti durante l'inserimento punteggio alto che permettono operazioni
+        come
+        cancellare caratteri e accettare le iniziali attuali. Per esempio, nello screenshot sopra, il
+        "quadrato bianco" si traduce in accettare le iniziali che sono state inserite.
+    </p>
+    <p>
+        Impostazioni relative ai punteggi alti possono essere modificate tramite la scheda "Punteggi Alti" nel dialogo
+        "Impostazioni".
+        Per più informazioni su impostazioni relative ai punteggi alti, vedi la sezione "Punteggi Alti" della
+        scheda aiuto "Dialogo Impostazioni" a sinistra.
+    </p>
+    <a name="global-leaderboard"></a>
+    <div class="docs-section-title">Classifica Globale</div>
+    <p>
+        JS7800 supporta una classifica punteggi alti globale. Quando un gioco che supporta punteggi alti è caricato,
+        i punteggi alti attuali del gioco sono recuperati da un server centrale punteggi alti. Se nuovi punteggi alti
+        sono
+        raggiunti mentre si gioca, quei punteggi saranno pubblicati di nuovo al server centrale.
+    </p>
+    <p>
+        È importante notare che c'è un lag quando si rileva che un nuovo punteggio alto è stato impostato e
+        registrato con il server centrale. Quindi, è altamente raccomandato attendere un certo periodo di
+        tempo (10 secondi circa) prima di uscire dal gioco attuale per assicurarsi che il nuovo punteggio alto sia
+        registrato
+        con successo.
+    </p>
+    <p>
+        Quando si carica un gioco che supporta punteggi alti, un messaggio che dice,
+        "Classifica globale attualmente non supportata per questo gioco", può essere mostrato. Questo messaggio indica
+        che mentre questo particolare gioco supporta effettivamente punteggi alti, non è attualmente
+        registrato con il server globale punteggi alti. Ci sono multiple ragioni per cui questo potrebbe essere il caso.
+        È possibile che il gioco sia troppo nuovo e deve ancora essere registrato con il server. Ma, è più
+        probabile che ci sono multiple versioni del gioco, e questa particolare variante non è supportata.
+        Multiple varianti di un dato gioco tipicamente non sono supportate poiché ogni variante potrebbe avere diversi
+        modelli di punteggio, ecc. Un dump grezzo di giochi e varianti supportati (identificati da hash MD5 cartuccia
+        senza intestazione) può essere trovato
+        <a href="https://twitchasylum.com/x/gamelist.php" target="_blank">qui</a>.
+    </p>
+    <p>
+        La pagina <a href="leaderboard" target="_blank">Classifica Globale JS7800</a> fornisce la
+        capacità di visualizzare punteggi alti globali e migliori giocatori.
+    </p>
+    <a name="local-leaderboard"></a>
+    <div class="docs-section-title">Classifica Locale</div>
+    <p>
+        In aggiunta alla classifica globale, JS7800 supporta la capacità di salvare punteggi alti in una
+        classifica locale. I punteggi della classifica locale sono persistiti sul dispositivo locale e disponibili tra
+        diverse sessioni browser (a meno che i cookie non siano stati esplicitamente disabilitati).
+    </p>
+    <p>A differenza della classifica globale, che limita la compatibilità con varianti di gioco,
+        la classifica locale supporta tutti i giochi e varianti abilitati per punteggi alti.
+    </p>
+</div>

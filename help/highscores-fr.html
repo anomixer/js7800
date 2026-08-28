@@ -1,0 +1,86 @@
+<div class="docs">
+    <div class="tabcontent__title">Scores Élevés</div>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="this.blur();">Aller à la section <span
+                class="down-arrow">&#x25BC;</span></button>
+        <div class="dropdown-content">
+            <div onclick="window.location.href='#global-leaderboard'">Classement Global</div>
+            <div onclick="window.location.href='#local-leaderboard'">Classement Local</div>
+        </div>
+    </div>
+    <p>
+        JS7800 supporte la sauvegarde persistante de scores élevés pour les cartouches compatibles à la fois globalement
+        et localement.
+        Pour qu'une cartouche soit considérée comme compatible, son en-tête (extension de fichier <span
+            class="fixed">.a78</span>) doit
+        identifier qu'elle supporte High Score Cartridge (HSC). Par défaut, la persistance globale de scores élevés est
+        activée.
+    </p>
+    <div class="docs-center">
+        <img class="docs-centered-image" style="border-width: .5em;" src="help/images/highscore.png"></img>
+    </div>
+    <p>
+        Par défaut, le "Menu Déroulant de Cartouches" (voir "Menu de Cartouches" dans l'onglet d'aide "Cartouches" à
+        gauche) contient un ensemble de jeux homebrew qui supportent les scores élevés. Ces cartouches sont incluses
+        dans un groupe avec le titre "Compatible avec Scores Élevés" près de la fin de la liste du menu.
+    </p>
+    <p>
+        Quand un score élevé est atteint, le joueur sera invité à entrer des initiales qui seront associées avec le
+        score.
+        La saisie d'initiales n'est pas faite à travers des touches de clavier, mais à travers le contrôleur Atari 7800
+        (mappage de contrôleur clavier ou gamepad). En plus des lettres, il y a quelques caractères spéciaux pendant la
+        saisie de score élevé qui permettent des opérations comme effacer des lettres ou accepter les initiales
+        actuelles. Par exemple, le "carré blanc" dans la capture d'écran ci-dessus signifie que les initiales saisies
+        sont acceptées.
+    </p>
+    <p>
+        Les paramètres liés aux scores élevés peuvent être changés dans l'onglet "Scores Élevés" à l'intérieur du
+        dialogue "Paramètres".
+        Pour des détails sur les paramètres liés aux scores élevés, consultez la section "Scores Élevés" dans l'onglet
+        d'aide "Dialogue Paramètres" à gauche.
+    </p>
+    <a name="global-leaderboard"></a>
+    <div class="docs-section-title">Classement Global</div>
+    <p>
+        JS7800 supporte un classement de scores élevés global. Quand un jeu qui supporte les scores élevés est chargé,
+        les scores élevés actuels du jeu sont récupérés depuis un serveur central de scores élevés. Si un nouveau score
+        élevé est atteint pendant le jeu, ce score est publié sur le serveur central.
+    </p>
+    <p>
+        Il est important de noter qu'il y a un délai quand un nouveau score élevé est détecté et enregistré sur le
+        serveur central.
+        Par conséquent, il est vivement recommandé d'attendre une courte période de temps avant de terminer le jeu
+        actuel (environ 10 secondes) pour s'assurer que le nouveau score élevé soit correctement enregistré.
+    </p>
+    <p>
+        Quand un jeu qui supporte les scores élevés est chargé, un message peut apparaître disant "Le classement global
+        n'est pas supporté actuellement pour ce jeu".
+        Ce message indique que le jeu spécifique supporte les scores élevés, mais n'est actuellement pas enregistré sur
+        le serveur global de scores élevés.
+        Il y a de multiples raisons pour lesquelles cela peut arriver. Le jeu pourrait être trop nouveau pour être
+        enregistré sur le serveur encore.
+        Cependant, la raison la plus probable est qu'il y a de multiples versions du jeu et cette variante spécifique
+        n'est pas supportée.
+        De multiples variantes d'un jeu spécifique ne sont typiquement pas supportées, car chaque variante pourrait
+        avoir un modèle de score différent.
+        Les jeux et variantes supportés (identifiés par des hachages MD5 de cartouches brutes sans en-tête) sont
+        <a href="https://twitchasylum.com/x/gamelist.php" target="_blank">ici</a> disponibles.
+    </p>
+    <p>
+        La page <a href="leaderboard" target="_blank">Classement Global JS7800</a> permet de voir
+        les scores élevés globaux et les meilleurs joueurs.
+    </p>
+    <a name="local-leaderboard"></a>
+    <div class="docs-section-title">Classement Local</div>
+    <p>
+        En plus du classement global, JS7800 supporte la fonctionnalité de sauvegarder les scores élevés dans un
+        classement local.
+        Les scores du classement local persistent sur l'appareil local et sont disponibles entre différentes sessions de
+        navigateur
+        (à moins que les cookies ne soient explicitement désactivés).
+    </p>
+    <p>
+        Contrairement au classement global qui restreint la compatibilité avec les variantes de jeux,
+        le classement local supporte tous les jeux et variantes activés pour scores élevés.
+    </p>
+</div>

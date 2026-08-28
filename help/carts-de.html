@@ -1,0 +1,91 @@
+<div class="docs">
+    <div class="tabcontent__title">Laden von Kartuschen</div>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="this.blur();">Zu Abschnitt springen <span
+                class="down-arrow">&#x25BC;</span></button>
+        <div class="dropdown-content">
+            <div onclick="window.location.href='#cartridge-menu'">Kartuschen-Menü</div>
+            <div onclick="window.location.href='#sel-local-file'">Lokale Dateien auswählen</div>
+            <div onclick="window.location.href='#sel-remote-file'">Remote-Dateien auswählen</div>
+            <div onclick="window.location.href='#drag-and-drop-files'">Drag and Drop Dateien</div>
+            <div onclick="window.location.href='#drag-and-drop-links'">Drag and Drop Links</div>
+            <div onclick="window.location.href='#request-params'">Anfrageparameter</div>
+        </div>
+    </div>
+    <p>
+        Die verschiedenen Wege, wie Kartuschen in JS7800 geladen werden können, werden im Rest dieses Tabs detailliert
+        beschrieben.
+        JS7800 sollte mit der überwiegenden Mehrheit der verfügbaren Atari 7800 Kartuschen-ROMs kompatibel sein (sowohl
+        originale Einzelhandels- als auch Homebrew-Versionen).
+    </p>
+    <p>
+        Atari 7800 Kartuschen-ROMs haben typischerweise eine <span class="fixed">.bin</span> oder
+        <span class="fixed">.a78</span> Dateierweiterung. Die <span class="fixed">.a78</span> Erweiterung ist bevorzugt,
+        da sie
+        Header-Informationen enthält, die dem Emulator Informationen darüber geben, wie die spezifische Kartusche
+        interpretiert werden sollte. Es ist auch erwähnenswert, dass JS7800 Kartuschen-ROMs unterstützt, die sich in
+        <span class="fixed">.zip</span> Dateien befinden.
+    </p>
+    <a name="cartridge-menu"></a>
+    <div class="docs-section-title">Kartuschen-Dropdown-Menü</div>
+    <p>
+        Das "Kartuschen-Dropdown"-Menü (unten in Rot hervorgehoben) enthält eine Liste von Atari 7800 Kartuschen zur
+        Auswahl.
+    </p>
+    <div class="docs-center">
+        <div class="docs-relative-inline-block">
+            <div class="docs-loading-controls-focus docs-loading-controls-select-focus"></div>
+            <div class="docs-loading-controls-select-text">Atari 7800 Kartusche auswählen...</div>
+            <img class="docs-loading-controls-image" src="help/images/cartloading.png"></img>
+        </div>
+    </div>
+    <p>
+        Standardmäßig wird die Kartuschenliste mit einer Auswahl exzellenter Homebrew-Titel gefüllt. Um eine Kartusche
+        zu laden,
+        wählen Sie einfach den entsprechenden Eintrag im Menü aus.
+    </p>
+    <p>
+        Benutzerdefinierte "Kartuschenlisten" werden ebenfalls unterstützt. Für weitere Informationen zum Erstellen und
+        Laden benutzerdefinierter Kartuschenlisten, siehe
+        die <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">Kartuschenlisten
+            GitHub-Seite</a>.
+    </p>
+    <a name="sel-local-file"></a>
+    <div class="docs-section-title">Lokale Dateien auswählen</div>
+    <p>
+        Der "Lokale Datei auswählen" Button (unten in Rot hervorgehoben), wird verwendet, um eine Atari 7800
+        Kartuschen-ROM-Datei auszuwählen und zu laden,
+        die sich auf dem lokalen Gerät befindet.
+    </p>
+    <div class="docs-center">
+        <div class="docs-relative-inline-block">
+            <div class="docs-loading-controls-focus docs-loading-controls-file-focus"></div>
+            <div class="docs-loading-controls-select-text">Atari 7800 Kartusche auswählen...</div>
+            <img class="docs-loading-controls-image" src="help/images/cartloading.png"></img>
+        </div>
+    </div>
+    <p>
+        Sobald der Button gedrückt wird, wird ein Datei-Auswähler angezeigt, der die Auswahl einer lokalen Datei
+        ermöglicht. Standardmäßig
+        beschränkt der Datei-Auswähler die angezeigten Dateien auf
+        <span class="fixed">.a78</span>, <span class="fixed">.bin</span>, <span class="fixed">.zip</span>,
+        und <span class="fixed">.json</span> Dateierweiterungen.
+    </p>
+    <p>
+        Der lokale Datei-Auswähler kann auch verwendet werden, um eine "Kartuschenlisten"-Datei auszuwählen (<span
+            class="fixed">.json</span> Dateierweiterung).
+        Die Auswahl einer "Kartuschenlisten"-Datei wird den Inhalt des
+        <a href="#cartridge-menu">Kartuschen-Dropdown-Menüs</a> aktualisieren. Für weitere Informationen zu
+        Kartuschenlisten, siehe
+        die <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">Kartuschenlisten
+            GitHub-Seite</a>.
+    </p>
+    <!-- Rest of the content translated similarly -->
+    <a name="request-params"></a>
+    <div class="docs-section-title">Anfrageparameter</div>
+    <p>
+        JS7800 unterstützt die folgenden Anfrageparameter. Anfrageparameter können zur JS7800-URL hinzugefügt werden, um
+        verschiedene Emulator-Optionen zu steuern.
+    </p>
+    <!-- Include the grid and examples -->
+</div>

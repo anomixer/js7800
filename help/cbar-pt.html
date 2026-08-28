@@ -1,0 +1,105 @@
+<div class="docs">
+    <div class="tabcontent__title">Barra de Controles</div>
+    <p>
+        A "barra de controles", que está localizada diretamente abaixo da tela do emulador JS7800, é usada para
+        controlar vários
+        aspectos da emulação, incluindo acesso aos diálogos de configurações e ajuda.
+    </p>
+    <div class="docs-center">
+        <img class="docs-centered-image docs-controls-bar" src="help/images/cbar.png"></img>
+    </div>
+    <p>
+        Os botões e controles que compõem a barra de controles são descritos abaixo.
+    </p>
+    <div class="dialog-grid docs-grid">
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image"
+                onclick="this.src = 'help/images/' + (this.src.indexOf('pause') == -1 ? 'pause.svg' : 'play.svg');"
+                src="help/images/pause.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Pausa a emulação do cartucho atual. Uma vez pausado, este botão pode ser usado para retomar a emulação.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image"
+                onclick="this.src = 'help/images/' + (this.src.indexOf('off') == -1 ? 'volume-off.svg' : 'volume-high.svg');"
+                src="help/images/volume-high.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Alterna a saída de som ligada e desligada.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image" src="help/images/restart.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Reinicia o cartucho atual. Isso é equivalente a realizar um recarregamento e início limpo do cartucho atual.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <button onclick="this.blur();" class="js7800__controls-button">SELECT</button>
+        </div>
+        <div class="dialog-cell-value">
+            O botão SELECT representa o botão físico "SELECT" que está presente no console Atari 7800.
+            O comportamento deste botão é específico do cartucho, mas é tipicamente usado para permitir a seleção das
+            configurações atuais do jogo (níveis de dificuldade, etc.).
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <button onclick="this.blur();" class="js7800__controls-button">RESET</button>
+        </div>
+        <div class="dialog-cell-value">
+            O botão RESET representa o botão físico "RESET" que está presente no console Atari 7800.
+            O comportamento deste botão é específico do cartucho, mas é tipicamente usado para encerrar o jogo atual (se
+            houver um em progresso).
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <label class="js7800__controls-switch"><input type="checkbox"><span
+                    class="js7800__controls-switch-slider"></span></label>
+        </div>
+        <div class="dialog-cell-value">
+            Representa o interruptor de dificuldade esquerdo físico que está presente no console Atari 7800.
+            O comportamento deste interruptor é específico do cartucho.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <label class="js7800__controls-switch"><input type="checkbox" checked><span
+                    class="js7800__controls-switch-slider"></span></label>
+        </div>
+        <div class="dialog-cell-value">
+            Representa o interruptor de dificuldade direito físico que está presente no console Atari 7800.
+            O comportamento deste interruptor é específico do cartucho.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image" src="help/images/medal.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Abre a página <a href="leaderboard" target="_blank">Tabela de Líderes Global JS7800</a>. Esta página
+            fornece a capacidade de visualizar pontuações altas globais e melhores jogadores. O conjunto inicial de
+            pontuações exibidas na
+            tabela de líderes padrão para o jogo que está sendo jogado atualmente no JS7800 (se ele suportar
+            pontuações altas globais). Para mais informações sobre a tabela de líderes global, consulte a aba
+            "Pontuações Altas"
+            à esquerda. Um dump bruto de jogos e variantes suportados (identificados por hash MD5 do cartucho
+            sem cabeçalho) pode ser encontrado
+            <a href="https://twitchasylum.com/x/gamelist.php" target="_blank">aqui</a>.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image" src="help/images/information-outline.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Exibe este diálogo "Ajuda".
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image" src="help/images/cogs.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Exibe o diálogo "Configurações". Veja a aba de ajuda "Diálogo de Configurações" à esquerda para informações
+            detalhadas.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image"
+                onclick="this.src = 'help/images/' + (this.src.indexOf('exit') == -1 ? 'fullscreen-exit.svg' : 'fullscreen.svg');"
+                src="help/images/fullscreen.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Alterna entre modos de tela cheia e não tela cheia.
+        </div>
+    </div>
+</div>

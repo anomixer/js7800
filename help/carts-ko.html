@@ -1,0 +1,196 @@
+<div class="docs">
+    <div class="tabcontent__title">카트리지 로딩</div>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="this.blur();">섹션으로 이동 <span class="down-arrow">&#x25BC;</span></button>
+        <div class="dropdown-content">
+            <div onclick="window.location.href='#cartridge-menu'">카트리지 메뉴</div>
+            <div onclick="window.location.href='#sel-local-file'">로컬 파일 선택</div>
+            <div onclick="window.location.href='#sel-remote-file'">원격 파일 선택</div>
+            <div onclick="window.location.href='#drag-and-drop-files'">파일 드래그 앤 드롭</div>
+            <div onclick="window.location.href='#drag-and-drop-links'">링크 드래그 앤 드롭</div>
+            <div onclick="window.location.href='#request-params'">요청 매개변수</div>
+        </div>
+    </div>
+    <p>
+        JS7800에 카트리지를 로드하는 다양한 방법에 대해 이 탭의 나머지 부분에서 자세히 설명합니다.
+        JS7800는 Atari 7800에서 사용 가능한 카트리지 ROM의 대부분(오리지널 소매 버전과 홈브루 버전 모두)과 호환되어야 합니다.
+    </p>
+    <p>
+        Atari 7800 카트리지 ROM은 일반적으로 <span class="fixed">.bin</span> 또는
+        <span class="fixed">.a78</span> 파일 확장자를 가집니다. <span class="fixed">.a78</span> 확장자가 권장되며,
+        특정 카트리지가 어떻게 해석되어야 하는지에 대한 정보를 에뮬레이터에 제공하는 헤더 정보가 포함되어 있습니다.
+        또한 JS7800는 <span class="fixed">.zip</span> 파일 내에 포함된 카트리지 ROM도 지원합니다.
+    </p>
+    <a name="cartridge-menu"></a>
+    <div class="docs-section-title">카트리지 드롭다운 메뉴</div>
+    <p>
+        "카트리지 드롭다운" 메뉴(아래에서 빨간색으로 하이라이트 표시)에는 선택할 Atari 7800 카트리지 목록이 포함되어 있습니다.
+    </p>
+    <div class="docs-center">
+        <div class="docs-relative-inline-block">
+            <div class="docs-loading-controls-focus docs-loading-controls-select-focus"></div>
+            <div class="docs-loading-controls-select-text">Atari 7800 카트리지 선택...</div>
+            <img class="docs-loading-controls-image" src="help/images/cartloading.png"></img>
+        </div>
+    </div>
+    <p>
+        기본적으로 카트리지 목록에는 우수한 홈브루 타이틀 선택이 채워집니다. 카트리지를 로드하려면
+        메뉴에서 적절한 항목을 선택하기만 하면 됩니다.
+    </p>
+    <p>
+        사용자 정의 "카트리지 목록"도 지원됩니다. 사용자 정의 카트리지 목록 생성 및 로드에 대한 자세한 내용은
+        <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">Cartridge List GitHub
+            페이지</a>를 참조하십시오.
+    </p>
+    <a name="sel-local-file"></a>
+    <div class="docs-section-title">로컬 파일 선택</div>
+    <p>
+        "로컬 파일 선택" 버튼(아래에서 빨간색으로 하이라이트 표시)은 로컬 장치에 있는 Atari 7800 카트리지
+        ROM 파일을 선택하고 로드하는 데 사용됩니다.
+    </p>
+    <div class="docs-center">
+        <div class="docs-relative-inline-block">
+            <div class="docs-loading-controls-focus docs-loading-controls-file-focus"></div>
+            <div class="docs-loading-controls-select-text">Atari 7800 카트리지 선택...</div>
+            <img class="docs-loading-controls-image" src="help/images/cartloading.png"></img>
+        </div>
+    </div>
+    <p>
+        버튼을 누르면 로컬 파일을 선택할 수 있는 파일 선택기가 표시됩니다. 기본적으로 파일 선택기는
+        <span class="fixed">.a78</span>, <span class="fixed">.bin</span>, <span class="fixed">.zip</span>,
+        <span class="fixed">.json</span> 파일 확장자로 파일을 제한합니다.
+    </p>
+    <p>
+        로컬 파일 선택기는 "카트리지 목록" 파일(<span class="fixed">.json</span> 파일 확장자)도 선택할 수 있습니다.
+        "카트리지 목록" 파일을 선택하면
+        <a href="#cartridge-menu">카트리지 드롭다운 메뉴</a>의 내용이 업데이트됩니다. 카트리지 목록에 대한 자세한 내용은
+        <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">Cartridge List GitHub
+            페이지</a>를 참조하십시오.
+    </p>
+    <a name="sel-remote-file"></a>
+    <div class="docs-section-title">원격 파일 선택</div>
+    <p>
+        "원격 파일 선택" 버튼(아래에서 빨간색으로 하이라이트 표시)은 원격
+        Atari 7800 카트리지 ROM의 URL을 지정하는 데 사용됩니다.
+    </p>
+    <div class="docs-center">
+        <div class="docs-relative-inline-block">
+            <div class="docs-loading-controls-focus docs-loading-controls-remote-focus"></div>
+            <div class="docs-loading-controls-select-text">Atari 7800 카트리지 선택...</div>
+            <img class="docs-loading-controls-image" src="help/images/cartloading.png"></img>
+        </div>
+    </div>
+    <p>
+        버튼을 누르면 원격 ROM 파일의 URL을 지정할 수 있는 입력 대화 상자가 표시됩니다. 예를 들어 다음 URL을 입력하면
+        홈브루 게임 "bonQ"가 로드됩니다:
+    <div class="fixed-block">http://raz0red.github.io/js7800/roms/bonq.a78</div>
+    </p>
+    <p>
+        원격 파일 선택기는 원격 "카트리지 목록" 파일
+        (<span class="fixed">.json</span> 파일 확장자)도 선택할 수 있습니다. "카트리지 목록" 파일을 선택하면
+        <a href="#cartridge-menu">카트리지 드롭다운 메뉴</a>의 내용이 업데이트됩니다. 카트리지 목록에 대한 자세한 내용은
+        <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">Cartridge List GitHub
+            페이지</a>를 참조하십시오.
+    </p>
+    <a name="drag-and-drop-files"></a>
+    <div class="docs-section-title">파일 드래그 앤 드롭</div>
+    <p>
+        로컬 Atari 7800 카트리지 ROM을 드래그 앤 드롭하면
+        로컬 파일 브라우저를 통해 파일을 선택하는 대안으로 사용할 수 있습니다(<a href="#sel-local-file">로컬 파일 선택</a> 참조).
+    </p>
+    <div class="docs-center">
+        <img class="docs-centered-image" src="help/images/dragfile.gif"></img>
+    </div>
+    <p>
+        위에서 설명한 것처럼 로컬 ROM 파일은 Windows의 파일 탐색기나 Mac의 Finder에서 에뮬레이터로
+        드래그 앤 드롭하기만 하면 로드할 수 있습니다.
+    </p>
+    <p>
+        카트리지 ROM 파일 외에도 "카트리지 목록" 파일(<span class="fixed">.json</span> 파일 확장자)을
+        에뮬레이터에 드래그 앤 드롭할 수 있습니다. "카트리지 목록" 파일을 드래그 앤 드롭하면
+        <a href="#cartridge-menu">카트리지 드롭다운 메뉴</a>의 내용이 업데이트됩니다. 카트리지 목록에 대한 자세한 내용은
+        <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">Cartridge List GitHub
+            페이지</a>를 참조하십시오.
+    </p>
+    <a name="drag-and-drop-links"></a>
+    <div class="docs-section-title">링크 드래그 앤 드롭</div>
+    <p>
+        원격 Atari 7800 카트리지 ROM을 가리키는 링크를 드래그 앤 드롭하면
+        원격 파일 선택기를 통해 URL을 지정하는 대안으로 사용할 수 있습니다(<a href="#sel-remote-file">원격 파일 선택</a> 참조).
+    </p>
+    <div class="docs-center">
+        <img class="docs-centered-image" src="help/images/draglink.gif"></img>
+    </div>
+    <p>
+        위에서 설명한 것처럼 ROM은 원격 파일 링크를 에뮬레이터에 드래그 앤 드롭하기만 하면 로드할 수 있습니다.
+        위의 구체적인 예에서는
+        <a href="https://atariage.com/forums/forum/52-atari-7800-programming/" target="_blank">AtariAge Atari 7800
+            Programming Forum</a>에서
+        링크를 드래그하고 있습니다. 이는 개발 중인 홈브루 타이틀과 완성된 홈브루 타이틀 모두의 훌륭한 소스입니다.
+        또한 AtariAge 포럼의 링크 중 일부는 게임 제목 링크가 아닌 "다운로드 수" 링크를 통해
+        드래그해야 한다는 점에 유의하십시오(위와 같이).
+    </p>
+    <p>
+        카트리지 ROM 파일 링크 외에도 "카트리지 목록" 파일 링크를
+        에뮬레이터에 드래그 앤 드롭할 수 있습니다. "카트리지 목록" 파일 링크를 드래그 앤 드롭하면
+        <a href="#cartridge-menu">카트리지 드롭다운 메뉴</a>의 내용이 업데이트됩니다. 카트리지 목록에 대한 자세한 내용은
+        <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">Cartridge List GitHub
+            페이지</a>를 참조하십시오.
+    </p>
+    <a name="request-params"></a>
+    <div class="docs-section-title">요청 매개변수</div>
+    <p>
+        JS7800는 다음 요청 매개변수 세트를 지원합니다. 요청 매개변수를 JS7800
+        URL에 추가하여 다양한 에뮬레이터 옵션을 제어할 수 있습니다. 예를 들어 <span class="fixed">cart</span> 요청
+        매개변수를 사용하여 JS7800이 처음 표시될 때 특정 카트리지를 강제로 로드할 수 있습니다.
+    </p>
+    <div class="dialog-grid docs-grid">
+        <div class="dialog-cell-label">
+            cart
+        </div>
+        <div class="dialog-cell-value">
+            <span class="fixed">cart</span> 요청 매개변수는
+            에뮬레이터 페이지가 처음 로드될 때 특정 카트리지를 로드하는 데 사용할 수 있습니다.
+            다음 URL은 홈브루 게임 "bonQ"를 로드합니다:
+            <p>
+            <div class="fixed-block">
+                https://raz0red.github.io/js7800/?cart=http://raz0red.github.io/js7800/roms/bonq.a78
+            </div>
+            </p>
+        </div>
+        <div class="dialog-cell-label">
+            cartlist
+        </div>
+        <div class="dialog-cell-value">
+            <span class="fixed">cartlist</span> 요청 매개변수는
+            <a href="#cartridge-menu">카트리지 드롭다운 메뉴</a>에 카트리지 목록을 로드하는 데 사용할 수 있습니다.
+            JS7800가 처음 로드될 때. 다음 URL은 카트리지 드롭다운
+            메뉴에 홈브루 데모 목록을 채웁니다:
+            <p>
+            <div class="fixed-block">
+                https://raz0red.github.io/js7800/?cartlist=http://raz0red.github.io/js7800/roms/romlist-homebrew-demos.json
+            </div>
+            </p>
+            카트리지 목록에 대한 자세한 내용은
+            <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">Cartridge List GitHub
+                페이지</a>를 참조하십시오.
+        </div>
+    </div>
+    <p>
+        여러 요청 매개변수를 결합하여 JS7800가 로드될 때 둘 이상의 옵션을 설정할 수 있습니다.
+        다음 URL은 특정 게임 "bonQ"와 홈브루 데모가 포함된 카트리지 목록을 로드합니다:
+    </p>
+    <p>
+    <div class="fixed-block">
+        https://raz0red.github.io/js7800/?cart=http://raz0red.github.io/js7800/roms/bonq.a78&cartlist=http://raz0red.github.io/js7800/roms/romlist-homebrew-demos.json
+    </div>
+    </p>
+    <p>
+        요청 매개변수를 추가하면 일반적으로 긴 URL이 생성되므로 GitHub
+        URL 단축 서비스 <a href="https://git.io/">git.io</a>를 사용하는 것이 좋습니다. 다음 URL은 위 예제의 단축 버전으로
+        <span class="fixed">cart</span> 및 <span class="fixed">cartlist</span> 요청 매개변수가 모두 포함되어 있습니다:
+    </p>
+    <p>
+    <div class="fixed-block">https://git.io/JfcmO</div>
+    </p>
+</div>
