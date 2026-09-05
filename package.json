@@ -23,7 +23,8 @@
     "devServerDebug": "webpack-dev-server -d --host 0.0.0.0",
     "devServerSite": "webpack-dev-server --config site/webpack.config.js --mode=production --host 0.0.0.0",
     "devServerDebugSite": "webpack-dev-server --config site/webpack.config.js -d --host 0.0.0.0",
-    "dbConvert": "node db/convert.js db/ProSystem.dat > src/js/prosystem/ProSystemDat.js"
+    "dbConvert": "node db/convert.js db/ProSystem.dat > src/js/prosystem/ProSystemDat.js",
+    "syncLeaderboard": "node scripts/sync-leaderboard.js"
   },
   "dependencies": {
     "fullscreen-api-polyfill": "^1.1.2",

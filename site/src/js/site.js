@@ -283,6 +283,11 @@ function init(in7800) {
 
   // Handle request parameters
   handleRequestParameters();
+
+  // Silently trigger leaderboard sync on arrival (background, non-blocking)
+  try {
+    fetch("https://js7800-leaderboard-worker.johantw.workers.dev/trigger-sync").catch(function () {});
+  } catch (e) {}
 }
 
 export { init }

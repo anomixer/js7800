@@ -21,7 +21,9 @@ Questo è un fork del repository originale [raz0red/js7800](https://github.com/r
 
 **Nota:** Questo fork si concentra sui miglioramenti dell'internazionalizzazione mantenendo la stessa eccellente esperienza di gioco dell'originale. L'emulazione di base e la compatibilità dei giochi rimangono invariate.
 
-**Gioca ora**: https://js7800.pages.dev
+**Gioca ora**:
+- **Cloudflare Pages**: https://js7800.pages.dev
+- **GitHub Pages Mirror**: https://anomixer.github.io/js7800/
 
 ### Modifiche
 
@@ -79,3 +81,79 @@ Questo è un fork del repository originale [raz0red/js7800](https://github.com/r
 JS7800 include documentazione integrata tramite il pulsante "Aiuto/Informazioni" situato nella barra comandi direttamente sotto lo schermo dell'emulatore.
 
 Per informazioni sul formato delle ["liste cartucce"](https://github.com/raz0red/js7800/wiki/Cartridge%20Lists), i [parametri richiesta](https://github.com/raz0red/js7800/wiki/Request%20Parameters) e altro, consultare il [JS7800 Wiki](https://github.com/raz0red/js7800/wiki).
+
+## Registro delle Modifiche (Change Log)
+
+### 08/28/26 (0.1.0 - Versione Fork)
+    - Supporto multilingua (11 lingue: Italiano, Inglese, Cinese Tradizionale, Cinese Semplificato,
+      Giapponese, Coreano, Tedesco, Spagnolo, Francese, Portoghese, Russo)
+    - Sincronizzazione in tempo reale della Classifica Globale con protezione Master SRAM
+    - Doppio deployment su Cloudflare Pages e mirror GitHub Pages
+    - Supporto scrittura SRAM a due fasi per compatibilità hardware HighScore Cartridge
+    - Sincronizzazione parallela veloce (concorrenza 8x) e ottimizzazione cache Smart Diff gratuita
+    - Sincronizzazione guidata da eventi: scrittura a monte istantanea (0s) e mirror cloud automatizzato (~18s)
+
+### 01/25/24 (0.0.9)
+    - Supporto Souper
+    - Supporto layout Activision OM ROM
+    - Correzione selezione traccia Pole Position II (di RevEng @ AtariAge)
+    - Smoothing composito per Tower Toppler e Jinks (di RevEng @ AtariAge)
+    - Palette aggiornate (contribuito da Trebor @ AtariAge)
+    - Popeye aggiornato (JS7800 Demo 2.41) (contribuito da darryl1970 @ AtariAge)
+
+### 08/16/23 (0.0.8)
+    - Risolto problema di fedeltà TIA (contribuito da RevEng @ AtariAge)
+
+### 08/13/23 (0.0.7)
+    - Riscrittura Pokey (contribuito da RevEng @ AtariAge)
+    - Correzione mirror interrupt RIOT (contribuito da RevEng @ AtariAge)
+    - Aggiunto homebrew Drelbs
+    - Aggiunta ultima versione di Arkanoid homebrew (ora funzionante grazie al fix RIOT)
+    - Aggiunte diverse demo basate su Pokey
+
+### 08/10/23 (0.0.6)
+    - Palette aggiornate (contribuito da Trebor @ AtariAge)
+    - Regolazione volume predefinito YM-2151
+    - Correzione intestazione cartuccia per tipo di televisione
+
+### 07/30/23 (0.0.5)
+    - Supporto Banksets
+    - Correzione colore di sfondo Maria (Keystone Koppers)
+    - Correzione intestazioni cartucce (risolve diverse ROM che richiedevano versioni speciali)
+    - Precisione dei cicli migliorata (risolve vari bug)
+    - Rilevamento automatico homebrew YM-2151
+    - Supporto filtri Pokey (contribuito da RevEng @ AtariAge)
+    - Supporto per cartuccia diagnostica 7800
+    - Supporto salvataggio stato (accessibile solo via webЯcade)
+    - Aggiunti alla lista giochi predefinita: IE78 (Demo), Bad Apple (Demo), Bankset Tests,
+      Baby Pac-Man, 7800 Test, Keystone Koppers (Demo), Galaxian, PentaGo!
+    - Diversi giochi aggiornati alle ultime versioni
+    - Aggiunto supporto punteggi più alti per: 1942, Galaxian, Keystone Koppers, PentaGo!
+
+### 01/05/21 (0.0.4)
+    - Aggiunto supporto punteggi globali per "Popeye"
+    - Aggiunto supporto punteggi globali per l'ultima versione di "Pac-Man Collection!"
+    - Aggiornato alle ultime versioni di "Dragon's Cache", "Dragon's Descent", "Popeye",
+      "Spire of the Ancients", "E.X.O" e "Knight Guy: Castle Days"
+
+### 09/03/20 (0.0.3)
+    - Supporto per opcode ASR e ANC non documentati
+    - Supporto punteggi globali per l'ultima versione di "Pac-Man XM"
+    - "Popeye 7800: Mini-game" e "Knight Guy: Castle Days" aggiunti alla lista di sviluppo
+    - Aggiornato alle ultime versioni di "Dragon's Cache", "Dragon's Descent", "GoSub" e
+      "Spire of the Ancients"
+
+### 06/18/20 (0.0.2)
+    - Implementazione XM aggiornata
+    - Supporto iniziale per il chip audio Yamaha (YM2151)
+    - Possibilità di disabilitare la sincronizzazione verticale
+    - Demo musicali Yamaha Zanac e Side-Crawler's Dance aggiunte
+    - I punteggi non supportati dal server globale vengono salvati localmente
+
+### 05/26/20 (0.0.1)
+    - Selezione palette colori ("Cool", "Warm" e "Hot") in variazioni "Dark" e "Light"
+    - Opzione ridimensionamento "Schermo Intero" (Intero vs Riempi)
+    - Pagina "Classifica Globale"
+
+### 05/16/20 (0.0.0)
+    - Rilascio iniziale

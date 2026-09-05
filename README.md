@@ -21,7 +21,9 @@ This is a fork of the original [raz0red/js7800](https://github.com/raz0red/js780
 
 **Note:** This fork focuses on internationalization enhancements while maintaining the same excellent gameplay experience as the original. The core emulation and game compatibility remain unchanged.
 
-**Play it now**: https://js7800.pages.dev
+**Play it now**:
+- **Cloudflare Pages**: https://js7800.pages.dev
+- **GitHub Pages**: https://anomixer.github.io/js7800/
 
 ### Modifications
 
@@ -72,7 +74,7 @@ We implemented a custom solution using **Cloudflare Workers** and **Cloudflare K
 1. **Cloudflare Worker as Proxy**: A worker intercepts all leaderboard requests and forwards them to the original `twitchasylum.com/x/` service.
 2. **CORS Header Injection**: The worker adds appropriate CORS headers (`Access-Control-Allow-Origin: *`) to allow requests from any origin.
 3. **Data Caching**: Responses are cached in Cloudflare KV Storage to improve performance and reduce dependency on the original service.
-4. **Score Synchronization**: When players submit high scores through the emulator, scores are saved both locally and to the global leaderboard via the worker.
+4. **Score Synchronization & Timing**: When players submit high scores through the emulator, scores are written directly to the upstream MySQL database (updating the official leaderboard instantly in 0s). Concurrently, a background event dispatches GitHub Actions to bypass CORS/WAF blocks and mirror the latest score to Cloudflare KV (completing in ~18 seconds).
 
 **Benefits:**
 - Players in forked deployments can now see and compete on the global leaderboard
@@ -186,7 +188,16 @@ JS7800 includes integrated documentation via the "Help/Information" button locat
 
 For information on the ["cartridge list"](https://github.com/raz0red/js7800/wiki/Cartridge%20Lists) format,  [request parameters](https://github.com/raz0red/js7800/wiki/Request%20Parameters), and more, refer to the [JS7800 Wiki](https://github.com/raz0red/js7800/wiki).
 
-## Change log
+## Change Log
+
+### 08/28/26 (0.1.0 - Fork Release)
+    - Multi-language support (11 languages: English, Traditional Chinese, Simplified Chinese,
+      Japanese, Korean, German, Spanish, French, Italian, Portuguese, Russian)
+    - Global High Score Leaderboard real-time synchronization with Master SRAM protection
+    - Dual deployment to Cloudflare Pages and GitHub Pages mirror
+    - Two-stage SRAM write support for retro HighScore Cartridge hardware compatibility
+    - Fast parallel sync (8x concurrency) and smart diff zero-bill cache optimization
+    - Event-driven sync pipeline: instant upstream write (0s) & automated cloud mirror sync (~18s) with KV-first caching
 
 ### 01/25/24 (0.0.9)
     - Souper support

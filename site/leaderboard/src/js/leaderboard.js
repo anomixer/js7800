@@ -453,6 +453,11 @@ function start() {
 
   loadGamesList();
   refreshSummary();
+
+  // Silently trigger leaderboard sync on arrival (background, non-blocking)
+  try {
+    fetch(WORKER_URL + "/trigger-sync").catch(function () {});
+  } catch (e) {}
 }
 
 export { start }

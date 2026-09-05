@@ -21,13 +21,15 @@ https://raz0red.github.io/js7800/
 
 **注意：**此分支專注於國際化增強，同時保持與原版相同的出色遊戲體驗、核心模擬和遊戲相容性保持不變。
 
-**立即暢玩**： https://js7800.pages.dev
+**立即暢玩**：
+- **Cloudflare Pages 主站**：https://js7800.pages.dev
+- **GitHub Pages 鏡像站**：https://anomixer.github.io/js7800/
 
 ### 修改內容
 
 *   **多語言支援**: UI 現已支援英文、繁體中文、簡體中文、日文、韓文、德文（Deutsch）、西班牙文（Español）、法文（Français）、義大利文（Italiano）、葡萄牙文（Português）和俄文（Русский）。
 *   **自動語言偵測**: 首次載入時，應用程式將嘗試匹配瀏覽器的偏好語言。語言也可以在「設定」選單中手動變更。
-*   **全球排行榜多語言支援**: 全球排行榜頁面也支援相同的五種語言，並自動與主模擬器的語言設定同步。
+*   **全球排行榜多語言支援**: 全球排行榜頁面也支援相同的 11 種語言，並自動與主模擬器的語言設定同步。
 *   **預設使用全球高分**: 高分儲存的預設值已設為「全球（世界排行榜）」，以透過 Cloudflare Workers 代理與原始排行榜系統無縫同步。
 *   **已翻譯文件**: README 和內部說明檔案皆已翻譯。
 *   **全球排行榜同步**: 實現 Cloudflare Workers 整合，為分支部署啟用全球高分同步功能。
@@ -72,7 +74,7 @@ https://raz0red.github.io/js7800/
 1. **Cloudflare Worker 作為代理**: 工作者攔截所有排行榜請求並將其轉發到原始的 `twitchasylum.com/x/` 服務。
 2. **CORS 標頭注入**: 工作者添加適當的 CORS 標頭 (`Access-Control-Allow-Origin: *`) 以允許來自任何來源的請求。
 3. **資料快取**: 回應被快取在 Cloudflare KV 儲存中，以提高效能並減少對原始服務的依賴。
-4. **分數同步**: 當玩家透過模擬器提交高分時，分數會同時儲存到本機和全球排行榜（透過工作者）。
+4. **分數同步與時效 (Sync Timing)**: 當玩家透過模擬器提交高分時，分數會直接發送至原作者 MySQL 資料庫（官方榜單 0 秒即時更新）；同時背景自動調度 GitHub Actions 繞過 CORS/WAF 封鎖將最新成績鏡像至 Cloudflare KV（約 18 秒完成同步）。
 
 **優點：**
 - 分支部署中的玩家現在可以查看並在全球排行榜上競爭
@@ -185,3 +187,75 @@ https://raz0red.github.io/js7800/
 JS7800 透過模擬器畫面正下方的控制列中的「說明/資訊」按鈕提供整合文件。
 
 有關 ["卡帶清單"](https://github.com/raz0red/js7800/wiki/Cartridge%20Lists) 格式、["請求參數"](https://github.com/raz0red/js7800/wiki/Request%20Parameters) 等更多資訊，請參閱 [JS7800 Wiki](https://github.com/raz0red/js7800/wiki)。
+
+## 更新日誌 (Change Log)
+
+### 08/28/26 (0.1.0 - 分支版本)
+    - 多語系支援（11 種語言：繁體中文、簡體中文、英文、日文、韓文、德文、西班牙文、法文、義大利文、葡萄牙文、俄文）
+    - 全球高分排行榜即時同步與 Master SRAM 防覆蓋保護
+    - Cloudflare Pages 主站與 GitHub Pages 鏡像站雙軌自動部署
+    - 支援復古 HighScore Cartridge 兩階段 SRAM 防斷電存檔機制
+    - 8 並發極速同步與 Smart Diff 智慧防超額帳單機制
+    - 事件驅動同步機制：官方上游 0 秒即時寫入，本站經雲端工作流程約 18 秒極速合流鏡像
+
+### 01/25/24 (0.0.9)
+    - 支援 Souper 卡帶格式
+    - 支援 Activision OM ROM 佈局
+    - 修復 Pole Position II 賽道選擇問題（由 AtariAge 的 RevEng 提供）
+    - Tower Toppler 和 Jinks 複合平滑（由 AtariAge 的 RevEng 提供）
+    - 更新調色板（由 AtariAge 的 Trebor 提供）
+    - 更新 Popeye (JS7800 Demo 2.41)（由 AtariAge 的 darryl1970 提供）
+
+### 08/16/23 (0.0.8)
+    - TIA 保真度問題修復（由 AtariAge 的 RevEng 提供）
+
+### 08/13/23 (0.0.7)
+    - Pokey 重寫（由 AtariAge 的 RevEng 提供）
+    - RIOT 中斷鏡像修復（由 AtariAge 的 RevEng 提供）
+    - 新增 Drelbs 自製遊戲
+    - 新增最新版 Arkanoid 自製遊戲（因 RIOT 修復現可正常運作）
+    - 新增多個基於 Pokey 的展示程式
+
+### 08/10/23 (0.0.6)
+    - 更新調色板（由 AtariAge 的 Trebor 提供）
+    - YM-2151 預設音量調整
+    - 電視類型的卡帶標頭修復
+
+### 07/30/23 (0.0.5)
+    - Banksets 支援
+    - Maria 背景顏色修復（Keystone Koppers）
+    - 卡帶標頭修復（修復多個需要特殊版本的 ROM）
+    - 提高週期精確度（解決多個遊戲故障）
+    - YM-2151 自製遊戲自動偵測支援
+    - Pokey 濾波器支援（由 AtariAge 的 RevEng 提供）
+    - 支援 7800 診斷卡帶
+    - 存檔狀態支援（僅可透過 webЯcade 存取）
+    - 預設遊戲清單新增：IE78 (Demo), Bad Apple (Demo), Bankset Tests, Baby Pac-Man, 7800 Test, Keystone Koppers (Demo), Galaxian, PentaGo!
+    - 更新多款遊戲至最新版本
+    - 新增高分支援：1942, Galaxian, Keystone Koppers, PentaGo! 及已支援遊戲的最新版本
+
+### 01/05/21 (0.0.4)
+    - 新增「大力水手 (Popeye)」的全球高分支援
+    - 新增「小精靈合輯 (Pac-Man Collection!)」最新版本的全球高分支援
+    - 更新「Dragon's Cache」、「Dragon's Descent」、「Popeye」、「Spire of the Ancients」、「E.X.O」和「Knight Guy: Castle Days」至最新版本
+
+### 09/03/20 (0.0.3)
+    - 支援未記錄的 ASR 和 ANC 操作碼（修復「Popeye 7800: Mini-game」的圖形故障）
+    - 新增「Pac-Man XM」最新版本的全球高分支援
+    - 將「Popeye 7800: Mini-game」和「Knight Guy: Castle Days」新增至預設開發中遊戲清單
+    - 更新多款遊戲至最新版本
+
+### 06/18/20 (0.0.2)
+    - XM 實作已更新以符合發布的硬體
+    - 初步支援 Yamaha (YM2151) 音效晶片
+    - 能夠停用垂直同步（設定對話框的「進階」分頁）
+    - 預設卡帶清單新增 Zanac 和 Side-Crawler's Dance Yamaha 音樂展示
+    - 全球高分伺服器不支援的遊戲高分預設存儲在本地
+
+### 05/26/20 (0.0.1)
+    - 能夠選擇調色板（「Cool」、「Warm」和「Hot」）的「Dark」和「Light」變化
+    - 「全螢幕」縮放選項（整數 vs. 填滿）
+    - 「全球排行榜」頁面
+
+### 05/16/20 (0.0.0)
+    - 初始版本

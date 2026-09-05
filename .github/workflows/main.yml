@@ -1,38 +1,38 @@
-name: Build and Deploy
+name: Build and Deploy to GitHub Pages
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ cf-pages, master ]
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
   build-and-deploy:
-
+    name: Build Frontend & Deploy to GitHub Pages
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [12.x]
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        submodules: recursive
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-    - name: Install dependencies and build
-      run: |
-        npm install
-        npm run build
+      - name: Install dependencies and build
+        env:
+          NODE_OPTIONS: "--openssl-legacy-provider"
+        run: |
+          npm install
+          npm run build
 
-    - name: Deploy to GitHub Pages
-      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        branch: gh-pages
-        folder: site/deploy
+      - name: Deploy to GitHub Pages (gh-pages branch)
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: site/deploy
