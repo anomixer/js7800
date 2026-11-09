@@ -1,0 +1,39 @@
+<div class="docs">
+  <div class="tabcontent__title">高分</div>
+  <div class="dropdown">
+    <button class="dropbtn" onclick="this.blur();">快速導覽 <span class="down-arrow">&#x25BC;</span></button>
+    <div class="dropdown-content">
+      <div onclick="window.location.href='#global-leaderboard'">全球排行榜</div>
+      <div onclick="window.location.href='#local-leaderboard'">本機排行榜</div>
+    </div>
+  </div>
+  <p>
+    JS7800 支援相容卡帶的高分記錄保存，可選擇「全球」或「本機」。相容條件為卡帶（.a78）標頭宣告支援 HSC。
+  </p>
+  <div class="docs-center">
+    <img class="docs-centered-image" style="border-width: .5em;" src="help/images/highscore.png"></img>
+  </div>
+  <p>
+    預設卡帶清單包含一組支援高分的自製遊戲；詳細設定可在「設定 → 高分」分頁調整。
+  </p>
+
+  <a name="global-leaderboard"></a>
+  <div class="docs-section-title">全球排行榜</div>
+  <p>
+    載入支援高分的遊戲時，會從中央伺服器讀取目前高分；若遊戲中達成新高分，結束後會回傳伺服器。
+  </p>
+  <p>
+    建議在遊戲結束後等待約 10 秒再離開，確保分數成功送出。若顯示「Global leaderboard not currently supported...」，
+    代表該版本尚未在伺服器註冊或非支援的變體。
+  </p>
+  <p>
+    可於 <a href="leaderboard" target="_blank">JS7800 全球排行榜</a> 檢視各遊戲高分與玩家排行。
+  </p>
+
+  <a name="local-leaderboard"></a>
+  <div class="docs-section-title">本機排行榜</div>
+  <p>
+    除了全球排行榜，亦可選擇將高分保存於本機，分數會在瀏覽器間保留（若未停用 Cookie）。
+    不同於全球排行榜，本機排行榜不限制遊戲變體，所有支援高分的遊戲皆可保存。
+  </p>
+</div>

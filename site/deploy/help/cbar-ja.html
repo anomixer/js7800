@@ -1,0 +1,97 @@
+<div class="docs">
+    <div class="tabcontent__title">コントロールバー</div>
+    <p>
+        JS7800エミュレーター画面の直下にある「コントロールバー」は、エミュレーションのさまざまな側面を制御するために使用され、
+        設定やヘルプダイアログへのアクセスを含みます。
+    </p>
+    <div class="docs-center">
+        <img class="docs-centered-image docs-controls-bar" src="help/images/cbar.png"></img>
+    </div>
+    <p>
+        コントロールバーを構成するボタンとコントロールについて以下で説明します。
+    </p>
+    <div class="dialog-grid docs-grid">
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image"
+                onclick="this.src = 'help/images/' + (this.src.indexOf('pause') == -1 ? 'pause.svg' : 'play.svg');"
+                src="help/images/pause.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            現在のカートリッジのエミュレーションを一時停止します。一時停止したら、このボタンでエミュレーションを再開できます。
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image"
+                onclick="this.src = 'help/images/' + (this.src.indexOf('off') == -1 ? 'volume-off.svg' : 'volume-high.svg');"
+                src="help/images/volume-high.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            サウンド出力をオンとオフを切り替えます。
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image" src="help/images/restart.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            現在のカートリッジを再起動します。これは現在のカートリッジのリロードとクリーンスタートを実行することと同等です。
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <button onclick="this.blur();" class="js7800__controls-button">SELECT</button>
+        </div>
+        <div class="dialog-cell-value">
+            SELECTボタンはAtari 7800コンソールに存在する物理的な「SELECT」ボタンを表します。
+            このボタンの動作はカートリッジ固有ですが、通常ゲームの現在の設定を選択するために使用されます（難易度レベルなど）。
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <button onclick="this.blur();" class="js7800__controls-button">RESET</button>
+        </div>
+        <div class="dialog-cell-value">
+            RESETボタンはAtari 7800コンソールに存在する物理的な「RESET」ボタンを表します。
+            このボタンの動作はカートリッジ固有ですが、通常現在のゲームを終了するために使用されます（ゲームが進行中の場合）。
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <label class="js7800__controls-switch"><input type="checkbox"><span
+                    class="js7800__controls-switch-slider"></span></label>
+        </div>
+        <div class="dialog-cell-value">
+            Atari 7800コンソールに存在する物理的な左難易度スイッチを表します。
+            このスイッチの動作はカートリッジ固有です。
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <label class="js7800__controls-switch"><input type="checkbox" checked><span
+                    class="js7800__controls-switch-slider"></span></label>
+        </div>
+        <div class="dialog-cell-value">
+            Atari 7800コンソールに存在する物理的な右難易度スイッチを表します。
+            このスイッチの動作はカートリッジ固有です。
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image" src="help/images/medal.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            <a href="leaderboard" target="_blank">JS7800グローバルリーダーボード</a>ページを開きます。このページでは
+            グローバルハイスコアとトッププレイヤーを表示できます。リーダーボードに最初に表示されるスコアセットは、
+            JS7800で現在プレイ中のゲーム（グローバルハイスコアをサポートしている場合）のデフォルトです。グローバルリーダーボードの詳細については、
+            左側の「ハイスコア」タブを参照してください。サポートされているゲームとバリアントの生ダンプ（ヘッダーなしのカートリッジMD5ハッシュで識別）は
+            <a href="https://twitchasylum.com/x/gamelist.php" target="_blank">ここ</a>にあります。
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image" src="help/images/information-outline.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            この「ヘルプ」ダイアログを表示します。
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image" src="help/images/cogs.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            「設定」ダイアログを表示します。詳細については左側の「設定ダイアログ」ヘルプタブを参照してください。
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image"
+                onclick="this.src = 'help/images/' + (this.src.indexOf('exit') == -1 ? 'fullscreen-exit.svg' : 'fullscreen.svg');"
+                src="help/images/fullscreen.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            フルスクリーンと非フルスクリーンモードを切り替えます。
+        </div>
+    </div>
+</div>

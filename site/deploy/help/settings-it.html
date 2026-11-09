@@ -1,0 +1,228 @@
+<div class="docs">
+    <div class="tabcontent__title">Dialogo Impostazioni</div>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="this.blur();">Salta alla sezione <span
+                class="down-arrow">&#x25BC;</span></button>
+        <div class="dropdown-content">
+            <div onclick="window.location.href='#display-settings'">Schermo</div>
+            <div onclick="window.location.href='#keyboard-settings'">Tastiera</div>
+            <div onclick="window.location.href='#gamepads-settings'">Gamepad</div>
+            <div onclick="window.location.href='#hs-settings'">Punteggi Alti</div>
+            <div onclick="window.location.href='#advanced-settings'">Avanzate</div>
+        </div>
+    </div>
+    <p>
+        Il dialogo "Impostazioni" permette di visualizzare e modificare vari aspetti dell'emulatore JS7800.
+        Le modifiche apportate possono essere rese permanenti cliccando il pulsante "OK". Cliccando "Annulla"
+        si scarteranno tutte le modifiche in sospeso. Il pulsante "Predefiniti" può essere usato per ripristinare
+        tutte le impostazioni ai valori predefiniti originali.
+    </p>
+    <p>
+        I valori delle impostazioni persisteranno tra le sessioni a meno che i cookie non siano stati esplicitamente
+        disabilitati.
+    </p>
+    <a name="display-settings"></a>
+    <div class="docs-section-title">Impostazioni Schermo</div>
+    <p>
+        La scheda "Schermo" (mostrata sotto) è usata per controllare come verrà visualizzato lo schermo di JS7800.
+    </p>
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #1f1f1f" src="help/images/display.png"></img>
+    </div>
+    <p>
+        Ogni campo presente nella scheda "Schermo" è descritto sotto.
+    </p>
+    <p>
+    <div class="dialog-grid docs-grid">
+        <div class="dialog-cell-label">
+            Dimensione schermo
+        </div>
+        <div class="dialog-cell-value">
+            L'impostazione dimensione schermo controlla la dimensione dello schermo di JS7800. Sebbene siano disponibili
+            molte dimensioni, si raccomanda l'uso di valori basati su interi (2x, 3x, ecc.) poiché supporta una
+            visualizzazione nitida (filtro disabilitato) senza pixel frazionari.
+        </div>
+        <div class="dialog-cell-label">
+            Rapporto d'aspetto
+        </div>
+        <div class="dialog-cell-value">
+            L'impostazione rapporto d'aspetto (AR) controlla il rapporto tra larghezza e altezza dello schermo. Per
+            default, è selezionato un rapporto 1:1 (PAR) che supporta una visualizzazione nitida (filtro disabilitato)
+            senza pixel frazionari. Altri rapporti sono disponibili, incluso un'opzione 6:7 PAR che tenta di imitare
+            il rapporto originale della console Atari 7800. Tuttavia, rapporti diversi da 1:1 PAR risulteranno in
+            pixel frazionari, quindi si raccomanda il filtro (applica filtro).
+        </div>
+        <div class="dialog-cell-label">
+            Schermo intero
+        </div>
+        <div class="dialog-cell-value">
+            L'impostazione schermo intero controlla come lo schermo viene scalato in modalità schermo intero. Per
+            default, è selezionato "riempi schermo", che causa lo scaling dello schermo per riempire tutto lo schermo
+            (mantenendo comunque il rapporto d'aspetto selezionato). Sebbene questa opzione consumi tutto lo schermo,
+            probabilmente risulterà in pixel frazionari. Per eliminare artefatti indesiderati dovuti a pixel frazionari,
+            si può abilitare l'impostazione "applica filtro". L'altra opzione disponibile, "scalatura intera", causa
+            lo scaling verticale dello schermo usando un multiplo intero della risoluzione display Atari 7800. Questa
+            impostazione combinata con "rapporto 1:1 pixel" assicura che non ci saranno pixel frazionari in modalità
+            schermo intero.
+        </div>
+        <div class="dialog-cell-label">
+            Tavolozza
+        </div>
+        <div class="dialog-cell-value">
+            L'impostazione tavolozza controlla il set di colori (tavolozza colori) usato per renderizzare ogni frame
+            visualizzato. La tavolozza "ProSystem default" è la tavolozza originale inclusa con l'emulatore ProSystem.
+            Questa particolare tavolozza è composta da colori brillanti e vividi, e può essere preferita su display
+            moderni, ma non è rappresentativa di ciò che è effettivamente raggiungibile con un Atari 7800 connesso a
+            un display CRT. Il secondo set di tavolozze (Cool, Warm, e Hot) tenta di ricreare i colori che sarebbero
+            effettivamente sperimentati connettendo una console Atari 7800 a un CRT. "Cool, Warm, e Hot" rappresentano
+            le varie fasi della console, dall'accensione attraverso l'esecuzione continua per 15-30 minuti, e il suo
+            effetto sui colori visualizzati. Infine, le tavolozze "Cool, Warm, e Hot" sono organizzate in due gruppi
+            basati sul livello di luminosità complessivo delle tavolozze.
+        </div>
+        <div class="dialog-cell-label">
+            Applica filtro
+        </div>
+        <div class="dialog-cell-value">
+            Questa impostazione controlla se un filtro viene applicato al display. Il filtro effettivo applicato
+            dipende dal particolare browser e versione (tipicamente un filtro bilineare). Applicare un filtro causerà
+            allo schermo di avere un'apparenza leggermente sfocata, ma elimina la maggior parte degli artefatti che
+            risultano da pixel frazionari.
+        </div>
+    </div>
+    </p>
+    <a name="keyboard-settings"></a>
+    <div class="docs-section-title">Tastiera</div>
+    <p>
+        La scheda "Mappature Tastiera" (mostrata sotto) è usata per visualizzare e/o modificare le mappature
+        (associazioni) tastiera per JS7800.
+    </p>
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #191919" src="help/images/keyboard.png"></img>
+    </div>
+    <p>
+        Ogni casella rossa indica il tasto attualmente associato a un input del controller o pulsante console.
+        Per modificare una mappatura, semplicemente clicca sulla casella rossa vicino all'input da cambiare. Una
+        volta cliccato, la casella diventerà bianca, come mostrato sopra per il pulsante 1 del controller 1. Una
+        volta che la casella diventa bianca, il prossimo tasto premuto sarà mappato a quel particolare input.
+    </p>
+    <a name="gamepads-settings"></a>
+    <div class="docs-section-title">Gamepad</div>
+    <p>
+        La scheda "Compatibilità Gamepad" (mostrata sotto) è usata per determinare la compatibilità dei gamepad
+        (controller) attualmente connessi al dispositivo che esegue JS7800. La scheda gamepad non contiene
+        impostazioni che possono essere modificate.
+    </p>
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #191919" src="help/images/gamepads.png"></img>
+    </div>
+    <p>
+        JS7800 supporta fino a due gamepad (per giocatore 1 e giocatore 2). Le caselle informative sopra ogni
+        controller (mostrate nello screenshot sopra), indicano il tipo di controller connesso, e il modello di
+        mappatura che il browser ha rilevato. A meno che la mappatura non sia rilevata come "standard", è improbabile
+        che il gamepad sarà compatibile con JS7800 al momento.
+    </p>
+    <p>
+        In aggiunta al rilevamento del tipo e modello di mappatura del gamepad, JS7800 mostrerà come gli input
+        del gamepad connesso si traducono in JS7800. Quando i diversi controlli sul gamepad sono premuti
+        (D-pad, stick analogici, pulsanti), un punto bianco (mostrato nello screenshot sopra) apparirà per mostrare
+        a quale controllo JS7800 quel particolare input è mappato.
+    </p>
+    <p>
+        La maggior parte dei gamepad moderni dovrebbe essere compatibile con JS7800. Controller Xbox One, Xbox 360,
+        PS4, PS3, e Switch sono stati testati. Il D-pad e lo stick analogico sinistro si mappano al joystick (o D-pad)
+        del controller Atari 7800. I pulsanti "A", "B", "X", e "O" si mappano ai pulsanti del controller Atari 7800.
+        I pulsanti stile "Select", "Back", e "Start" sono mappati ai pulsanti "SELECT" e "RESET" della console
+        Atari 7800. Infine, i pulsanti spalla sono mappati al pulsante "PAUSE" della console Atari 7800.
+    </p>
+    <p>
+        È anche degno di nota che i giochi in stile Robotron (Robotron e TiME Salvo) supportano doppi stick analogici
+        sul controller 1 (stick sinistro per muovere e stick destro per sparare).
+    </p>
+    <a name="hs-settings"></a>
+    <div class="docs-section-title">Impostazioni Punteggi Alti</div>
+    <p>
+        La scheda "Punteggi Alti" (mostrata sotto) è usata per controllare la persistenza dei punteggi alti per
+        cartucce compatibili. Perché una cartuccia sia considerata compatibile, deve identificarsi come
+        supportante la Cartuccia Punteggi Alti (HSC) tramite la sua intestazione (estensione file <span
+            class="fixed">.a78</span>).
+    </p>
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #222222" src="help/images/hssettings.png"></img>
+    </div>
+    <p>
+        Vedi la scheda "Punteggi Alti" della guida a sinistra per informazioni dettagliate riguardo l'uso dei
+        punteggi alti in JS7800.
+    </p>
+    <p>
+    <div class="dialog-grid docs-grid">
+        <div class="dialog-cell-label">
+            Salva punteggi
+        </div>
+        <div class="dialog-cell-value">
+            L'interruttore salva punteggi controlla se i punteggi alti sono resi persistenti per cartucce compatibili.
+        </div>
+        <div class="dialog-cell-label">
+            Posizione salvataggio
+        </div>
+        <div class="dialog-cell-value">
+            Il menu a discesa posizione salvataggio è usato per selezionare dove i punteggi alti sono
+            letti da e salvati. I punteggi alti possono essere mantenuti localmente (solo sul dispositivo locale)
+            o globalmente (sul server centrale punteggi alti).
+        </div>
+        <div class="dialog-cell-label">
+            Ripiego locale
+        </div>
+        <div class="dialog-cell-value">
+            L'interruttore ripiego locale controlla se i punteggi alti dovrebbero essere salvati localmente per giochi
+            che non sono supportati dal server globale punteggi alti. Questa opzione è disponibile solo quando
+            la posizione salvataggio è stata impostata a globale (vedi "Posizione salvataggio" sopra).
+        </div>
+    </div>
+    </p>
+    <a name="advanced-settings"></a>
+    <div class="docs-section-title">Impostazioni Avanzate</div>
+    <p>
+        La scheda "Avanzate" (mostrata sotto) è usata per controllare la configurazione di funzionalità avanzate.
+    </p>
+    <div class="docs-center">
+        <img class="docs-loading-controls-image" style="border-color: #222222" src="help/images/advanced.png"></img>
+    </div>
+    <p>
+        Ogni campo presente nella scheda "Avanzate" è descritto sotto.
+    </p>
+    <p>
+    <div class="dialog-grid docs-grid">
+        <div class="dialog-cell-label">
+            Modulo espansione (XM)
+        </div>
+        <div class="dialog-cell-value">
+            L'impostazione modulo espansione controlla se il Modulo Espansione Atari 7800 (XM) è abilitato.
+            Ci sono tre valori possibili per questa impostazione, "(Automatico)", "Abilitato", e "Disabilitato".
+            "(Automatico)" determina se abilitare o disabilitare il modulo espansione basandosi sull'intestazione
+            cartuccia e database cartucce interno di JS7800. Vedi <a
+                href="http://www.atarimuseum.com/videogames/consoles/7800/expansion/" target="_blank">questa pagina</a>
+            per più dettagli sul Modulo Espansione Atari 7800 (XM).
+        </div>
+        <div class="dialog-cell-label">
+            Salto fotogrammi
+        </div>
+        <div class="dialog-cell-value">
+            L'impostazione salto fotogrammi controlla la quantità di fotogrammi che dovrebbero essere saltati (non
+            renderizzati).
+            Per default, il salto fotogrammi è disabilitato (nessun fotogramma è saltato). Il salto fotogrammi può
+            essere
+            utilizzato come mezzo per risolvere problemi di performance sperimentati con JS7800. Questa impostazione
+            è tipicamente combinata con la disabilitazione dell'impostazione "sincronia verticale" (vedi sotto).
+        </div>
+        <div class="dialog-cell-label">
+            Sincronia verticale
+        </div>
+        <div class="dialog-cell-value">
+            L'impostazione sincronia verticale controlla se il frame rate di JS7800 è sincronizzato con il
+            refresh rate del monitor. La sincronia verticale tenta di eliminare artefatti display come
+            screen tearing. Questa impostazione può essere disabilitata come mezzo per risolvere problemi di performance
+            sperimentati con JS7800.
+        </div>
+    </div>
+    </p>
+</div>

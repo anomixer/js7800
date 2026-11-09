@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>JS7800 Global Leaderboard</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="https://raz0red.github.io/js7800/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://raz0red.github.io/js7800/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://raz0red.github.io/js7800/favicon-16x16.png">
+  <link rel="manifest" href="https://raz0red.github.io/js7800/site.webmanifest">
+  <link href="./JS7800 Global Leaderboard_files/roboto.css" rel="stylesheet">
+  <script src="./JS7800 Global Leaderboard_files/leaderboard.min.js.下載"></script><style>body {
+  background-color: #1E1E1E;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-size: 75%;
+  margin: 5em 0 0 0;
+}
+
+.header {
+  top: 0;
+  position: fixed;
+  background-color: #1B1B1B;
+  color: #BBBBBB;
+  padding: .50em;
+  font-size: 1.25em;
+  width: 100%;
+  z-index: 1;
+  text-align: center;
+  display: block;
+  box-shadow: 0 0 .54em 0 rgba(0, 0, 0, 0.4), 0 0 1.34em 0 rgba(0, 0, 0, 0.39);
+}
+
+.header__label {
+  margin-right: .54em;
+  vertical-align: middle;
+}
+
+.header__logo {
+  vertical-align: middle;
+  width: 1.34m;
+  height: 1.34em;
+}
+
+.content {
+  text-align: center;
+}
+
+.content-inner {
+  max-width: 1100px;
+  min-width: 1100px;
+  display: inline-block;
+  text-align: left;
+}
+
+#left {
+  float: left;
+  width: 200px;
+  min-width: 200px;
+}
+
+#right {
+  float:right; 
+  width: 200px;
+  min-width: 200px;
+}
+
+#center {
+  float:left; 
+  width:700px;
+  min-width:700px;
+}
+
+.description {
+  line-height: 1.8em;
+  color: #AAA;
+  font-size: 1.3em;
+  margin-bottom: 1em;
+  margin: 0 5em 1em 5em;
+  text-align: center;
+}
+
+.infobox {
+  color: #BBBBBB;
+  line-height: 1.5em;
+  font-size: 1em;
+  padding: .8em .4em;
+  border-radius: .634em;
+  box-shadow: 0 .317em .635em 0 rgba(0, 0, 0, 0.4), 0 .476em 1.587em 0 rgba(0, 0, 0, 0.39);
+  background-color: #191919;
+  margin-bottom: 2em;
+  visibility: hidden;
+  
+}
+
+.infobox-scores {
+  min-height: 50em; 
+  background-color: #212121;
+  margin: 0 2em 2em 2em; 
+  padding:1em;
+  visibility: visible;
+}
+
+.infobox-title {
+  font-weight: bold;
+  text-align: center;
+  padding: .3em;
+  margin: 0 .5em .6em .5em;
+  font-size: 1.1em;
+  color: #888;
+  border: 1px solid #333;
+  background-color: #222;
+  border-radius: .3em;
+}
+
+.infobox-entry {
+  margin: 0 .7em;
+  font-size: 1em;
+  line-height: 1em;
+  vertical-align: middle;
+  margin-top: .6em;
+  /* border: 1px solid yellow; */
+  border-radius: .4em;
+  padding: 0 .4em;
+  opacity: .8;
+}
+
+.infobox-entry-select:hover {
+  /* background-color:#282828; */
+  /* background-color:#702426; */
+  background-color:#8b2429;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.infobox-entry-flex {
+  display: flex; 
+  justify-content: start; 
+  align-items: baseline;
+  padding: 0;
+  margin: 0;
+  /* border: 1px solid red; */
+}
+
+.infobox-entry-callout {
+  font-size: 1.1em;
+  color: #FFF;
+  line-height: 1.5em;
+  overflow: hidden;
+  /* border: 1px solid green; */
+}
+
+.infobox-entry-normal {
+  font-size:.9em; 
+  color:#BBB;
+  line-height: 1.5em;
+  overflow: hidden;
+  /* border: 1px solid blue; */
+}
+
+.infobox-entry-initials {
+  min-width: 2.75em;
+}
+
+.infobox-entry-separator {
+  padding-top: .6em;
+  margin: 0 .6em;
+  border-bottom:1px solid #292929; 
+  height: 0px; 
+}
+
+.game-select-outer {
+  display: flex;
+  justify-content: center;
+  text-align: center; 
+  margin-bottom: 1em; 
+  padding-top: .5em;
+  padding-bottom: .5em;
+  background-color: #292929;
+  border-radius: .5em;
+  border: 1px solid #383838;
+}
+
+.game-select-inner {
+  display: inline-grid;  
+  grid-template-columns: auto 1fr;  
+  /* grid-column-gap: 5px; */
+  grid-row-gap:.5em;  
+  justify-content: right; 
+  align-items: center;
+}
+
+.game-select-label {
+  font-size: 1.15em; 
+  font-weight: bold; 
+  padding-right: 1em; 
+  color: #888;
+  text-align: right;
+}
+
+.game-select {
+  opacity: .8;
+  font-size: 1.15em;
+  color: #fff;
+  position: relative;
+  display: flex;
+  width: 16em;
+  height: 1.8em;
+  line-height: 1.8em;
+  background: black;
+  overflow: hidden;
+  border-radius: .4em;
+  border: 1px solid #666;
+}
+
+.game-select:hover {
+  opacity: 1;
+}
+
+.game-select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 .3em;
+  font-size: 1em;
+  color: #ce2f37;
+  background-color: #1C1C1C;
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.game-select select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: black;
+  background-image: none;
+  padding: 0 .714em;
+  color: #CCC;
+  cursor: pointer;
+  font-size: .9em;
+  flex: 1;
+}
+
+.game-select select::-ms-expand {
+  display: none;
+}
+
+.game-select select optgroup {
+  font-weight: bold;
+  font-size: 1em;
+  color: #777777;
+}
+
+.game-select select option {
+  font-weight: normal;
+  font-size: 1em;
+  color: #BBBBBB;
+}
+
+.scores-table {
+  scrollbar-width: thin;
+  scrollbar-color: #8b2429 #171717;
+  background-color: #141414;
+  height: 50em; 
+  max-height: 50em; 
+  min-height: 50em; 
+  overflow: auto; 
+  border: 2px solid #333;
+  border-radius:4px;  
+  position:relative;  
+}
+
+.scores-table::-webkit-scrollbar {
+  width: 1.1em;
+}
+
+.scores-table::-webkit-scrollbar-track {
+  background: #171717;
+}
+
+.scores-table::-webkit-scrollbar-thumb {
+  background-color: #8b2429;
+  border-radius: 1.43em;
+  border: .214em solid #171717;
+}
+
+.scores-table-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.1em;
+  color: #999;
+}
+
+.scores-table-table TH {
+  background-color: #101010;
+  padding: .5em 1em;
+  color: #BBB;
+  font-size: 1.05em;
+}
+
+.scores-table-table tr:nth-child(even) {
+  background-color: #181818;
+}
+
+.scores-table-table tr:nth-child(odd) {
+  background-color: #1D1D1D;
+}
+
+.scores-table-table TD {
+  padding: .5em 1em;
+  border: none;
+}
+
+.scores-table-table TD.callout {
+  font-weight: bold;
+  color: #CCC;
+}
+
+.scores-table-table TD.player {
+  padding-left:0;
+}
+
+.scores-table-table TD.rank {
+  padding-right:0;
+}
+
+.scores-table-table TD.noscores {
+  text-align: center;
+  padding: 1.5em;  
+  background-color: #191919;
+}
+
+.loader-container {
+  visibility: hidden;
+  position: absolute;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: #111;
+  opacity: .7;
+  /* border: 1px solid red; */
+}
+
+.loader-container {
+  z-index: 1;
+}
+
+.loader {  
+  border: 12px solid #999;
+  border-radius: 50%;
+  border-top: 12px solid #8b2429;
+  width: 80px;
+  height: 80px;
+  -webkit-animation: spin 2s linear infinite;
+  /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.controls-left {
+  min-width:8em;
+}
+
+.controls-right {
+  display: flex; 
+  align-items: flex-end; 
+  justify-content: flex-end; 
+  min-width:8em;
+  padding-right:.5em;
+}
+
+.controls-center {
+  flex-grow: 1;
+}
+
+.button-image {
+  width: 1.8em;
+  height: 1.8em;
+  opacity: .6;
+  margin: 0 .6em 0 0;
+}
+
+.button-image:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+#play-button {
+  display: none;
+}
+
+a, 
+a:visited
+a:active {
+  font-weight: bold;
+  text-decoration: none;
+  color: #BBB;  
+}
+
+a:hover {
+  color: #DDD;  
+}
+</style><style>.message {
+    visibility: hidden;
+    color: #BBB;
+    text-align: center;
+    border-radius: .4em;
+    padding: .54em;
+    position: fixed;
+    z-index: 2;
+    left: 50%;
+    top: 7.34em;
+    font-size: 1.25em; /* Roboto */
+    /* font-size: 1.25em; */
+    opacity: .98;
+    box-shadow: 0 .27em .54em 0 rgba(0, 0, 0, 0.4), 0 .4em 1.34em 0 rgba(0, 0, 0, 0.39);
+    word-wrap: break-word;
+  }
+  
+  #snackbar {
+    background-color: #222;
+    min-width: 16.67em;
+    max-width: 16.67em;
+    margin-left: -8.335em;
+  }
+  
+  #errormsg {
+    background-color: #992329;
+    cursor: pointer;
+    min-width: 23.34em;
+    max-width: 23.34em;
+    margin-left: -11.67em;
+    color: #ddd;
+  }
+  
+  #errormsg .closebtn {
+    margin-left: .68em;
+    color: #ddd;
+    font-weight: bold;
+    float: right;
+    font-size: 1.48em;
+    line-height: .9em;
+    cursor: pointer;
+  }
+  
+  #errormsg .closebtn:hover {
+    color: #000;
+  }
+  
+  #snackbar.show,
+  #errormsg.show {
+    visibility: visible;
+    -webkit-animation: message--fadein 0.5;
+    animation: message--fadein 0.5s;
+  }
+  
+  #snackbar.hide,
+  #errormsg.hide {
+    visibility: hidden;
+    -webkit-animation: message--fadeout 0.5s;
+    animation: message--fadeout 0.5s;
+    transition: visibility 0.5s;
+  }
+  
+  @-webkit-keyframes message--fadein {
+    from {
+      top: 4.67em;
+      opacity: 0;
+    }
+  
+    to {
+      top: 7.34em;
+      opacity: .98;
+    }
+  }
+  
+  @keyframes message--fadein {
+    from {
+      top: 4.67em;
+      opacity: 0;
+    }
+  
+    to {
+      top: 7.34em;
+      opacity: .98;
+    }
+  }
+  
+  @-webkit-keyframes message--fadeout {
+    from {
+      top: 7.34em;
+      opacity: .98;
+    }
+  
+    to {
+      top: 4.67em;
+      opacity: 0;
+    }
+  }
+  
+  @keyframes message--fadeout {
+    from {
+      top: 7.34em;
+      opacity: .98;
+    }
+  
+    to {
+      top: 4.67em;
+      opacity: 0;
+    }
+  }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <span class="header__label"><a href="https://raz0red.github.io/js7800/" target="_blank">JS7800</a> Global Leaderboard</span>
+    <a href="https://github.com/raz0red/js7800" target="_blank"><img class="header__logo" src="./JS7800 Global Leaderboard_files/github-logo.svg" alt="GitHub: JS7800 by raz0red" title="GitHub: JS7800 by raz0red"></a>
+  </div>
+  <div id="leaderboard-content" class="content">
+    <div class="content-inner">
+      <div class="description">Select a game in the drop-down menu below to view current high scores.</div>
+      <div id="left">
+        <div id="top-players-box" class="infobox" style="visibility: visible;">
+          <div class="infobox-title">Top Players<br>(All games)</div>
+          <div id="top-players"><div class="infobox-entry"><div class="infobox-entry-flex"><div class="infobox-entry-callout infobox-entry-initials">NIK</div><div class="infobox-entry-normal">1594 points</div></div></div><div class="infobox-entry-separator"></div><div class="infobox-entry"><div class="infobox-entry-flex"><div class="infobox-entry-callout infobox-entry-initials">VIN</div><div class="infobox-entry-normal">375 points</div></div></div><div class="infobox-entry-separator"></div><div class="infobox-entry"><div class="infobox-entry-flex"><div class="infobox-entry-callout infobox-entry-initials">SCB</div><div class="infobox-entry-normal">351 points</div></div></div><div class="infobox-entry-separator"></div><div class="infobox-entry"><div class="infobox-entry-flex"><div class="infobox-entry-callout infobox-entry-initials">PGE</div><div class="infobox-entry-normal">311 points</div></div></div><div class="infobox-entry-separator"></div><div class="infobox-entry"><div class="infobox-entry-flex"><div class="infobox-entry-callout infobox-entry-initials">DCT</div><div class="infobox-entry-normal">113 points</div></div></div></div>
+        </div>
+        <div id="recent-scores-box" class="infobox" style="visibility: visible;">
+          <div class="infobox-title">Latest High Scores</div>
+          <div id="recent-scores"><div class="infobox-entry infobox-entry-select"><div class="infobox-entry-callout">NIK • 19700</div><div class="infobox-entry-normal">Galaxian</div><div class="infobox-entry-normal">Easy Lives:3 Rapid:Off</div><div class="infobox-entry-normal">2025/10/19 上午4:27:04</div></div><div class="infobox-entry-separator"></div><div class="infobox-entry infobox-entry-select"><div class="infobox-entry-callout">KBS • 11450</div><div class="infobox-entry-normal">Galaxian</div><div class="infobox-entry-normal">Easy Lives:3 Rapid:Off</div><div class="infobox-entry-normal">2025/10/18 上午2:16:52</div></div><div class="infobox-entry-separator"></div><div class="infobox-entry infobox-entry-select"><div class="infobox-entry-callout">SCB • 11830</div><div class="infobox-entry-normal">Galaxian</div><div class="infobox-entry-normal">Easy Lives:3 Rapid:Off</div><div class="infobox-entry-normal">2025/10/16 下午4:15:53</div></div><div class="infobox-entry-separator"></div><div class="infobox-entry infobox-entry-select"><div class="infobox-entry-callout">STE • 24240</div><div class="infobox-entry-normal">Super Cobra</div><div class="infobox-entry-normal">Easy</div><div class="infobox-entry-normal">2025/10/11 上午6:50:36</div></div><div class="infobox-entry-separator"></div><div class="infobox-entry infobox-entry-select"><div class="infobox-entry-callout">NRT • 40340</div><div class="infobox-entry-normal">Pac-Man XM</div><div class="infobox-entry-normal">Speed:Fast Random Maze: Banana</div><div class="infobox-entry-normal">2025/10/10 上午1:11:18</div></div></div>
+        </div>
+      </div>
+      <div id="center">
+        <div class="infobox infobox-scores">
+          <div class="game-select-outer">
+            <div class="controls-left"></div>
+            <div class="controls-center">
+              <div class="game-select-inner">
+                <div class="game-select-label">Game:</div>
+                <div class="game-select">
+                  <select id="games-select-select"><option value="fd9353d42cca5f81fe7af866592b94c3">1942</option><option value="1612ce15eadfc2cdd59dca807c2acfcb">2048</option><option value="4c2b62851eed5cc6eb3dd09b1bf9ff6f">A.R.T.I. (Demo)</option><option value="eea04359df6770d66b0d97c2cea1932f">Armor Attack II</option><option value="07342c78619ba6ffcc61c10e907e3b50">Asteroids</option><option value="a65f79ad4a0bbdecd59d5f7eb3623fd7">Asteroids Deluxe</option><option value="55ffe535897c368be7a80d582f6a68cb">Astro Blaster</option><option value="b4be9c25ea078608310f0ddc409e7cc1">Astro Fighter</option><option value="9fa7743a016c9b7015ee1d386326f88e">b*nQ</option><option value="78b1061d651ef806becac1dd3fda29a0">Beef Drop</option><option value="34bd689f6bc1c43e251b9da0279e9034">Block'Em Sock'Em (Demo)</option><option value="5a09946e57dbe30408a8f253a28d07db">Centipede</option><option value="299d31c8e181fdd011df2014451bdf0f">Crazy Brix</option><option value="100551363027dc5f093d049a5fd00933">Crazy Otto</option><option value="9ea73fd07e43f61209876d33e6f6dc04">Desert Falcon (Prototype)</option><option value="731879ea82fc0ca245e39e036fe293e6">Dig Dug</option><option value="c956d5ce7417cc2dab61a9afd8f372d0">Donkey Kong XM</option><option value="7b7825ca2c79148f1c4ade6baacc1a76">Dragon's Cache</option><option value="77164df89ae49b4dd72906a21e787233">Dragon's Descent</option><option value="b3143adbbb7d7d189e918e5b29d55a72">Dungeon Stalker</option><option value="6287727ab36391a62f728bbdee88675c">FailSafe</option><option value="cf76b00244105b8e03cdc37677ec1073">Food Fight</option><option value="e7d89669a7f92ec2cc99d9663a28671c">Frenzy w/ Berzerk</option><option value="6053233cb59c0b4ca633623fd76c4576">Froggie</option><option value="fb8d803b328b2e442548f7799cfa9a4a">Galaga</option><option value="0c097bc8c786af182935081ac5cd631f">Galaxian</option><option value="f18b3b897a25ab3885b43b4bd141b396">Joust</option><option value="bde3abe40d302d8c4c65c9690c05dbc4">Jr. Pac-Man</option><option value="1c9deabc48f07d1bf2c68731fccd27b5">Keystone Koppers (Demo)</option><option value="c3f6201d6a9388e860328c963a3301cc">Meteor Shower</option><option value="3a15fe7bead3d9b90f3fb13d63e1ee42">Moon Cresta</option><option value="fc0ea52a9fac557251b65ee680d951e5">Ms. Pac-Man</option><option value="cf007563fe94cacf5ea5295dc93ce9ef">Ms. Pac-Man (Full Screen)</option><option value="a69347c8a681b8e94f79d8d848998007">Ms. Pac-Man Twin</option><option value="39dc7f6f39f9b3e341a5ffea76e71fb1">Pac-Man XM</option><option value="6ac5a7f8b6a3198ed08abb9866753763">PentaGo!</option><option value="88c77b8ff2e20a1e1e04d28bd3098e76">Popeye</option><option value="803743fe18600f292456539906464421">Rip Off</option><option value="66ecaafe1b82ae68ffc96267aaf7a4d7">Robotron 2084</option><option value="31b20a4710e691300bb4aa62cf02284c">Scramble</option><option value="771cb4609347657f63e6f0eb26036e35">Space Duel</option><option value="783d09ad9542b0bb28aa4cc6ffcf8aa6">Space Invaders</option><option value="02508e6df5e173b4063a7e6e63295817">Super Circus</option><option value="f41f651417c234104d37296477fa29eb">Super Cobra</option><option value="88b9de0eba37ba516590fa8b860155f0">Super Pac-Man</option><option value="a60e4b608505d1fb201703b266f754a7">TiME Salvo</option><option value="f982c7dbf74c9c049cf7f875a46ed818">UniwarS</option><option value="d7dc17379aa25e5ae3c14b9e780c6f6d">Xevious</option></select>
+                </div>
+                <div class="game-select-label">Settings:</div>
+                <div class="game-select">
+                  <select id="games-select-filter"><option value="all">(All)</option><option value="6466:0">Top 5 Scores</option></select>
+                </div>
+              </div>
+            </div>
+            <div class="controls-right">
+              <div id="play-button" style="display: inline-block;"><img class="button-image" title="Play" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZlcnNpb249IjEuMSIgIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4NCiAgIDxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0yMSw2SDNBMiwyIDAgMCwwIDEsOFYxNkEyLDIgMCAwLDAgMywxOEgyMUEyLDIgMCAwLDAgMjMsMTZWOEEyLDIgMCAwLDAgMjEsNk0xMSwxM0g4VjE2SDZWMTNIM1YxMUg2VjhIOFYxMUgxMU0xNS41LDE1QTEuNSwxLjUgMCAwLDEgMTQsMTMuNUExLjUsMS41IDAgMCwxIDE1LjUsMTJBMS41LDEuNSAwIDAsMSAxNywxMy41QTEuNSwxLjUgMCAwLDEgMTUuNSwxNU0xOS41LDEyQTEuNSwxLjUgMCAwLDEgMTgsMTAuNUExLjUsMS41IDAgMCwxIDE5LjUsOUExLjUsMS41IDAgMCwxIDIxLDEwLjVBMS41LDEuNSAwIDAsMSAxOS41LDEyWiIgLz4NCjwvc3ZnPg=="></div>      
+              <div id="restart-button"><img class="button-image" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZlcnNpb249IjEuMSIgIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4NCiAgIDxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0xMiw0QzE0LjEsNCAxNi4xLDQuOCAxNy42LDYuM0MyMC43LDkuNCAyMC43LDE0LjUgMTcuNiwxNy42QzE1LjgsMTkuNSAxMy4zLDIwLjIgMTAuOSwxOS45TDExLjQsMTcuOUMxMy4xLDE4LjEgMTQuOSwxNy41IDE2LjIsMTYuMkMxOC41LDEzLjkgMTguNSwxMC4xIDE2LjIsNy43QzE1LjEsNi42IDEzLjUsNiAxMiw2VjEwLjZMNyw1LjZMMTIsMC42VjRNNi4zLDE3LjZDMy43LDE1IDMuMywxMSA1LjEsNy45TDYuNiw5LjRDNS41LDExLjYgNS45LDE0LjQgNy44LDE2LjJDOC4zLDE2LjcgOC45LDE3LjEgOS42LDE3LjRMOSwxOS40QzgsMTkgNy4xLDE4LjQgNi4zLDE3LjZaIiAvPg0KPC9zdmc+" title="Refresh"></div>      
+            </div>
+          </div>
+          <div>
+            <div id="scores-table" class="scores-table">              
+              <div id="loader-container" class="loader-container" style="visibility: hidden;">
+                <div class="loader"></div>
+              </div>  
+              <table id="scores-table-table" class="scores-table-table">
+                <thead>
+                  <tr>
+                    <th>Settings</th>
+                    <th colspan="2">Player</th>
+                    <th>Score</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+              <tbody><tr class="firstPlace"><td>Top 5 Scores</td><td class="rank">1.</td><td class="callout player">NIK</td><td>611370</td><td>2024/5/28 下午12:34:47</td></tr><tr><td></td><td class="rank">2.</td><td class="callout player">NIK</td><td>497460</td><td>2025/6/21 上午9:23:25</td></tr><tr><td></td><td class="rank">3.</td><td class="callout player">NIK</td><td>341230</td><td>2025/6/20 上午8:30:41</td></tr><tr><td></td><td class="rank">4.</td><td class="callout player">JMS</td><td>311700</td><td>2023/12/7 上午3:30:28</td></tr><tr><td></td><td class="rank">5.</td><td class="callout player">SCB</td><td>292790</td><td>2025/8/1 上午2:42:52</td></tr></tbody></table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="right">
+        <div id="top-players-top-10-box" class="infobox" style="visibility: visible;">
+          <div class="infobox-title">Top Players<br>(Most competitive modes)</div>
+          <div id="top-players-top-10"><div class="infobox-entry"><div class="infobox-entry-flex"><div class="infobox-entry-callout infobox-entry-initials">NIK</div><div class="infobox-entry-normal">13 points</div></div></div><div class="infobox-entry-separator"></div><div class="infobox-entry"><div class="infobox-entry-flex"><div class="infobox-entry-callout infobox-entry-initials">AJK</div><div class="infobox-entry-normal">13 points</div></div></div><div class="infobox-entry-separator"></div><div class="infobox-entry"><div class="infobox-entry-flex"><div class="infobox-entry-callout infobox-entry-initials">SCB</div><div class="infobox-entry-normal">10 points</div></div></div><div class="infobox-entry-separator"></div><div class="infobox-entry"><div class="infobox-entry-flex"><div class="infobox-entry-callout infobox-entry-initials">RKS</div><div class="infobox-entry-normal">10 points</div></div></div><div class="infobox-entry-separator"></div><div class="infobox-entry"><div class="infobox-entry-flex"><div class="infobox-entry-callout infobox-entry-initials">COC</div><div class="infobox-entry-normal">7 points</div></div></div></div>
+        </div>
+        <div id="most-competitive-box" class="infobox" style="visibility: visible;">
+          <div class="infobox-title">Most Competitive Modes</div>
+          <div id="most-competitive"><div class="infobox-entry infobox-entry-select"><div class="infobox-entry-callout">Joust</div><div class="infobox-entry-normal">Intermediate</div><div class="infobox-entry-normal">40 scores  / 18 players</div></div><div class="infobox-entry-separator"></div><div class="infobox-entry infobox-entry-select"><div class="infobox-entry-callout">Popeye</div><div class="infobox-entry-normal">Novice</div><div class="infobox-entry-normal">27 scores  / 15 players</div></div><div class="infobox-entry-separator"></div><div class="infobox-entry infobox-entry-select"><div class="infobox-entry-callout">Moon Cresta</div><div class="infobox-entry-normal">Easy</div><div class="infobox-entry-normal">26 scores  / 12 players</div></div><div class="infobox-entry-separator"></div><div class="infobox-entry infobox-entry-select"><div class="infobox-entry-callout">1942</div><div class="infobox-entry-normal">Top 5 Scores</div><div class="infobox-entry-normal">33 scores  / 12 players</div></div><div class="infobox-entry-separator"></div><div class="infobox-entry infobox-entry-select"><div class="infobox-entry-callout">Astro Fighter</div><div class="infobox-entry-normal">Lives:3 Easy</div><div class="infobox-entry-normal">19 scores  / 14 players</div></div></div>
+        </div>
+      </div>
+    </div>
+  <div id="snackbar" class="message hide"></div><div id="errormsg" class="message hide"><span class="closebtn">×</span><span>Error during read attempt: https://twitchasylum.com/x//scoreboard-summary-cached-gen.php<br>(See console log for details)</span></div></div>
+  <script>
+    leaderboard.start();    
+  </script>
+
+
+</body></html>

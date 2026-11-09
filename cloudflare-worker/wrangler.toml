@@ -1,0 +1,7 @@
+name = "js7800-leaderboard-worker" # 請替換成您在 Cloudflare 建立的 Worker 名稱
+main = "leaderboard-worker.js"
+compatibility_date = "2023-10-27" # 請使用一個近期日期，例如今天的日期
+
+[[kv_namespaces]]
+binding = "js7800globalhiscore" # 這必須與 Worker 程式碼中的變數名一致
+id = "6e6d5e88c82f4d72a6c510818c307860" # 請將此處替換為您剛才複製的 KV Namespace ID

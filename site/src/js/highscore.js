@@ -17,6 +17,8 @@ var GLOBAL_DEFAULT = true;
 var ENABLED_DEFAULT = true;
 var FALLBACK_DEFAULT = true;
 
+const WORKER_URL = "https://js7800-leaderboard-worker.johantw.workers.dev";
+
 var js7800 = null;
 var Main = null;
 var debug = false;
@@ -118,7 +120,7 @@ function loadSramGlobal(success, failure) {
   var mid = Message.showMessage("Loading global leaderboard...");
   
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', Util.getUrlPrefix() + "/load.php?d=" + digest);
+  xhr.open('GET', WORKER_URL + "/?d=" + digest);
   xhr.onload = function () {
     if (xhr.status == 200) {
       // Success
@@ -203,23 +205,53 @@ function loadSram(postLoadCallback) {
 
 function saveSramGlobal() {
   console.log("Writing High Score SRAM to global storage.");
+  var mid = Message.showMessage("Writing High Score SRAM to global storage...");
+  var base64Sram = sramToBase64(sram);
+
+  // 1. 直接由玩家瀏覽器（本機真實 IP）發送 POST 到原作者伺服器（雙向直連，確保永不被 403 阻擋）
+  try {
+    fetch("https://twitchasylum.com/x/save.php?sid=" + sessionId + "&d=" + digest, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain;charset=UTF-8"
+      },
+      body: base64Sram
+    }).catch(function(e) { console.warn("Direct save caught:", e); });
+  } catch (e) {
+    console.warn("Direct save error:", e);
+  }
+
+  // 2. 同步發送到 Cloudflare Worker 保存至 KV 並觸發快取自動同步
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', Util.getUrlPrefix() + "/save.php?sid=" + sessionId + "&d=" + digest);
+  xhr.open('POST', WORKER_URL + "/?sid=" + sessionId + "&d=" + digest);
   xhr.onload = function () {
+    Message.hideMessage(mid);
     if (xhr.status == 200) {
       console.log("Successfully saved global high scores for game");
+      var succMid = Message.showMessage("Successfully saved global high scores!");
+      Message.hideMessage(succMid, 2000);
+
+      // 3. 由瀏覽器呼叫 Worker /refresh 端點，讓 Worker 背景重試抓取最新分數更新 KV
+      setTimeout(function() {
+        fetch(WORKER_URL + "/refresh?d=" + digest)
+          .then(function() { console.log("Triggered Worker KV refresh."); })
+          .catch(function(e) { console.warn("refresh trigger error:", e); });
+      }, 1500); // 等 1.5 秒讓原作者 DB 寫入完成再觸發
+
     } else {
-      console.log(e);
       Events.fireEvent("showError", 
         "Error saving global high scores (" + 
           xhr.status + ": " + xhr.statusText +")");
     }
   }
   xhr.onerror = function() {
+    Message.hideMessage(mid);
     Events.fireEvent("showError",
       "Error saving global high scores.<br>(see console log for details)"); 
   }
-  xhr.send(sramToBase64(sram));
+  xhr.send(base64Sram);
+
 }
 
 function saveSramLocal() {

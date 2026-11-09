@@ -1,5 +1,6 @@
 import * as Util from "./util.js"
 import * as Events from "./events.js"
+import * as I18n from "../../../src/js/common/i18n.js"
 
 var errorHandler = null;
 var loadFromUrl = null;
@@ -71,7 +72,7 @@ function RomList(selects) {
 
     clearSelect(select);
     var opt = document.createElement('option');
-    opt.text = "Select Atari 7800 Cartridge...";
+    opt.text = I18n.t('site.cart_select');
     opt.disabled = true;
     opt.selected = true;
     select.appendChild(opt);

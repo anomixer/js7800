@@ -1,0 +1,86 @@
+<div class="docs">
+    <div class="tabcontent__title">Pontuações Altas</div>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="this.blur();">Saltar para seção <span
+                class="down-arrow">&#x25BC;</span></button>
+        <div class="dropdown-content">
+            <div onclick="window.location.href='#global-leaderboard'">Tabela de Líderes Global</div>
+            <div onclick="window.location.href='#local-leaderboard'">Tabela de Líderes Local</div>
+        </div>
+    </div>
+    <p>
+        O JS7800 suporta persistir pontuações altas tanto globalmente quanto localmente para cartuchos compatíveis. Para
+        um
+        cartucho ser considerado compatível, ele deve se identificar como suportando o Cartucho de Pontuação Alta (HSC)
+        via seu cabeçalho (extensão de arquivo <span class="fixed">.a78</span>). Por padrão, a persistência global de
+        pontuações
+        altas está habilitada.
+    </p>
+    <div class="docs-center">
+        <img class="docs-centered-image" style="border-width: .5em;" src="help/images/highscore.png"></img>
+    </div>
+    <p>
+        Por padrão, o "Menu Suspenso de Cartuchos" (Veja "Menu de Cartuchos" na aba "Cartuchos" da ajuda à esquerda)
+        contém
+        um conjunto de jogos homebrew que suportam pontuações altas. Estes cartuchos estão contidos em um
+        grupo intitulado "Compatível com Pontuação Alta", próximo ao final da lista do menu.
+    </p>
+    <p>
+        Também é importante notar que quando uma pontuação alta é obtida, o jogo solicitará ao jogador para inserir um
+        conjunto
+        de iniciais para associar com a pontuação. Inserir as iniciais é feito via o controlador Atari 7800
+        (mapeamentos de controlador de teclado ou gamepad) versus usar teclas de teclado diretamente. Além de letras,
+        vários caracteres especiais também estão presentes durante a entrada de pontuação alta que permitem operações
+        como
+        apagar caracteres e aceitar as iniciais atuais. Por exemplo, na captura de tela acima, o
+        "quadrado branco" se traduz em aceitar as iniciais que foram inseridas.
+    </p>
+    <p>
+        Configurações relacionadas a pontuações altas podem ser modificadas via a aba "Pontuações Altas" no diálogo
+        "Configurações".
+        Para mais informações sobre configurações relacionadas a pontuações altas, veja a seção "Pontuações Altas" da
+        aba de ajuda "Diálogo de Configurações" à esquerda.
+    </p>
+    <a name="global-leaderboard"></a>
+    <div class="docs-section-title">Tabela de Líderes Global</div>
+    <p>
+        O JS7800 suporta uma tabela de líderes de pontuação alta global. Quando um jogo que suporta pontuações altas é
+        carregado,
+        as pontuações altas atuais do jogo são recuperadas de um servidor central de pontuação alta. Se novas pontuações
+        altas forem
+        alcançadas enquanto joga o jogo, essas pontuações serão publicadas de volta ao servidor central.
+    </p>
+    <p>
+        É importante notar que há um atraso ao detectar que uma nova pontuação alta foi definida e
+        registrá-la com o servidor central. Portanto, é altamente recomendado esperar algum período de
+        tempo (10 segundos ou mais) antes de sair do jogo atual para garantir que a nova pontuação alta seja registrada
+        com sucesso.
+    </p>
+    <p>
+        Ao carregar um jogo que suporta pontuações altas, uma mensagem dizendo,
+        "Tabela de líderes global atualmente não suportada para este jogo", pode ser exibida. Esta mensagem indica
+        que enquanto este jogo particular suporta pontuações altas, ele não está atualmente
+        registrado com o servidor global de pontuação alta. Há múltiplas razões pelas quais isso pode ser o caso.
+        É possível que o jogo seja muito novo e ainda precisa ser registrado com o servidor. Mas, é mais
+        provável que haja múltiplas versões do jogo, e esta variante particular não é suportada.
+        Múltiplas variantes de um dado jogo tipicamente não são suportadas pois cada variante poderia ter diferentes
+        modelos de pontuação, etc. Um dump bruto de jogos e variantes suportados (identificados por hash MD5 do cartucho
+        sem cabeçalho) pode ser encontrado
+        <a href="https://twitchasylum.com/x/gamelist.php" target="_blank">aqui</a>.
+    </p>
+    <p>
+        A página <a href="leaderboard" target="_blank">Tabela de Líderes Global JS7800</a> fornece a
+        capacidade de visualizar pontuações altas globais e melhores jogadores.
+    </p>
+    <a name="local-leaderboard"></a>
+    <div class="docs-section-title">Tabela de Líderes Local</div>
+    <p>
+        Além da tabela de líderes global, o JS7800 suporta a capacidade de salvar pontuações altas em uma
+        tabela de líderes local. As pontuações da tabela de líderes local são persistidas no dispositivo local e
+        disponíveis entre
+        diferentes sessões do navegador (a menos que os cookies tenham sido explicitamente desabilitados).
+    </p>
+    <p>Ao contrário da tabela de líderes global, que limita a compatibilidade com variantes de jogo,
+        a tabela de líderes local suporta todos os jogos e variantes habilitados para pontuação alta.
+    </p>
+</div>

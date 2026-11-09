@@ -1,4 +1,5 @@
 import * as Events from "./events.js"
+import * as I18n from "../../../src/js/common/i18n.js"
 
 import cloudDownloadImgSrc from "../images/cloud-download.svg"
 import folderOpenImgSrc from "../images/folder-open.svg"
@@ -42,7 +43,7 @@ function init(event) {
   // Remote file button
   var remoteOpened = false;
   createImageButton("select-remote-file", cloudDownloadImgSrc,
-    "Select Remote File", true,
+    I18n.t('site.cart_remote'), true,
     function () {
       if (remoteOpened) return;
       remoteOpened = true;
@@ -53,7 +54,7 @@ function init(event) {
         pauseButton.onClick();      
       }
       setTimeout(function() {      
-        var url = prompt("Enter the URL of a remote Cartridge file or Cartridge list");
+        var url = prompt(I18n.t('site.cart_prompt'));
         if (url) {
           var trimmed = url.trim();
           if (trimmed.length > 0) {
@@ -70,7 +71,7 @@ function init(event) {
 
   // Local file button
   var localFileButton = createImageButton("select-local-file", folderOpenImgSrc,
-    "Select Local File", false, null);
+    I18n.t('site.cart_local'), false, null);
   var label = localFileButton.label;
   var fileInput = document.createElement("input");
   label.className = "controls-button__upload";

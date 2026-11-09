@@ -1,6 +1,7 @@
 import * as UiCommon from "../../../src/js/common/ui-common.js"
 import * as Utils from "./util.js"
 import * as Events from "./events.js"
+import * as I18n from "../../../src/js/common/i18n.js"
 
 var Component = UiCommon.Component;
 var Button = UiCommon.Button;
@@ -186,17 +187,17 @@ addProps(Dialog.prototype, {
     defDiv.style.flexGrow = 1;    
 
     if (this.isReadOnly) {
-      var cancel = new DialogButton("Close");
+      var cancel = new DialogButton(I18n.t('common.close'));
       this.cancel = cancel;
 
       footerEl.appendChild(defDiv);
       footerEl.appendChild(cancel.createElement());        
     } else {
-      var ok = new DialogButton("OK");
+      var ok = new DialogButton(I18n.t('common.ok'));
       this.ok = ok;
-      var cancel = new DialogButton("Cancel");
+      var cancel = new DialogButton(I18n.t('common.cancel'));
       this.cancel = cancel;
-      var defaults = new DialogButton("Defaults", "Reset to Defaults");
+      var defaults = new DialogButton(I18n.t('common.defaults'), I18n.t('common.defaultsTitle'));
       this.defaults = defaults;
 
       ok.onClick = function () {

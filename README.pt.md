@@ -1,0 +1,184 @@
+**English** | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Deutsch](README.de.md) | [Español](README.es.md) | [Français](README.fr.md) | [Italiano](README.it.md) | **Português** | [Русский](README.ru.md)
+
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+[![Actions Status](https://github.com/raz0red/js7800/workflows/Build/badge.svg)](https://github.com/raz0red/js7800/actions)
+
+# JS7800
+
+Portado por raz0red
+
+JS7800 é uma porta JavaScript aprimorada do emulador ProSystem Atari 7800 que foi desenvolvido originalmente por Greg Stanton.
+
+https://raz0red.github.io/js7800/
+
+Para funcionar corretamente e sem problemas (sem atrasos, etc.), o JS7800 requer uma versão atualizada de um navegador moderno (Chrome, Firefox, Safari) em um sistema adequadamente configurado.
+
+[![JS7800](https://github.com/raz0red/js7800/raw/master/screenshots/screenshot.png)](https://raz0red.github.io/js7800/)
+
+## Informações do Fork
+
+Este é um fork do repositório original [raz0red/js7800](https://github.com/raz0red/js7800) com modificações para suportar múltiplos idiomas e melhorar a experiência de desenvolvimento local.
+
+**Nota:** Este fork se concentra em melhorias de internacionalização mantendo a mesma excelente experiência de jogo do original. A emulação principal e compatibilidade de jogos permanecem inalteradas.
+
+**Jogar agora**:
+- **Cloudflare Pages**: https://js7800.pages.dev
+- **GitHub Pages Mirror**: https://anomixer.github.io/js7800/
+
+### Modificações
+
+*   **Suporte Multilíngue**: A interface do usuário agora suporta Inglês, Chinês Tradicional (繁體中文), Chinês Simplificado (简体中文), Japonês (日本語), Coreano (한국어), Alemão (Deutsch), Espanhol (Español), Francês (Français), Italiano (Italiano), Português e Russo (Русский).
+*   **Detecção Automática de Idioma**: No primeiro carregamento, o aplicativo tentará corresponder ao idioma preferido do navegador. O idioma também pode ser alterado manualmente no menu Configurações.
+*   **Suporte Multilíngue da Tabela de Líderes Global**: A página da Tabela de Líderes Global também suporta os mesmos onze idiomas e sincroniza automaticamente com as configurações de idioma do emulador principal.
+*   **Pontuações Altas Globais por Padrão**: O armazenamento de pontuações altas padrão foi configurado como "Global (tabela de líderes mundial)" para permitir sincronização perfeita com o sistema de tabela de líderes original através do proxy Cloudflare Workers.
+*   **Documentação Traduzida**: Os arquivos README e de ajuda interna foram traduzidos.
+*   **Sincronização da Tabela de Líderes Global**: Integração Cloudflare Workers implementada para habilitar sincronização de pontuações altas globais em implantações forkadas.
+
+### Como Executar Localmente
+
+1.  **Instalar Dependências:**
+    ```sh
+    npm install
+    ```
+
+2.  **Construir o Site:**
+    ```sh
+    set NODE_OPTIONS=--openssl-legacy-provider
+    npm run build
+    ```
+
+3.  **Servir os Arquivos:**
+    Navegar para a raiz do projeto e servir o diretório `site/deploy`. Você pode usar `npx` ou o servidor web integrado do Python.
+
+    *   **Usando Node.js:**
+        ```sh
+        npx http-server site/deploy -p 8081
+        ```
+
+    *   **Usando Python 3:**
+        ```sh
+        python -m http.server 8081 --directory site/deploy
+        ```
+
+    Em seguida, abra seu navegador em `http://localhost:8081`.
+
+## Recursos
+
+* Rastreamento global de pontuações altas (para jogos compatíveis com HSC)
+* Mapeamentos de teclado personalizáveis
+* Compatibilidade com gamepads (com suporte dual analógico para jogos estilo Robotron)
+* Suporte de tela cheia
+* Múltiplas proporções de aspecto
+* Capacidade de ativar/desativar filtros de vídeo
+* Suporte de arrastar e soltar para arquivos locais e links de arquivos remotos
+* Suporte de listas de cartuchos (ver [JS7800 Wiki](https://github.com/raz0red/js7800/wiki/Cartridge%20Lists))
+* Suporte de pistola de luz (através do mouse)
+* Suporte do Módulo de Expansão (XM)
+* Bank switching melhorado e detecção de cartuchos
+
+## Documentação
+
+O JS7800 inclui documentação integrada através do botão "Ajuda/Informações" localizado na barra de comandos diretamente abaixo da tela do emulador.
+
+Para informações sobre o formato de ["listas de cartuchos"](https://github.com/raz0red/js7800/wiki/Cartridge%20Lists), [parâmetros de solicitação](https://github.com/raz0red/js7800/wiki/Request%20Parameters) e mais, consulte o [JS7800 Wiki](https://github.com/raz0red/js7800/wiki).
+
+## Registro de Alterações (Change Log)
+
+### 11/05/26 (0.1.0 - Sincronização oficial Upstream)
+    - Reescrita completa da precisão de DMA e temporização (contribuído por Mike Saarna)
+        - Penalidades de ciclo MARIA DMA, holey DMA e temporização WSYNC/NMI
+        - Extensão de ciclos de acesso lento TIA/RIOT/MARIA
+        - Renderização no estilo Racing-beam (a tela é desenhada conforme a CPU executa)
+        - O frame inicia dentro do VBLANK
+        - Reescrita de RIOT (temporizador, SWCHA/SWCHB e comportamento do modo 1/2 botões)
+        - Mapa de memória: leituras não mapeadas retornam open bus, espelhos TIA/MARIA/RAM, gravações não mapeadas descartadas
+        - Bits TIA não acionados flutuam para o último valor no barramento de dados
+        - Opcodes 6502 não documentados (SLO, RLA, SRE, RRA, DCP, ISC, SAX, LAX, ARR, LAS, ANC, ALR, NOPs) com contagens de ciclos corretas
+        - Espelho de RAM em $4000 (byte 54 do cabeçalho do cartucho, bit 7)
+    - Alterações adicionais:
+        - O ponteiro de pilha inicia em $FD após o reset ($0100-$013F agora é um espelho TIA/MARIA)
+        - Protótipos de Klax: banco 6 é mapeado em $4000 em cartuchos SuperGame de 128K
+        - Cartucho de pontuações altas: pontuações salvas são restauradas diretamente na RAM
+        - Banksets: metade da imagem de MARIA agora tem metade do tamanho do cartucho
+        - Pokey: adicionado o registrador STIMER ($4009)
+        - Áudio: fila de amostras limitada e manutenção do último nível em subfluxo (sem estalos/clicks)
+        - Configurações avançadas: opção "Forçar stick duplo" (apenas sessão) ativa modo analógico duplo
+    - Correções desde 0.0.9:
+        - Paletas NTSC/PAL atualizadas para telas modernas (Trebor)
+        - LAX abs (correção Phoenix), opcode SBX
+        - Subtração BCD alinhada com A7800
+        - Correção do modo 320D, atualizações de ARTI e 2048
+
+### 08/28/26 (0.1.0 - Versão Fork)
+    - Suporte multilíngue (11 idiomas: Português, Inglês, Chinês Tradicional, Chinês Simplificado,
+      Japonês, Coreano, Alemão, Espanhol, Francês, Italiano, Russo)
+    - Sincronização em tempo real da Tabela de Líderes Global com proteção Master SRAM
+    - Implantação dupla no Cloudflare Pages e espelho do GitHub Pages
+    - Suporte de gravação SRAM em duas etapas para compatibilidade retro HighScore Cartridge
+    - Sincronização paralela rápida (concorrência 8x) e otimização de cache Smart Diff sem custos
+    - Sincronização orientada a eventos: gravação upstream instantânea (0s) e espelho em nuvem automatizado (~18s)
+
+### 01/25/24 (0.0.9)
+    - Suporte para Souper
+    - Suporte ao layout Activision OM ROM
+    - Correção da seleção de pista de Pole Position II (por RevEng @ AtariAge)
+    - Suavização composta de Tower Toppler e Jinks (por RevEng @ AtariAge)
+    - Paletas atualizadas (contribuído por Trebor @ AtariAge)
+    - Popeye atualizado (JS7800 Demo 2.41) (contribuído por darryl1970 @ AtariAge)
+
+### 08/16/23 (0.0.8)
+    - Correção de fidelidade TIA (contribuído por RevEng @ AtariAge)
+
+### 08/13/23 (0.0.7)
+    - Reescrita do Pokey (contribuído por RevEng @ AtariAge)
+    - Correção do espelho de interrupção RIOT (contribuído por RevEng @ AtariAge)
+    - Adicionado homebrew Drelbs
+    - Adicionada última versão do Arkanoid homebrew (agora funcionando devido à correção RIOT)
+    - Adicionadas várias demos baseadas em Pokey
+
+### 08/10/23 (0.0.6)
+    - Paletas atualizadas (contribuído por Trebor @ AtariAge)
+    - Ajuste de volume padrão do YM-2151
+    - Correção de cabeçalho de cartucho para tipo de televisão
+
+### 07/30/23 (0.0.5)
+    - Suporte para Banksets
+    - Correção de cor de fundo Maria (Keystone Koppers)
+    - Correção de cabeçalhos de cartuchos (corrige várias ROMs que exigiam versões especiais)
+    - Precisão de ciclo aprimorada (resolve várias falhas)
+    - Detecção automática de homebrews YM-2151
+    - Suporte para filtros Pokey (contribuído por RevEng @ AtariAge)
+    - Suporte para cartucho de diagnóstico 7800
+    - Suporte para salvar estado (acessível apenas via webЯcade)
+    - Adicionado à lista de jogos padrão: IE78 (Demo), Bad Apple (Demo), Bankset Tests,
+      Baby Pac-Man, 7800 Test, Keystone Koppers (Demo), Galaxian, PentaGo!
+    - Vários jogos atualizados para as versões mais recentes
+    - Suporte para pontuações mais altas adicionado para: 1942, Galaxian, Keystone Koppers, PentaGo!
+
+### 01/05/21 (0.0.4)
+    - Adicionado suporte de recordes globais para "Popeye"
+    - Adicionado suporte de recordes globais para a versão mais recente de "Pac-Man Collection!"
+    - Atualizado para as versões mais recentes de "Dragon's Cache", "Dragon's Descent", "Popeye",
+      "Spire of the Ancients", "E.X.O" e "Knight Guy: Castle Days"
+
+### 09/03/20 (0.0.3)
+    - Suporte para opcodes ASR e ANC não documentados
+    - Suporte de recordes globais para "Pac-Man XM"
+    - "Popeye 7800: Mini-game" e "Knight Guy: Castle Days" adicionados à lista de desenvolvimento
+    - Atualizado para as versões mais recentes de "Dragon's Cache", "Dragon's Descent", "GoSub" e
+      "Spire of the Ancients"
+
+### 06/18/20 (0.0.2)
+    - Implementação XM atualizada
+    - Suporte inicial para chip de som Yamaha (YM2151)
+    - Capacidade de desativar sincronização vertical
+    - Demos musicais Yamaha Zanac e Side-Crawler's Dance adicionadas
+    - Recordes não suportados pelo servidor global são salvos localmente
+
+### 05/26/20 (0.0.1)
+    - Seleção de paleta de cores ("Cool", "Warm" e "Hot") em variações "Dark" e "Light"
+    - Opção de dimensionamento "Tela Cheia" (Inteiro vs Preencher)
+    - Página "Tabela de Líderes Global"
+
+### 05/16/20 (0.0.0)
+    - Lançamento inicial

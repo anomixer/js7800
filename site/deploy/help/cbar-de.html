@@ -1,0 +1,107 @@
+<div class="docs">
+    <div class="tabcontent__title">Steuerleiste</div>
+    <p>
+        Die "Steuerleiste" direkt unter dem JS7800-Emulator-Bildschirm wird verwendet, um verschiedene Aspekte der
+        Emulation zu steuern,
+        einschließlich des Zugriffs auf Einstellungen und Hilfe-Dialoge.
+    </p>
+    <div class="docs-center">
+        <img class="docs-centered-image docs-controls-bar" src="help/images/cbar.png"></img>
+    </div>
+    <p>
+        Die Buttons und Steuerungen, die die Steuerleiste ausmachen, werden im Folgenden beschrieben.
+    </p>
+    <div class="dialog-grid docs-grid">
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image"
+                onclick="this.src = 'help/images/' + (this.src.indexOf('pause') == -1 ? 'pause.svg' : 'play.svg');"
+                src="help/images/pause.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Pausiert die Emulation der aktuellen Kartusche. Nach dem Pausieren kann dieser Button verwendet werden, um
+            die Emulation fortzusetzen.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image"
+                onclick="this.src = 'help/images/' + (this.src.indexOf('off') == -1 ? 'volume-off.svg' : 'volume-high.svg');"
+                src="help/images/volume-high.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Schaltet die Sound-Ausgabe ein und aus.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image" src="help/images/restart.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Startet die aktuelle Kartusche neu. Dies entspricht dem Neuladen und sauberen Start der aktuellen Kartusche.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <button onclick="this.blur();" class="js7800__controls-button">SELECT</button>
+        </div>
+        <div class="dialog-cell-value">
+            Der SELECT-Button repräsentiert den physischen "SELECT"-Button, der auf der Atari 7800-Konsole vorhanden
+            ist.
+            Die Aktion dieses Buttons ist kartuschenspezifisch, wird aber typischerweise verwendet, um die aktuellen
+            Einstellungen des Spiels auszuwählen (z. B. Schwierigkeitsgrad).
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <button onclick="this.blur();" class="js7800__controls-button">RESET</button>
+        </div>
+        <div class="dialog-cell-value">
+            Der RESET-Button repräsentiert den physischen "RESET"-Button, der auf der Atari 7800-Konsole vorhanden ist.
+            Die Aktion dieses Buttons ist kartuschenspezifisch, wird aber typischerweise verwendet, um das aktuelle
+            Spiel zu beenden (falls ein Spiel läuft).
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <label class="js7800__controls-switch"><input type="checkbox"><span
+                    class="js7800__controls-switch-slider"></span></label>
+        </div>
+        <div class="dialog-cell-value">
+            Repräsentiert den physischen linken Schwierigkeitsgrad-Schalter, der auf der Atari 7800-Konsole vorhanden
+            ist.
+            Die Aktion dieses Schalters ist kartuschenspezifisch.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <label class="js7800__controls-switch"><input type="checkbox" checked><span
+                    class="js7800__controls-switch-slider"></span></label>
+        </div>
+        <div class="dialog-cell-value">
+            Repräsentiert den physischen rechten Schwierigkeitsgrad-Schalter, der auf der Atari 7800-Konsole vorhanden
+            ist.
+            Die Aktion dieses Schalters ist kartuschenspezifisch.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image" src="help/images/medal.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Öffnet die <a href="leaderboard" target="_blank">JS7800 Globale Bestenliste</a> Seite. Diese Seite zeigt
+            globale Highscores und Top-Spieler an. Der Score-Set, der standardmäßig auf der Bestenliste angezeigt wird,
+            ist
+            der des Spiels, das derzeit in JS7800 gespielt wird (falls es globale Highscores unterstützt). Für weitere
+            Details zur globalen Bestenliste,
+            siehe den "Highscores" Tab links. Unterstützte Spiele und Varianten (identifiziert durch rohe
+            Kartuschen-MD5-Hashes ohne Header) sind
+            <a href="https://twitchasylum.com/x/gamelist.php" target="_blank">hier</a> verfügbar.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image" src="help/images/information-outline.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Zeigt diesen "Hilfe"-Dialog an.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image" src="help/images/cogs.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Zeigt den "Einstellungen"-Dialog an. Für weitere Details, siehe den "Einstellungen Dialog" Hilfe-Tab links.
+        </div>
+        <div class="dialog-cell-label docs-grid-label-control">
+            <img class="docs-grid-control-image"
+                onclick="this.src = 'help/images/' + (this.src.indexOf('exit') == -1 ? 'fullscreen-exit.svg' : 'fullscreen.svg');"
+                src="help/images/fullscreen.svg"></img>
+        </div>
+        <div class="dialog-cell-value">
+            Schaltet zwischen Vollbild- und Nicht-Vollbild-Modus um.
+        </div>
+    </div>
+</div>

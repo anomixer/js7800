@@ -1,3 +1,5 @@
+**English** | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Deutsch](README.de.md) | [Español](README.es.md) | [Français](README.fr.md) | [Italiano](README.it.md) | [Português](README.pt.md) | [Русский](README.ru.md)
+
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 [![Actions Status](https://github.com/raz0red/js7800/workflows/Build/badge.svg)](https://github.com/raz0red/js7800/actions)
 
@@ -12,6 +14,149 @@ https://raz0red.github.io/js7800/
 In order to operate correctly and smoothly (no lags, etc.), JS7800 requires an updated version of a modern browser (Chrome, Firefox, Safari) on a capably configured system.
 
 [![JS7800](https://github.com/raz0red/js7800/raw/master/screenshots/screenshot.png)](https://raz0red.github.io/js7800/)
+
+## Fork Information
+
+This is a fork of the original [raz0red/js7800](https://github.com/raz0red/js7800) repository with modifications to support multiple languages and improve the local development experience.
+
+**Note:** This fork focuses on internationalization enhancements while maintaining the same excellent gameplay experience as the original. The core emulation and game compatibility remain unchanged.
+
+**Play it now**:
+- **Cloudflare Pages**: https://js7800.pages.dev
+- **GitHub Pages**: https://anomixer.github.io/js7800/
+
+### Modifications
+
+*   **Multi-language Support**: The UI now supports English, Traditional Chinese (繁體中文), Simplified Chinese (简体中文), Japanese (日本語), Korean (한국어), German (Deutsch), Spanish (Español), French (Français), Italian (Italiano), Portuguese (Português), and Russian (Русский).
+*   **Automatic Language Detection**: On first load, the application will attempt to match the browser's preferred language. The language can also be changed manually in the Settings menu.
+*   **Global Leaderboard Multi-language Support**: The Global Leaderboard page also supports the same eleven languages and automatically syncs with the main emulator's language setting.
+*   **Global High Scores by Default**: The default high score storage has been set to "Global (worldwide leaderboard)" to enable seamless synchronization with the original leaderboard system via Cloudflare Workers proxy.
+*   **Translated Documentation**: The README and internal help files have been translated.
+*   **Global Leaderboard Synchronization**: Implemented Cloudflare Workers integration to enable global high score synchronization for forked deployments.
+
+### How to Run Locally
+
+1.  **Install Dependencies:**
+    ```sh
+    npm install
+    ```
+
+2.  **Build the Site:**
+    ```sh
+    set NODE_OPTIONS=--openssl-legacy-provider
+    npm run build
+    ```
+
+3.  **Serve the Files:**
+    Navigate to the project root and serve the `site/deploy` directory. You can use `npx` or Python's built-in web server.
+
+    *   **Using Node.js:**
+        ```sh
+        npx http-server site/deploy -p 8081
+        ```
+
+    *   **Using Python 3:**
+        ```sh
+        python -m http.server 8081 --directory site/deploy
+        ```
+    
+    Then, open your browser to `http://localhost:8081`.
+
+### Global Leaderboard Synchronization Attempts
+
+The original global leaderboard service (https://twitchasylum.com/x/) maintains high scores for hundreds of Atari 7800 games, allowing players to compete globally. However, the service is protected by a CORS policy that only permits requests from the official `raz0red.github.io` domain, preventing forks from accessing it.
+
+#### Solution: Cloudflare Workers Proxy
+
+We implemented a custom solution using **Cloudflare Workers** and **Cloudflare KV Storage** to enable global leaderboard synchronization in forked deployments:
+
+**How It Works:**
+1. **Cloudflare Worker as Proxy**: A worker intercepts all leaderboard requests and forwards them to the original `twitchasylum.com/x/` service.
+2. **CORS Header Injection**: The worker adds appropriate CORS headers (`Access-Control-Allow-Origin: *`) to allow requests from any origin.
+3. **Data Caching**: Responses are cached in Cloudflare KV Storage to improve performance and reduce dependency on the original service.
+4. **Score Synchronization & Timing**: When players submit high scores through the emulator, scores are written directly to the upstream MySQL database (updating the official leaderboard instantly in 0s). Concurrently, a background event dispatches GitHub Actions to bypass CORS/WAF blocks and mirror the latest score to Cloudflare KV (completing in ~18 seconds).
+
+**Benefits:**
+- Players in forked deployments can now see and compete on the global leaderboard
+- Faster response times through caching
+- Improved reliability through fallback to cached data
+- Seamless integration with existing high-score system
+
+#### Deployment to Cloudflare Workers & Pages
+
+##### Step 1: Set Up Cloudflare Account
+
+1. Create a free account at [cloudflare.com](https://www.cloudflare.com)
+2. Navigate to **Workers & Pages** section
+3. Create a new Worker project
+
+##### Step 2: Deploy Cloudflare Worker
+
+1. **Create the Worker Script:**
+   - In Cloudflare Dashboard, go to **Workers & Pages** → **Create application** → **Create Worker**
+   - Name it (e.g., `js7800-leaderboard-worker`)
+   - Click **Create**
+
+2. **Add Worker Code:**
+   - Copy the code from `cloudflare-worker/leaderboard-worker.js` in this repository
+   - Paste it into the Cloudflare Worker editor
+   - Save and deploy
+
+3. **Create KV Namespace:**
+   - Go to **Workers** → **KV** in the Cloudflare Dashboard
+   - Create a new namespace: `js7800globalhiscore`
+   - Bind it to your worker with the same name
+
+4. **Get Worker URL:**
+   - After deployment, you'll get a URL like `https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev`
+   - Update `WORKER_URL` constant in:
+     - `site/src/js/highscore.js`
+     - `site/leaderboard/src/js/leaderboard.js`
+
+##### Step 3: Deploy to Cloudflare Pages
+
+1. **Connect Repository:**
+   - In Cloudflare Dashboard, go to **Pages**
+   - Click **Create a project** → **Connect to Git**
+   - Select your fork of js7800 repository
+   - Authorize Cloudflare to access GitHub
+
+2. **Configure Build Settings:**
+   - **Build Command**: `npm run build`
+   - **Build Output Directory**: `site/deploy`
+   - **Environment Variables**:
+     ```
+     NODE_OPTIONS = --openssl-legacy-provider
+     ```
+
+3. **Deploy:**
+   - Click **Save and Deploy**
+   - Cloudflare will automatically build and deploy your site
+   - You'll get a public URL like `https://your-project.pages.dev`
+
+##### Step 4: Verify Global Leaderboard
+
+1. Navigate to your deployed site: `https://your-project.pages.dev`
+2. Go to **Global Leaderboard** page: `https://your-project.pages.dev/leaderboard/`
+3. Select a game to view global high scores
+4. Play a game and submit a high score to verify synchronization
+
+##### Troubleshooting
+
+**Worker not returning data:**
+- Verify KV namespace is correctly bound
+- Check browser console for CORS errors
+- Ensure `WORKER_URL` is correctly set in source files
+
+**Leaderboard page shows "Error":**
+- Check if Worker is deployed and responding
+- Verify network requests in browser DevTools
+- Ensure KV namespace contains data
+
+**Build fails on Cloudflare Pages:**
+- Check build logs in Cloudflare Dashboard
+- Ensure `NODE_OPTIONS` environment variable is set
+- Run `npm install` locally to verify dependencies
 
 ## Features
 
@@ -43,7 +188,16 @@ JS7800 includes integrated documentation via the "Help/Information" button locat
 
 For information on the ["cartridge list"](https://github.com/raz0red/js7800/wiki/Cartridge%20Lists) format,  [request parameters](https://github.com/raz0red/js7800/wiki/Request%20Parameters), and more, refer to the [JS7800 Wiki](https://github.com/raz0red/js7800/wiki).
 
-## Change log
+## Change Log
+
+### 08/28/26 (0.1.0 - Fork Release)
+    - Multi-language support (11 languages: English, Traditional Chinese, Simplified Chinese,
+      Japanese, Korean, German, Spanish, French, Italian, Portuguese, Russian)
+    - Global High Score Leaderboard real-time synchronization with Master SRAM protection
+    - Dual deployment to Cloudflare Pages and GitHub Pages mirror
+    - Two-stage SRAM write support for retro HighScore Cartridge hardware compatibility
+    - Fast parallel sync (8x concurrency) and smart diff zero-bill cache optimization
+    - Event-driven sync pipeline: instant upstream write (0s) & automated cloud mirror sync (~18s) with KV-first caching
 
 ### 11/05/26 (0.1.0)
     - DMA and timing accuracy rewrite (contributed by Mike Saarna)
@@ -152,4 +306,3 @@ For information on the ["cartridge list"](https://github.com/raz0red/js7800/wiki
 
 ### 05/16/20 (0.0.0)
     - Initial release
-

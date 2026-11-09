@@ -1,0 +1,85 @@
+<div class="docs">
+    <div class="tabcontent__title">Highscores</div>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="this.blur();">Zu Abschnitt springen <span
+                class="down-arrow">&#x25BC;</span></button>
+        <div class="dropdown-content">
+            <div onclick="window.location.href='#global-leaderboard'">Globale Bestenliste</div>
+            <div onclick="window.location.href='#local-leaderboard'">Lokale Bestenliste</div>
+        </div>
+    </div>
+    <p>
+        JS7800 unterstützt das persistente Speichern von Highscores für kompatible Kartuschen sowohl global als auch
+        lokal.
+        Damit eine Kartusche als kompatibel betrachtet wird, muss ihr Header (<span class="fixed">.a78</span>
+        Dateierweiterung)
+        identifizieren, dass sie High Score Cartridge (HSC) unterstützt. Standardmäßig ist die globale Persistierung von
+        Highscores aktiviert.
+    </p>
+    <div class="docs-center">
+        <img class="docs-centered-image" style="border-width: .5em;" src="help/images/highscore.png"></img>
+    </div>
+    <p>
+        Standardmäßig enthält das "Kartuschen-Dropdown-Menü" (siehe "Kartuschen-Menü" im "Kartuschen" Hilfe-Tab links)
+        einen Satz von Homebrew-Spielen, die Highscores unterstützen. Diese Kartuschen sind in einer Gruppe mit dem
+        Titel "High Score Compatible" am unteren Ende der Menüliste enthalten.
+    </p>
+    <p>
+        Wenn ein Highscore erreicht wird, wird der Spieler aufgefordert, Initialen einzugeben, die mit dem Score
+        assoziiert werden sollen.
+        Die Eingabe der Initialen erfolgt nicht über Tastatur-Tasten, sondern über den Atari 7800-Controller
+        (Tastatur-Controller-Mapping oder Gamepad). Zusätzlich zu Buchstaben gibt es einige Sonderzeichen während der
+        Highscore-Eingabe, die Operationen wie das Löschen von Buchstaben oder das Akzeptieren der aktuellen Initialen
+        ermöglichen. Zum Beispiel bedeutet das "weiße Quadrat" in dem obigen Screenshot, dass die eingegebenen Initialen
+        akzeptiert werden.
+    </p>
+    <p>
+        Highscore-bezogene Einstellungen können im "Highscores" Tab im "Einstellungen" Dialog geändert werden.
+        Für weitere Details zu Highscore-bezogenen Einstellungen, siehe den "Highscores" Abschnitt im "Einstellungen
+        Dialog" Hilfe-Tab links.
+    </p>
+    <a name="global-leaderboard"></a>
+    <div class="docs-section-title">Globale Bestenliste</div>
+    <p>
+        JS7800 unterstützt eine globale Highscore-Bestenliste. Wenn ein Spiel geladen wird, das Highscores unterstützt,
+        werden die aktuellen Highscores des Spiels von einem zentralen Highscore-Server abgerufen. Wenn während des
+        Spielens ein neuer Highscore erreicht wird, wird dieser Score auf dem zentralen Server veröffentlicht.
+    </p>
+    <p>
+        Es ist wichtig zu beachten, dass es eine Verzögerung gibt, wenn ein neuer Highscore erkannt und auf dem
+        zentralen Server aufgezeichnet wird.
+        Daher wird dringend empfohlen, vor dem Beenden des aktuellen Spiels eine kurze Zeit zu warten (ca. 10 Sekunden),
+        um sicherzustellen, dass der neue Highscore korrekt aufgezeichnet wird.
+    </p>
+    <p>
+        Wenn ein Spiel geladen wird, das Highscores unterstützt, kann eine Nachricht erscheinen: "Die globale
+        Bestenliste wird für dieses Spiel derzeit nicht unterstützt."
+        Diese Nachricht zeigt an, dass das spezifische Spiel Highscores unterstützt, aber derzeit nicht auf dem globalen
+        Highscore-Server registriert ist.
+        Es gibt mehrere Gründe, warum dies passieren kann. Das Spiel könnte zu neu sein, um bereits auf dem Server
+        registriert zu sein.
+        Der wahrscheinlichste Grund ist jedoch, dass es mehrere Versionen des Spiels gibt und diese spezifische Variante
+        nicht unterstützt wird.
+        Mehrere Varianten eines spezifischen Spiels werden typischerweise nicht unterstützt, da jede Variante ein
+        anderes Scoring-Modell haben könnte.
+        Unterstützte Spiele und Varianten (identifiziert durch rohe Kartuschen-MD5-Hashes ohne Header) sind
+        <a href="https://twitchasylum.com/x/gamelist.php" target="_blank">hier</a> verfügbar.
+    </p>
+    <p>
+        Die <a href="leaderboard" target="_blank">JS7800 Globale Bestenliste</a> Seite ermöglicht es,
+        globale Highscores und Top-Spieler anzuzeigen.
+    </p>
+    <a name="local-leaderboard"></a>
+    <div class="docs-section-title">Lokale Bestenliste</div>
+    <p>
+        Zusätzlich zur globalen Bestenliste unterstützt JS7800 die Funktion, Highscores in einer lokalen Bestenliste zu
+        speichern.
+        Lokale Bestenlisten-Scores werden auf dem lokalen Gerät persistent gespeichert und sind über verschiedene
+        Browser-Sessions verfügbar
+        (es sei denn, Cookies sind explizit deaktiviert).
+    </p>
+    <p>
+        Im Gegensatz zur globalen Bestenliste, die die Kompatibilität mit Spielvarianten einschränkt,
+        unterstützt die lokale Bestenliste alle Highscore-fähigen Spiele und Varianten.
+    </p>
+</div>

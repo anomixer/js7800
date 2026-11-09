@@ -1,0 +1,39 @@
+<div class="docs">
+  <div class="tabcontent__title">高分</div>
+  <div class="dropdown">
+    <button class="dropbtn" onclick="this.blur();">快速导航 <span class="down-arrow">&#x25BC;</span></button>
+    <div class="dropdown-content">
+      <div onclick="window.location.href='#global-leaderboard'">全球排行榜</div>
+      <div onclick="window.location.href='#local-leaderboard'">本地排行榜</div>
+    </div>
+  </div>
+  <p>
+    JS7800 支持兼容卡带的高分记录保存，可选择“全球”或“本地”。兼容条件为卡带（.a78）头部声明支持 HSC。
+  </p>
+  <div class="docs-center">
+    <img class="docs-centered-image" style="border-width: .5em;" src="help/images/highscore.png"></img>
+  </div>
+  <p>
+    默认卡带列表包含一组支持高分的自制游戏；详细设置可在“设置 → 高分”分页调整。
+  </p>
+
+  <a name="global-leaderboard"></a>
+  <div class="docs-section-title">全球排行榜</div>
+  <p>
+    载入支持高分的游戏时，会从中央服务器读取当前高分；若游戏中达成新高分，结束后会回传服务器。
+  </p>
+  <p>
+    建议在游戏结束后等待约 10 秒再离开，确保分数成功送出。若显示“Global leaderboard not currently supported...”，
+    表示该版本尚未在服务器注册或为不支持的变体。
+  </p>
+  <p>
+    可在 <a href="leaderboard" target="_blank">JS7800 全球排行榜</a> 查看各游戏高分与玩家排行。
+  </p>
+
+  <a name="local-leaderboard"></a>
+  <div class="docs-section-title">本地排行榜</div>
+  <p>
+    除了全球排行榜，也可选择将高分保存于本地，分数会在浏览器间保留（若未禁用 Cookie）。
+    不同于全球排行榜，本地排行榜不限制游戏变体，所有支持高分的游戏均可保存。
+  </p>
+</div>

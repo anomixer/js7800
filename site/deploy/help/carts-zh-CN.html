@@ -1,0 +1,85 @@
+<div class="docs">
+  <div class="tabcontent__title">加载卡带</div>
+  <div class="dropdown">
+    <button class="dropbtn" onclick="this.blur();">快速导航 <span class="down-arrow">&#x25BC;</span></button>
+    <div class="dropdown-content">
+      <div onclick="window.location.href='#cartridge-menu'">卡带下拉菜单</div>
+      <div onclick="window.location.href='#sel-local-file'">选择本地文件</div>
+      <div onclick="window.location.href='#sel-remote-file'">选择远程文件</div>
+      <div onclick="window.location.href='#drag-and-drop-files'">拖放文件</div>
+      <div onclick="window.location.href='#drag-and-drop-links'">拖放链接</div>
+      <div onclick="window.location.href='#request-params'">URL 参数</div>
+    </div>
+  </div>
+  <p>
+    本页介绍在 JS7800 中加载卡带的多种方式。JS7800 与多数 Atari 7800 卡带 ROM 兼容（含原版与自制作品）。
+  </p>
+  <p>
+    常见的 Atari 7800 ROM 扩展名为 <span class="fixed">.bin</span> 或 <span class="fixed">.a78</span>；建议使用
+    <span class="fixed">.a78</span>，其头部信息可帮助正确解析。亦支持将 ROM 放在 <span class="fixed">.zip</span> 中。
+  </p>
+  <a name="cartridge-menu"></a>
+  <div class="docs-section-title">卡带下拉菜单</div>
+  <p>默认提供一份自制卡带列表，选择即可加载。</p>
+  <div class="docs-center">
+    <div class="docs-relative-inline-block">
+      <div class="docs-loading-controls-focus docs-loading-controls-select-focus"></div>
+      <div class="docs-loading-controls-select-text">选择 Atari 7800 卡带...</div>
+      <img class="docs-loading-controls-image" src="help/images/cartloading.png"></img>
+    </div>
+  </div>
+  <p>
+    亦支持自定义“卡带列表”。详见
+    <a href="https://github.com/raz0red/js7800/wiki/Cartridge%20Lists" target="_blank">GitHub: Cartridge Lists</a>。
+  </p>
+  <a name="sel-local-file"></a>
+  <div class="docs-section-title">选择本地文件</div>
+  <p>点击“Select Local File”可从本地选择 <span class="fixed">.a78/.bin/.zip/.json</span> 文件加载。</p>
+  <div class="docs-center">
+    <div class="docs-relative-inline-block">
+      <div class="docs-loading-controls-focus docs-loading-controls-file-focus"></div>
+      <div class="docs-loading-controls-select-text">选择 Atari 7800 卡带...</div>
+      <img class="docs-loading-controls-image" src="help/images/cartloading.png"></img>
+    </div>
+  </div>
+  <p>
+    也可选择“卡带列表”(<span class="fixed">.json</span>)，列表会应用到下拉菜单。
+  </p>
+  <a name="sel-remote-file"></a>
+  <div class="docs-section-title">选择远程文件</div>
+  <p>点击“Select Remote Files”输入远程 ROM 链接即可加载，例如：
+    <div class="fixed-block">http://raz0red.github.io/js7800/roms/bonq.a78</div>
+  </p>
+  <p>
+    也可指定远程“卡带列表”(<span class="fixed">.json</span>) 来更新下拉菜单内容。
+  </p>
+  <a name="drag-and-drop-files"></a>
+  <div class="docs-section-title">拖放文件</div>
+  <p>可直接将本地 ROM 文件拖放到模拟器窗口上加载。</p>
+  <div class="docs-center">
+    <img class="docs-centered-image" src="help/images/dragfile.gif"></img>
+  </div>
+  <a name="drag-and-drop-links"></a>
+  <div class="docs-section-title">拖放链接</div>
+  <p>亦支持拖放远程 ROM 链接到模拟器上加载。</p>
+  <div class="docs-center">
+    <img class="docs-centered-image" src="help/images/draglink.gif"></img>
+  </div>
+  <a name="request-params"></a>
+  <div class="docs-section-title">URL 参数</div>
+  <p>
+    可用 URL 参数控制启动行为，例如 <span class="fixed">cart</span> 直接加载指定 ROM：
+  </p>
+  <div class="dialog-grid docs-grid">
+    <div class="dialog-cell-label">cart</div>
+    <div class="dialog-cell-value">
+      启动时加载指定 ROM：
+      <div class="fixed-block">https://raz0red.github.io/js7800/?cart=http://raz0red.github.io/js7800/roms/bonq.a78</div>
+    </div>
+    <div class="dialog-cell-label">cartlist</div>
+    <div class="dialog-cell-value">
+      启动时加载卡带列表至下拉菜单：
+      <div class="fixed-block">https://raz0red.github.io/js7800/?cartlist=http://raz0red.github.io/js7800/roms/romlist-homebrew-demos.json</div>
+    </div>
+  </div>
+</div>
